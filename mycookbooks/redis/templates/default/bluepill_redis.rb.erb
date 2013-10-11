@@ -1,0 +1,15 @@
+Bluepill.application("redis", :log_file => "/var/log/bluepill.log") do |app|
+  app.uid = 'root'
+  app.gid = 'root'
+  app.process("redis") do |process|
+    process.group = "redis"
+    process.pid_file = "<%= @pidfile %>"
+    process.start_command = "/usr/sbin/redis-server <%= @configfile %>"
+    process.stop_command  = "/usr/bin/redis-cli -p <%= @port %> shutdown"
+    process.daemonize = true
+    process.start_grace_time =   15.seconds
+    process.stop_grace_time =    15.seconds
+    process.restart_grace_time = 15.seconds
+  end
+end
+

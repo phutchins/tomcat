@@ -1,0 +1,23 @@
+ENV["RAILS_ENV"] = "<%= @rails_env %>"
+
+Bluepill.application("resque-web", :log_file => "/var/log/bluepill.log") do |app|
+  app.working_dir = "/data/<%= @app_name %>/current"
+  app.uid = 'root'
+  app.gid = 'root'
+  app.process("resque_web") do |process|
+    process.stdout = process.stderr = "/tmp/resque_web.log"
+    process.group = "resque-web"
+    process.pid_file = "/data/run/resque_web.pid"
+    process.start_command = "/engineyard/bin/resque-web <%= @app_name %> start"
+    process.stop_command  = "/engineyard/bin/resque-web <%= @app_name %> stop"
+    process.daemonize = true
+    process.start_grace_time =    10.seconds
+    #process.stop_grace_time =     15.seconds
+    #process.restart_grace_time = 120.seconds
+    #process.monitor_children do |c|
+    #  c.stop_command = "kill -USR1 {{PID}}"
+      #c.checks :mem_usage, :every => 30.seconds, :below => 100.megabytes, :fires => :stop
+    #end
+  end
+end
+

@@ -1,0 +1,46 @@
+<%# if ['production'].include?(@rails_env) %>
+#set mail-format { from: cdx-alert@manheim.com }
+#set MAILSERVER email-smtp.us-east-1.amazonaws.com PORT 465 USERNAME AKIAJC6OII5ZIOSN76DQ PASSWORD Agb60kIi2W9SsQ9gaH0vQjn6yYlHfofrU7Li10oEjcLj USING SSLV3 WITH TIMEOUT 15 SECONDS
+<%# end %>
+
+# resque-status-web
+Bluepill.application("resque_web_<%= @app_name %>", :log_file => "/var/log/bluepill.log") do |app|
+  app.uid = 'deploy'
+  app.gid = 'deploy'
+  app.process("resque_web_<%= @app_name %>") do |process|
+    process.start_command = "/engineyard/bin/resque-web <%= @app_name %> start"
+    process.stop_command  = "/engineyard/bin/resque-web <%= @app_name %> stop"
+    process.daemonize = false
+    process.group = "resque-web"
+    process.start_grace_time =   15.seconds
+    process.stop_grace_time =    15.seconds
+    process.restart_grace_time = 15.seconds
+  end
+end
+
+# resque-workers
+Bluepill.application("resque_workers_<%= @app_name %>", :log_file => "/var/log/bluepill.log") do |app|
+  process.uid = 'deploy'
+  process.gid = 'deploy'
+<% @workers_config.each do |queue, workers_count| %>
+<% count = 0 %>
+<% workers_count.times do %>
+  app.process("resque_<%= @app_name %>_<%= queue %>_<%= count %>" do |process|
+    process.daemonize = false
+    process.pid_file = "/var/run/engineyard/resque/<%= @app_name %>/resque_<%= queue %>_<%= count %>.pid"
+    process.start_command = "/engineyard/bin/resque <%= @app_name %> start <%= @rails_env %> resque_<%= queue %>_<%= count %>.conf"
+    process.stop_command  = "/engineyard/bin/resque <%= @app_name %> stop <%= @rails_env %> resque_<%= queue %>_<%= count %>.conf"
+    # if totalmem is greater than 600 MB for 2 cycles then restart
+    process.checks :mem_usage, :every => 30.seconds, :above => 600.megabytes, :times => [3,5]
+    process.group = "resque-workers-corndog"
+    process.start_grace_time =   60.seconds
+    process.stop_grace_time =    30.seconds
+    process.restart_grace_time = 60.seconds
+    <%# if ['production'].include?(@rails_env) %>
+    alert cdx-alert@manheim.com only on { timeout, nonexist }
+    <%# end %>
+    #group <%=# @app_name %>_resque
+    <% count += 1 %>
+  <% end %>
+<% end %>
+

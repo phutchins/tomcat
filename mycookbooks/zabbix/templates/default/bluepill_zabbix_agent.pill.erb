@@ -1,0 +1,12 @@
+Bluepill.application("zabbix-agentd", :log_file => "/var/log/bluepill.log") do |app|
+  app.uid = 'root'
+  app.gid = 'root'
+  app.process("zabbix-agentd") do |process|
+    process.stdout = process.stderr = "/tmp/zabbix_agentd.log"
+    process.pid_file = "/tmp/zabbix_agentd.pid"
+    process.start_command = "/usr/local/sbin/zabbix_agentd -c /usr/local/etc/zabbix_agentd.conf"
+    process.stop_command = "kill -QUIT {{PID}}"
+    process.daemonize = false
+  end
+end
+

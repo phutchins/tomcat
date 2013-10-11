@@ -1,0 +1,59 @@
+input {
+  file {
+    type => "utility-log"
+    sincedb_path => "/data/logstash"
+    path => [ '/data/corndog/shared/log/*.log' ]
+  }
+}
+
+##################
+##################
+
+filter {
+
+  # drop empty lines
+  grep {
+    match   => [ "@message", "^$" ]
+    negate  => "true"
+  }
+
+  # drop: "MONGODB (132ms)"
+  grep {
+    match   => [ "@message", "MONGODB \(\d*ms\)" ]
+    negate  => "true"
+  }
+
+  # drop: "SOLR Request (124.3ms)"
+  grep {
+    match   => [ "@message", "SOLR Request \(\d*\.\dms\)" ]
+    negate  => "true"
+  }
+
+  multiline {
+    pattern => "^\s|Processing|Completed|Redirected"
+    what    => "previous"
+  }
+
+  mutate {
+    replace => [ "@source_host", "<%= @env %>-utility" ]
+    add_tag => [ "<%= @env %>-utility" ]
+  }
+}
+
+##################
+##################
+
+output {
+  #stdout {
+  #  debug => true
+  #}
+
+  redis {
+    host => "logs.dealermatch.biz"
+    port => 16379
+    data_type => "list"
+    key => "logstash"
+  }
+}
+
+

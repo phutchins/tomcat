@@ -1,0 +1,115 @@
+input {
+
+  file {
+    type => "rails"
+    path => [ '/data/corndog/shared/log/<%= @env %>.log' ]
+    tags => [ 'rails' ]
+    codec => multiline {
+      pattern => "^\s"
+      what    => "previous"
+    }
+  }
+
+  file {
+    type => "unicorn"
+    path => [ '/data/corndog/shared/log/unicorn.log' ]
+    tags => [ 'unicorn' ]
+  }
+
+  file {
+    type => "unicorn"
+    path => [ '/data/corndog/shared/log/unicorn.stderr.log' ]
+    tags => [ 'unicorn', 'error' ]
+  }
+
+  file {
+    type => "unicorn"
+    path => [ '/data/corndog/shared/log/unicorn.stdout.log' ]
+    tags => [ 'unicorn', 'access' ]
+  }
+
+  file {
+    type => "deploy"
+    path => [ '/home/deploy/*.log' ]
+    tags => [ 'deploy' ]
+  }
+
+  file {
+    type => "nginx-error"
+    path => [ '/var/log/nginx/corndog.error.log' ]
+    tags => [ 'nginx','error' ]
+  }
+
+  file {
+    type => "nginx-access"
+    path => [ '/var/log/nginx/corndog.access*.log' ]
+    tags => [ 'nginx','access' ]
+  }
+
+}
+
+##################
+##################
+
+filter {
+
+  # drop empty lines
+  if [message] == "^$" {
+    drop { }
+  }
+
+  if "rails" in [tags] {
+    multiline {
+      pattern => "^\s|Processing|Completed|Redirected"
+      what    => "previous"
+    }
+  }
+
+  if "nginx" in [tags] and "access" in [tags] {
+    grok {
+    match  => [ "message", "%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}" ]
+    }
+
+    geoip {
+        source    => "clientip"
+        add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
+    }
+
+    #mutate {
+    #  replace => [ "@timestamp", "%{timestamp}" ]
+    #}
+  }
+
+  mutate {
+    replace => [ "source_host", "<%= @env %>-<%= @role %>" ]
+    add_tag => [ "<%= @env %>-appserver" ]
+  }
+
+<% if @node_env == 'production' %>
+<% end %>
+
+}
+
+##################
+##################
+
+output {
+  #stdout {
+  #  debug => true
+  #}
+
+  redis {
+    host => "logs.dealermatch.biz"
+    port => 16379
+    data_type => "list"
+    key => "logstash"
+  }
+
+<% if @node_env == 'production' %>
+<% end %>
+
+
+
+}
+
+# vim: set syntax=no
