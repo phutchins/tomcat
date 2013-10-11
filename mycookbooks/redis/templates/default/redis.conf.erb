@@ -1,0 +1,33 @@
+#Basic
+daemonize yes
+pidfile <%= node[:redis][:pid_file] %>
+port <%= node[:redis][:port] %>
+bind <%= node[:redis][:bind_address] %>
+timeout <%= node[:redis][:timeout] %>
+loglevel <%= node[:redis][:log_level] %>
+logfile <%= node[:redis][:log_file] %>
+databases 1
+
+#Database
+rdbcompression yes
+dbfilename <%= node[:redis][:dump_file] %>
+dir <%= node[:redis][:datadir] %>
+
+#Append-only
+appendonly <%= node[:redis][:appendonly] %>
+appendfilename <%= node[:redis][:aofile] %>
+appendfsync <%= node[:redis][:appendfsync] %>
+
+# Virtual memory
+vm-enabled <%= node[:redis][:vm] %>
+vm-swap-file <%= node[:redis][:swapfile] %>
+vm-max-memory <%= node[:redis][:vm_max_memory] %>
+vm-page-size <%= node[:redis][:vm_page_size] %>
+vm-pages <%= node[:redis][:vm_pages] %>
+vm-max-threads 4
+
+#Hash limits
+hash-max-zipmap-entries 64
+hash-max-zipmap-value 512
+activerehashing yes
+
