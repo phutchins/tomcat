@@ -1,5 +1,5 @@
 remote_file "/tmp/redis-#{node[:redis][:version]}.tar.gz" do
-  source "http://redis.googlecode.com/files/redis-#{node[:redis][:version]}.tar.gz"
+  source "http://download.redis.io/releases/redis-#{node[:redis][:version]}.tar.gz"
 end
 
 execute "tar xvfz /tmp/redis-#{node[:redis][:version]}.tar.gz" do
