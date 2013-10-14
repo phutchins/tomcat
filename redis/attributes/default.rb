@@ -16,4 +16,5 @@ default[:redis][:appendfsync] = 'everysec'
 default[:redis][:no_appendfsync_on_rewrite] = 'no'
 default[:redis][:auto_aof_rewrite_percentage] = '150'
 default[:redis][:auto_aof_rewrite_min_size] = '512mb'
+default[:redis][:swapfile] = '/tmp/redis.swap'
 
