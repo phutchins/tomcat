@@ -56,7 +56,7 @@ template "/etc/init.d/redis-server" do
   mode "0755"
 end
 
-include_recipe "redis::service"
+#include_recipe "redis::service"
 
 service "redis-server" do
   action :enable
