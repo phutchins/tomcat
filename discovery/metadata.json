@@ -1,8 +1,8 @@
 {
-  "name": "stunnel",
-  "description": "Installs/Configures stunnel",
+  "name": "discovery",
+  "description": "Installs/Configures the discovery library",
   "long_description": "",
-  "maintainer": "Heavy Water",
+  "maintainer": "Heavy Water Operations, LLC",
   "maintainer_email": "support@hw-ops.com",
   "license": "Apache 2.0",
   "platforms": {
@@ -25,5 +25,5 @@
   },
   "recipes": {
   },
-  "version": "2.0.4"
+  "version": "0.2.0"
 }

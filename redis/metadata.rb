@@ -21,5 +21,6 @@ end
   depends cookbook
 end
 
-depends 'stunnel', '>= 2.0.0'   # replication
-depends 'discovery', '>= 0.2.0' # replication
+#@depends 'stunnel', '>= 2.0.0'   # replication
+#
+#depends 'discovery', '>= 0.2.0' # replication
