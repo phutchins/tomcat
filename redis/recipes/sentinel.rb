@@ -1,6 +1,6 @@
 include_recipe "redis::install"
 
-redis_instance "server" do
+redis_sentinel "sentinel" do
   conf_dir      node.redis.conf_dir
   init_style    node.redis.init_style
 
@@ -8,7 +8,7 @@ redis_instance "server" do
   user          node.redis.user
   group         node.redis.group
 
-  node.redis.config.each do |attribute, value|
+  node.redis.sentinel.each do |attribute, value|
     send(attribute, value)
   end
 end
