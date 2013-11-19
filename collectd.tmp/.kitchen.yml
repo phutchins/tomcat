@@ -1,0 +1,42 @@
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: latest
+
+platforms:
+- name: ubuntu-12.04
+  run_list:
+  - recipe[apt]
+- name: ubuntu-10.04
+  run_list:
+  - recipe[apt]
+- name: centos-6.3
+  driver_config:
+    box: opscode-centos-6.3
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-6.3.box
+  run_list:
+  - recipe[yum::epel]
+- name: centos-5.8
+  driver_config:
+    box: opscode-centos-5.8
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-centos-5.8.box
+  run_list:
+  - recipe[yum::epel]
+suites:
+- name: default
+  run_list:
+  - recipe[collectd]
+  - recipe[minitest-handler]
+  attributes: {}
+- name: databag
+  run_list:
+  - recipe[collectd::data_bag_plugins]
+  attributes:
+    collectd:
+      plugins:
+      - load
+      - df
+- name: client_graphite
+  run_list:
+  - recipe[collectd::client_graphite]
+  - recipe[minitest-handler]

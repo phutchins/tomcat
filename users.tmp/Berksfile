@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+site :opscode
+
+metadata
+
+#cookbook 'sensu-admin', git: 'git@github.com:sensu/sensu-admin-chef.git'
+
