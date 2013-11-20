@@ -10,7 +10,9 @@ Vagrant.configure("2") do |config|
     redis_config.vm.network :forwarded_port, guest: 8080, host: 8081
 
     redis_config.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "./data_bags"
       chef.cookbooks_path = "."
+      chef.ipaddress = "33.33.33.10"
       chef.add_recipe "base::opsworks"
       chef.add_recipe "redis::server"
       chef.json = {
@@ -27,6 +29,7 @@ Vagrant.configure("2") do |config|
 
     mysql_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "."
+      chef.ipaddress = "33.33.33.10"
       chef.add_recipe "base::opsworks"
       chef.add_recipe "mysql::server_ec2"
       chef.json = {

@@ -1,4 +1,5 @@
 # Point chef-solo at the folder containing our data bags for use with the users recipe
+node.normal['ruby']['full_version'] = '1.9.3'
 node.normal['data_bag_path'] = '/var/chef/data_bags'
 
 include_recipe "base::solo-files"
