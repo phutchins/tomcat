@@ -18,27 +18,23 @@
 #
 include_recipe "openldap::client"
 
-case node['platform']
+case node[:platform]
 when "ubuntu"
-  package "db4.8-util" do
-    action :upgrade
+  if (node[:platform_version].to_f >= 10.04)
+    package "db4.8-util" do
+      action :upgrade
+    end
+  else
+    package "db4.2-util" do
+      action :upgrade
+    end
   end
-
-  directory node['openldap']['preseed_dir'] do
-    action :create
-    recursive true
-    mode 00700
-    owner "root"
-    group "root"
-  end
-
-  cookbook_file "#{node['openldap']['preseed_dir']}/slapd.seed" do
+  cookbook_file "/var/cache/local/preseeding/slapd.seed" do
     source "slapd.seed"
-    mode 00600
+    mode 0600 
     owner "root"
     group "root"
   end
-
   package "slapd" do
     response_file "slapd.seed"
     action :upgrade
@@ -47,85 +43,69 @@ else
   package "db4.2-util" do
     action :upgrade
   end
-
   package "slapd" do
     action :upgrade
   end
 end
 
-if node['openldap']['tls_enabled'] && node['openldap']['manage_ssl']
-  cookbook_file node['openldap']['ssl_cert'] do
-    source "ssl/#{node['openldap']['server']}.pem"
-    mode 00644
-    owner "root"
-    group "root"
-  end
+cookbook_file "#{node[:openldap][:ssl_dir]}/#{node[:openldap][:server]}.pem" do
+  source "ssl/#{node[:openldap][:server]}.pem"
+  mode 0644
+  owner "root"
+  group "root"
 end
 
-if (node['platform'] == "ubuntu")
+service "slapd" do
+  action [:enable, :start]
+end
+
+if (node[:platform] == "ubuntu") and (node[:platform_version].to_f >= 8.10)
   template "/etc/default/slapd" do
     source "default_slapd.erb"
     owner "root"
     group "root"
-    mode 00644
+    mode 0644
   end
 
-  directory "#{node['openldap']['dir']}/slapd.d" do
+  directory "#{node[:openldap][:dir]}/slapd.d" do
     recursive true
     owner "openldap"
     group "openldap"
     action :create
   end
-
+  
   execute "slapd-config-convert" do
-    command "slaptest -f #{node['openldap']['dir']}/slapd.conf -F #{node['openldap']['dir']}/slapd.d/"
+    command "slaptest -f #{node[:openldap][:dir]}/slapd.conf -F #{node[:openldap][:dir]}/slapd.d/"
     user "openldap"
     action :nothing
-    notifies :start, "service[slapd]", :immediately
-  end
-
-  execute "slapd-config-init-execute" do
-    command "rm -rf /etc/ldap/slapd.d/* /etc/ldap/slapd.conf"
-    action :nothing
-  end
-  ruby_block "slapd-config-init" do
-    block do
-      node.normal['openldap']['init_done'] = true
-    end
-    not_if { node['openldap']['init_done'] }
-    notifies :run, "execute[slapd-config-init-execute]", :immediately
-    action :create
+    notifies :start, resources(:service => "slapd"), :immediately
   end
   
-
-  template "#{node['openldap']['dir']}/slapd.conf" do
+  template "#{node[:openldap][:dir]}/slapd.conf" do
     source "slapd.conf.erb"
-    mode 00640
+    mode 0640
     owner "openldap"
     group "openldap"
-    notifies :stop, "service[slapd]", :immediately
-    notifies :run, "execute[slapd-config-convert]"
-  end
-
-  service "slapd" do
-    action [:enable, :start]
+    notifies :stop, resources(:service => "slapd"), :immediately
+    notifies :run, resources(:execute => "slapd-config-convert")
   end
 else
-  case node['platform']
+  case node[:platform]
   when "debian","ubuntu"
     template "/etc/default/slapd" do
       source "default_slapd.erb"
       owner "root"
       group "root"
-      mode 00644
+      mode 0644
     end
   end
-
-  template "#{node['openldap']['dir']}/slapd.conf" do
+  
+  template "#{node[:openldap][:dir]}/slapd.conf" do
     source "slapd.conf.erb"
-    mode 00640
+    mode 0640
     owner "openldap"
     group "openldap"
-    notifies :restart, "service[slapd]"
+    notifies :restart, resources(:service => "slapd")
   end
 end
+

@@ -18,8 +18,7 @@ install_collectd = lambda do
   end
 
   collectd_plugin 'syslog' do
-    options :log_level => 'info',
-            :notify_level => 'warning'
+    options :log_level => 'info'
   end
 
   collectd_plugin 'tcpconns' do

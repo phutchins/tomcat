@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     redis_config.vm.box = "ubuntu_1204_chef_116"
     redis_config.vm.box_url = "http://cdx-devops.s3.amazonaws.com/ubuntu_1204_chef_116.box"
     redis_config.vm.network :private_network, ip: "33.33.33.10"
-    redis_config.vm.network :forwarded_port, guest: 8080, host: 8080
+    redis_config.vm.network :forwarded_port, guest: 8080, host: 8081
 
     redis_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "."
