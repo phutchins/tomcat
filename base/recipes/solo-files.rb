@@ -1,5 +1,12 @@
-remote_directory "/var/chef/data_bags" do
-  source "/tmp/vagrant-chef-1/chef-solo-1/cookbooks/base/files/default/data_bags"
+directory "/var/chef/databags" do
+  owner "root"
+  group "root"
+  mode 0755
+  action :create
+end
+
+remote_directory "/var/chef/databags" do
+  source "databags"
   files_owner "root"
   files_group "root"
   owner "root"
