@@ -11,10 +11,11 @@ user "phutchins" do
   shell "/bin/bash"
 end
 
-directory "/home/phutchins/.ssh" do
+["/home/phutchins", "/home/phutchins/.ssh"].each do |dir|
+directory dir do
   mode 700
   owner "phutchins"
-  group "devops"
+  group "phutchins"
   action :create
 end
 
@@ -22,7 +23,7 @@ cookbook_file "/home/phutchins/.ssh/authorized_keys" do
   source "authorized_keys.phutchins"
   mode 600
   owner "phutchins"
-  group "devops"
+  group "phutchins"
   action :create
 end
 
