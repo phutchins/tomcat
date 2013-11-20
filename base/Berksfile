@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-site :opscode
-
-metadata
-
-cookbook 'users', git: 'git@github.com:CDEI/users.git'
-cookbook 'collectd', git: 'git@github.com:hectcastro/chef-collectd.git'
-cookbook 'openldap', git: 'git@github.com:CDEI/openldap.git'

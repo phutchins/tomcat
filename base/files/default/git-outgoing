@@ -1,3 +1,0 @@
-#!/bin/bash
-BRANCH=$(git name-rev HEAD 2> /dev/null | awk "{ print \$2 }")
-git log origin/$BRANCH..$BRANCH
