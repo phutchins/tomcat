@@ -13,7 +13,11 @@ install_collectd = lambda do
     collectd_plugin 'swap'
   end
 
-  %w(ntpd cpu load disk memory).each do |plug|
+  if node['collectd']['plugin-ntpd']
+    collectd_plugin 'ntpd'
+  end
+
+  %w(cpu load disk memory).each do |plug|
     collectd_plugin plug
   end
 
