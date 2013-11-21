@@ -15,6 +15,11 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "base-opsworks"
       chef.add_recipe "redis::server"
       chef.json = {
+        :authorization => {
+          :sudo => {
+            :users => ["vagrant", "phutchins", "jgerry"]
+          }
+        }
       }
     end
   end
