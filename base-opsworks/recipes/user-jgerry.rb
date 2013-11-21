@@ -27,5 +27,3 @@ cookbook_file "/home/jgerry/.ssh/authorized_keys" do
   group "devops"
   action :create
 end
-
-include_recipe "sudo"

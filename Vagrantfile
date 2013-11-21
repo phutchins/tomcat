@@ -19,7 +19,8 @@ Vagrant.configure("2") do |config|
           :sudo => {
             :users => ["vagrant", "phutchins", "jgerry"]
           }
-        }
+        },
+        :vagrant => true
       }
     end
   end

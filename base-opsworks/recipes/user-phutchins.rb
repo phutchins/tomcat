@@ -27,5 +27,3 @@ cookbook_file "/home/phutchins/.ssh/authorized_keys" do
   group "devops"
   action :create
 end
-
-include_recipe "sudo"
