@@ -16,7 +16,7 @@ begin
     directory dir do
       mode 0700
       owner "ubuntu"
-      group "devops"
+      group "ubuntu"
       action :create
     end
   end
@@ -25,7 +25,7 @@ begin
     source "authorized_keys.ubuntu"
     mode 0600
     owner "ubuntu"
-    group "devops"
+    group "ubuntu"
     action :create
   end
 rescue Exception => e
