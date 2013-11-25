@@ -1,0 +1,53 @@
+dev_options: &dev_options
+  adapter: mysql2
+  database: kbb_dev
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *dev_options
+
+etl_smoke:
+  <<: *dev_options
+
+test:
+  adapter: mysql2
+  database: kbb_test
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+cucumber:
+  adapter: mysql2
+  database: kbb_test
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+integration_etl:
+  adapter: mysql2
+qa:
+  adapter: mysql2
+qa_etl:
+  adapter: mysql2
+staging:
+  adapter: mysql2
+production:
+  adapter: mysql2
+devopstest:
+  adapter: mysql2
+
+etl_execution:
+  adapter: mysql2
+  database: kbb_etl
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+etl_load_target:
+  adapter: mysql2
+  database: kbb_load_target
+  host: localhost
+  pool: 5
+  timeout: 5000
