@@ -9,7 +9,7 @@ end
 #end
 #f.close
 
-template_file "#{corndog_path}/.env" do
+template "#{corndog_path}/.env" do
   source "dotenv.erb"
   owner "root"
   group "root"
