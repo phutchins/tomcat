@@ -12,14 +12,18 @@ def mysql_exec statement
 end
 
 if !node['corndog']['db']['init_complete']
-  Chef::Log.info("Remote Database is: #{database_config}")
+  begin
+    Chef::Log.info("Remote Database is: #{database_config}")
 
-  Chef::Log.info("granting access on kbb_etl to deploy")
-  mysql_exec "create database if not exists kbb_etl"
-  mysql_exec 'GRANT ALL ON kbb_etl.* TO \"deploy\"@\"%\";'
+    Chef::Log.info("granting access on kbb_etl to deploy")
+    mysql_exec "create database if not exists kbb_etl"
+    mysql_exec 'GRANT ALL ON kbb_etl.* TO \"deploy\"@\"%\";'
 
-  Chef::Log.info("running migration script for etl load target")
-  mysql_exec "create database if not exists etl_load_target"
-  mysql_exec 'grant all on etl_load_target.* to \"deploy\"@\"%\";'
-  node.normal['corndog']['db']['init_complete'] = true
+    Chef::Log.info("running migration script for etl load target")
+    mysql_exec "create database if not exists etl_load_target"
+    mysql_exec 'grant all on etl_load_target.* to \"deploy\"@\"%\";'
+    node.normal['corndog']['db']['init_complete'] = true
+  rescue Exception => e
+    Chef::Log.fatal("Cannot initialize MySQL Database for Corndog!")
+  end
 end

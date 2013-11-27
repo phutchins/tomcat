@@ -5,4 +5,4 @@
 #  action :create
 #end
 
-include_recipe 'corndog-db::database-init'
+include_recipe 'corndog-chef::database-init'

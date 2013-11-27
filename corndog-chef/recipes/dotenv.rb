@@ -3,6 +3,8 @@ gem_package 'dotenv-rails' do
   action :install
 end
 
+Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
+
 template "#{corndog_path}/.env" do
   source "dotenv.erb"
   owner "root"
