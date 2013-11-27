@@ -1,1 +1,0 @@
-node.normal['scope'] = 'development'
