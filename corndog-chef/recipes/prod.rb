@@ -1,5 +1,5 @@
-node.normal['scope'] = 'prod'
-node.normal['profile'] = 'production'
+node.normal['scope'] = 'test'
+#node.normal['profile'] = 'production'
 node.normal['profile'] = 'test'
 
 # modifying hostnames to ensure no colision with actual production
