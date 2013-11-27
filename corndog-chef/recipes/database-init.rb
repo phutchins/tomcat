@@ -11,7 +11,7 @@ def mysql_exec statement
   run cmd
 end
 
-if !node['corndog']['db']['init_complete'] do
+if !node['corndog']['db']['init_complete']
   Chef::Log.info("Remote Database is: #{database_config}")
 
   Chef::Log.info("granting access on kbb_etl to deploy")
