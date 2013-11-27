@@ -8,3 +8,5 @@ node.normal['corndog']['dotenv']['REDIS_URI'] = "#{node['corndog']['redis']['hos
 node['corndog']['mongodb'].each do |key, value|
   node.normal['corndog']['dotenv']["mongodb_#{key}"] = value
 end
+
+Chef::Log.info("DotEnv Attrs 3: #{node['corndog']['dotenv'].inspect}")

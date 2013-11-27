@@ -10,6 +10,8 @@ node.normal['corndog']['mongodb']['hosts'] = [
 #  "cde-production.member3.mongolayer.com:27017" ]
 node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
+Chef::Log.info("DotEnv Attrs 2: #{node['corndog']['dotenv'].inspect}")
+
 include_recipe 'corndog-chef::default'
 include_recipe 'corndog-chef::profile-production'
 include_recipe 'corndog-chef::dottenv'
