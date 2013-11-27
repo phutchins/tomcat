@@ -6,7 +6,7 @@ def database_config
 end
 
 def mysql_exec statement
-  cmd = "ssh -o 'StrictHostKeyChecking no' -i /home/deploy/.ssh/internal #{database_config['host']} \"mysql -uroot -e '#{statement}'\""
+  cmd = "ssh -o 'StrictHostKeyChecking no' -i /home/deploy/.ssh/internal #{node['corndog']['db']['host']} \"mysql -uroot -e '#{statement}'\""
   puts "Running: #{cmd}"
   run cmd
 end
