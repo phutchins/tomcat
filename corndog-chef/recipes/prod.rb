@@ -14,4 +14,4 @@ Chef::Log.info("DotEnv Attrs 2: #{node['corndog']['dotenv'].inspect}")
 
 include_recipe 'corndog-chef::default'
 include_recipe 'corndog-chef::profile-production'
-include_recipe 'corndog-chef::dottenv'
+include_recipe 'corndog-chef::dotenv'
