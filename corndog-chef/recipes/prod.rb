@@ -1,6 +1,5 @@
-node.normal['scope'] = 'test'
-#node.normal['profile'] = 'production'
-node.normal['profile'] = 'test'
+node.normal['scope'] = 'prod'
+node.normal['profile'] = 'production'
 
 # modifying hostnames to ensure no colision with actual production
 node.normal['corndog']['mongodb']['hosts'] = [
