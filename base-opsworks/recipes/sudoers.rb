@@ -1,3 +1,5 @@
+include_recipe 'sudo'
+
 sudo 'devops' do
   user  "%devops"
   nopasswd  true
