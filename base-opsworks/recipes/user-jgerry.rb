@@ -1,10 +1,5 @@
-group "devops" do
-  gid 500
-  action :create
-end
-
 user "jgerry" do
-  comment "Philip Hutchins"
+  comment "Jason Gerry"
   uid 1006
   gid 500
   home "/home/jgerry"

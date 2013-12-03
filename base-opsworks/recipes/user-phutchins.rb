@@ -1,8 +1,3 @@
-group "devops" do
-  gid 500
-  action :create
-end
-
 user "phutchins" do
   comment "Philip Hutchins"
   uid 1005
