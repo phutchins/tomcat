@@ -5,3 +5,5 @@ include_recipe "base-opsworks::user-phutchins"
 include_recipe "base-opsworks::user-jgerry"
 
 include_recipe "sudo"
+
+include_recipe "base-opsworks::sudoers"
