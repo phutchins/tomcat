@@ -5,7 +5,7 @@ begin
   end
 
   user "ubuntu" do
-    comment "Philip Hutchins"
+    comment "Ubuntu"
     uid 1000
     gid 1000
     home "/home/ubuntu"
