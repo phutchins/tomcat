@@ -25,7 +25,7 @@ end
 
 cookbook_file "/etc/sudoers.d/jgerry" do
   source "jgerry-sudo"
-  mode 0644
+  mode 0440
   owner "root"
   group "root"
   action :create
