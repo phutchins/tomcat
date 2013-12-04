@@ -1,1 +1,1 @@
-default['chef_environment'] = 'opsworks'
+default.chef_environment = 'opsworks'

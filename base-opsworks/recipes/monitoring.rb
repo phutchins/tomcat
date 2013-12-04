@@ -1,11 +1,10 @@
 include_recipe 'collectd::client_graphite'
 
-if node['collectd']['logging_enabled']
-  collectd_plugin 'logfile' do
-    options :log_level => 'info',
-            :file => '/var/log/collectd.log',
-            :time_stamp => true
-  end
+collectd_plugin 'logfile' do
+  only_if { node['collectd']['logging_enabled'] }
+  options :log_level => 'info',
+          :file => '/var/log/collectd.log',
+          :time_stamp => true
 end
 
 if node['collectd']['plugin-swap']
