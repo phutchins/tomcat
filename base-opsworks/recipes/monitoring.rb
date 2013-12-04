@@ -1,3 +1,4 @@
+include_recipe 'collectd'
 include_recipe 'collectd::client_graphite'
 
 collectd_plugin 'logfile' do
