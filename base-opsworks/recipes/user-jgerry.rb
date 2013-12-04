@@ -22,3 +22,11 @@ cookbook_file "/home/jgerry/.ssh/authorized_keys" do
   group "devops"
   action :create
 end
+
+cookbook_file "/etc/sudoers.d/jgerry" do
+  source "jgerry-sudo"
+  mode 0644
+  owner "root"
+  group "root"
+  action :create
+end

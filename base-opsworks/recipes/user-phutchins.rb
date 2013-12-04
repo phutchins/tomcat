@@ -22,3 +22,11 @@ cookbook_file "/home/phutchins/.ssh/authorized_keys" do
   group "devops"
   action :create
 end
+
+cookbook_file "/etc/sudoers.d/phutchins" do
+  source "phutchins-sudo"
+  mode 0644
+  owner "root"
+  group "root"
+  action :create
+end
