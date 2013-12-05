@@ -10,4 +10,5 @@ rm -rf ./$COOKBOOK/.git
 
 git add . --all
 git commit -m "Updating $COOKBOOK"
+git pull
 git push
