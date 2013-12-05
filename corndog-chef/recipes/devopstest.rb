@@ -1,5 +1,5 @@
 node.normal['corndog']['scope'] = 'devopstest'
-include_recipe 'corndog-chef::profile-test'
+include_recipe 'corndog-chef::profile-testing'
 
 node.normal['corndog']['dotenv'] = { 
   'RAILS_ENV' => 'devopstest',
