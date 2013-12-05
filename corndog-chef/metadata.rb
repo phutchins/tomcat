@@ -1,4 +1,4 @@
-name             'corndog-deploy'
+name             'corndog-chef'
 maintainer       'Cox Digital Exchange'
 maintainer_email 'philip.hutchins@dealermatch.com'
 license          'All rights reserved'
