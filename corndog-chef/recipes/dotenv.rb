@@ -1,4 +1,4 @@
-corndog_path = File.join(node['corndog']['base_path'], "current")
+corndog_path = node['corndog']['app']['current_link']
 gem_package 'dotenv-rails' do
   action :install
 end
