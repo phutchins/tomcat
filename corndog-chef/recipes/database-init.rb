@@ -6,12 +6,14 @@ def database_config
 end
 
 def mysql_exec statement
-  cmd = "ssh -o 'StrictHostKeyChecking no' -i /home/deploy/.ssh/internal #{node['corndog']['db']['host']} \"mysql -uroot -e '#{statement}'\""
+  #cmd = "ssh -o 'StrictHostKeyChecking no' -i /home/deploy/.ssh/internal #{node['corndog']['db']['host']} \"mysql -uroot -e '#{statement}'\""
+  cmd = "mysql -uroot -p#{database_config.password} -e '#{statement}'"
   puts "Running: #{cmd}"
   run cmd
 end
 
-if !node['corndog']['db']['init_complete']
+# Commenting out the conditional and using OpsWorks configure lifecycle to control when this is run
+#if !node['corndog']['db']['init_complete']
   begin
     Chef::Log.info("Remote Database is: #{database_config}")
 
@@ -26,4 +28,4 @@ if !node['corndog']['db']['init_complete']
   rescue Exception => e
     Chef::Log.fatal("Cannot initialize MySQL Database for Corndog!")
   end
-end
+#end
