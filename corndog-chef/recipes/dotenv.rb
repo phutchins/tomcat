@@ -12,24 +12,6 @@ template "#{corndog_path}/.env" do
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
   )
-end
-
-template "/tmp/.env" do
-  source "dotenv.erb"
-  owner "root"
-  group "root"
-  variables(
-    :dot_env_attrs => node['corndog']['dotenv']
-  )
-end
-
-template "/tmp/test.env" do
-  source "dotenv.erb"
-  owner "root"
-  group "root"
-  variables(
-    :dot_env_attrs => node['corndog']['dotenv']
-  )
-# Do we need to restart unicorn for environment variable changes?
-#  notifies :restart, resources(:service => "unicorn")
+  # Do we need to restart unicorn for environment variable changes?
+  #  notifies :restart, resources(:service => "unicorn")
 end
