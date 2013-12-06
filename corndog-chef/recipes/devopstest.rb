@@ -5,7 +5,7 @@ include_recipe 'corndog-chef::profile-testing'
 # Attributes from the OpsWorks Environment
 redis_port = "6379"
 redis_uri = 'redis://'
-node['opsworks']['layers']['redis'].each do |instance|
+node['opsworks']['layers']['redis']['instances'].each do |instance|
   redis_uri << "#{instance['public_dns_name']}#{redis_port}"
 end
 
