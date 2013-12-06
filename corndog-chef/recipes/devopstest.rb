@@ -6,6 +6,8 @@ include_recipe 'corndog-chef::profile-testing'
 redis_port = "6379"
 redis_uri = 'redis://'
 node['opsworks']['layers']['redis']['instances'].each do |instance|
+  Chef::Log.info("instance['public_dns_name']: #{instance['public_dns_name']}")
+  Chef::Log.info("redis_port: #{redis_port}")
   redis_uri << "#{instance['public_dns_name']}#{redis_port}"
 end
 
