@@ -3,13 +3,13 @@ node.normal['deploy']['Corndog_APP']['rails_env'] = 'devopstest'
 include_recipe 'corndog-chef::profile-testing'
 
 # Attributes from the OpsWorks Environment
-redis_uri_port = "6379"
+redis_port = "6379"
 redis_uri = 'redis://'
 node['opsworks']['layers']['redis'].each do |instance|
   redis_uri << instance['public_dns_name'] + "#{redis_port}"
 end
 
-Chef::Log.info("Redis URI: redis://#{redis_uri_hosts}")
+Chef::Log.info("Redis URI: #{redis_uri}")
 
 node.normal['corndog']['dotenv'] = { 
   'RAILS_ENV' => 'devopstest',
