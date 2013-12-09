@@ -6,11 +6,10 @@ include_recipe 'corndog-chef::profile-testing'
 redis_port = "6379"
 redis_uri = 'redis://'
 node['opsworks']['layers']['redis']['instances'].each do |instance|
-  Chef::Log.info("instance['public_dns_name']: #{instance.inspect}")
-  #Chef::Log.info("redis_port: #{redis_port}")
-# Broken due to can't convert String into Integer...
-#  redis_uri << "#{instance['public_dns_name']}#{redis_port}"
+  Chef::Log.info("Adding instance '#{instance[0]}' to Redis URI with hostname '#{instance[1]['public_dns_name']}'")
+  redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
 end
+redis_uri.chomp
 
 redis_uri = 'redis://ec2-174-129-131-103.compute-1.amazonaws.com:6379'
 
