@@ -6,10 +6,12 @@ template "/etc/bluepill_resque.pill" do
   mode 0644
   source 'bluepill_resque.rb.erb'
   variables({
-    :rails_env => node[:deploy]['corndog'][:rails_env]
+    :rails_env => node['deploy']['corndog']['rails_env']
   })
   notifies :run, "execute[bluepill-resque-restart]", :immediately
 end
+
+log "RAILS_ENV set to: #{node['deploy']['corndog']['rails_env']}"
 
 execute "bluepill-resque-restart" do
   user "root"
