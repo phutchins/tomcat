@@ -1,4 +1,6 @@
 include_recipe 'corndog-chef::devopstest'
+include_recipe 'corndog-chef::resque-stop'
+include_recipe 'corndog-chef::resque-deploy'
 
 template "/etc/bluepill_resque.pill" do
   owner 'root'
@@ -18,5 +20,5 @@ execute "bluepill-resque-restart" do
   action :nothing
 end
 
-
+include_recipe 'corndog-chef::resque-start'
 
