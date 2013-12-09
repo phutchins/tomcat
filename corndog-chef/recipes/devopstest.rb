@@ -12,7 +12,7 @@ node['opsworks']['layers']['redis']['instances'].each do |instance|
 #  redis_uri << "#{instance['public_dns_name']}#{redis_port}"
 end
 
-redis_uri = 'redis://ec2-174-129-131-103.compute-1.amazonaws.com'
+redis_uri = 'redis://ec2-174-129-131-103.compute-1.amazonaws.com:6379'
 
 Chef::Log.info("Redis URI: #{redis_uri}")
 
