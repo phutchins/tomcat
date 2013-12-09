@@ -1,4 +1,4 @@
-inlude 'corndog-chef::devopstest'
+include_recipe 'corndog-chef::devopstest'
 
 template "/etc/bluepill_resque.pill" do
   owner 'root'
