@@ -3,6 +3,7 @@ unless node['vagrant']
 end
 include_recipe "base-opsworks::user-phutchins"
 include_recipe "base-opsworks::user-jgerry"
+include_recipe "base-opsworks::user-deploy"
 
 #node.default['authorization']['sudo']['prefix'] = '/etc'
 #include_recipe "sudo"
