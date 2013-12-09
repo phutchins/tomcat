@@ -10,6 +10,7 @@ node['opsworks']['layers']['redis']['instances'].each do |instance|
   redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
 end
 redis_uri.chomp
+Chef::Log.info("Auto Generated Redis URI: #{redis_uri}")
 
 redis_uri = 'redis://ec2-174-129-131-103.compute-1.amazonaws.com:6379'
 
