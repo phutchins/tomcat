@@ -9,7 +9,7 @@ mongodb_host_ports = node['corndog']['mongodb']['host_ports']
 mongodb_database = node['corndog']['mongodb']['database']
 mongodb_username = node['corndog']['mongodb']['username']
 mongodb_password = node['corndog']['mongodb']['password']
-redis_uri = node['corndog']['redis']['uri']
+redis_port = node['corndog']['redis']['port']
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
