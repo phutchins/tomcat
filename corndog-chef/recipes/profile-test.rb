@@ -31,7 +31,7 @@ redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
 node.normal['corndog']['dotenv'] = {
-  'RAILS_ENV' => profile
+  'RAILS_ENV' => profile,
   'MONGODB_HOST_PORT_1' => mongodb_host_port_1,
   'MONGODB_HOST_PORT_2' => mongodb_host_port_2,
   'MONGODB_HOST_PORT_3' => mongodb_host_port_3,
