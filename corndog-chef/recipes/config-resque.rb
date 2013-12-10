@@ -1,4 +1,4 @@
-include_recipe 'corndog-chef::devopstest'
+inlude 'corndog-chef::devopstest'
 
 template "/etc/bluepill_resque.pill" do
   owner 'root'
@@ -6,12 +6,10 @@ template "/etc/bluepill_resque.pill" do
   mode 0644
   source 'bluepill_resque.rb.erb'
   variables({
-    :rails_env => node['deploy']['corndog']['rails_env']
+    :rails_env => rails_env
   })
   notifies :run, "execute[bluepill-resque-restart]", :immediately
 end
-
-log "RAILS_ENV set to: #{node['deploy']['corndog']['rails_env']}"
 
 execute "bluepill-resque-restart" do
   user "root"
@@ -20,7 +18,5 @@ execute "bluepill-resque-restart" do
   action :nothing
 end
 
-include_recipe 'corndog-chef::resque-stop'
-include_recipe 'corndog-chef::resque-deploy'
-include_recipe 'corndog-chef::resque-start'
+
 

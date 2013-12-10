@@ -1,6 +1,6 @@
 # This file includes all logic for testing like environments
 
-profile = "production"
+profile = "testing"
 node.normal['corndog']['profile'] = profile
 
 # Retrieve attributes from node object
@@ -14,9 +14,10 @@ redis_uri = node['corndog']['redis']['uri']
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
 mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
-mongodb_option_1 ||= node['corndog']['mongodb']['option_1']
-mongodb_option_2 ||= node['corndog']['mongodb']['option_2']
-mongodb_option_3 ||= node['corndog']['mongodb']['option_3']
+mongodb_option_1 ||= node['corndog']['mongodb']['options_1']
+mongodb_option_2 ||= node['corndog']['mongodb']['options_2']
+mongodb_option_3 ||= node['corndog']['mongodb']['options_3']
+mongodb_session_options ||= node['corndog']['mongodb']['session_options']
 
 # Attributes from the OpsWorks Environment
 redis_uri = 'redis://'
@@ -37,9 +38,10 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_DATABASE' => mongodb_database,
   'MONGODB_USERNAME' => mongodb_username,
   'MONGODB_PASSWORD' => mongodb_password,
-  'MONGODB_OPTION_1' => mongodb_option_1,
-  'MONGODB_OPTION_2' => mongodb_option_2,
-  'MONGODB_OPTION_3' => mongodb_option_3,
+  'MONGODB_OPTION_1' => mongodb_options_1,
+  'MONGODB_OPTION_2' => mongodb_options_2,
+  'MONGODB_OPTION_3' => mongodb_options_3,
+  'MONGODB_SESSION_OPTIONS' => mongodb_session_options,
   'REDIS_URI' => redis_uri
 }
 
