@@ -14,9 +14,9 @@ redis_port = node['corndog']['redis']['port']
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
 mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
-mongodb_option_1 ||= node['corndog']['mongodb']['options_1']
-mongodb_option_2 ||= node['corndog']['mongodb']['options_2']
-mongodb_option_3 ||= node['corndog']['mongodb']['options_3']
+mongodb_options_1 ||= node['corndog']['mongodb']['options_1']
+mongodb_options_2 ||= node['corndog']['mongodb']['options_2']
+mongodb_options_3 ||= node['corndog']['mongodb']['options_3']
 mongodb_session_options ||= node['corndog']['mongodb']['session_options']
 
 # Attributes from the OpsWorks Environment
