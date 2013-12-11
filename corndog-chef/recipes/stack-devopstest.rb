@@ -1,7 +1,10 @@
 # This file includes all attributes that apply only to the devopstest stack
 
+Chef::Log.info("Chef Attributes: #{node['opsworks'].inspect}")
+
 # Environmental Variables
 profile = 'test'
+rails_env = 'production'
 stack = 'devopstest'
 redis_port = "6379"
 redis_uri_override = nil
@@ -17,6 +20,7 @@ mongodb_options_3 = nil
 
 # Assign environmentals to node
 node.normal['corndog']['profile'] = profile
+node.normal['corndog']['rails_env'] = rails_env
 node.normal['corndog']['stack'] = stack
 # Not sure if we need to set this here (should already be set in OW app deploy configuration)
 node.normal['deploy']['Corndog_APP']['rails_env'] = profile
