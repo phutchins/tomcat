@@ -5,7 +5,7 @@ node.normal['corndog']['profile'] = profile
 
 # Retrieve attributes from node object
 # Required attributes (add some logic here to fail if not assigned)
-mongodb_host_ports = node['corndog']['mongodb']['host_ports']
+mongodb_host_port_1 = node['corndog']['mongodb']['host_port_1']
 mongodb_database = node['corndog']['mongodb']['database']
 mongodb_username = node['corndog']['mongodb']['username']
 mongodb_password = node['corndog']['mongodb']['password']
