@@ -6,13 +6,11 @@ end
 
 Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 
-template "#{corndog_shared_path}/.env" do
+template "#{corndog_shared_path}/config/dotenv" do
   source "dotenv.erb"
   owner "root"
   group "root"
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
   )
-  # Do we need to restart unicorn for environment variable changes?
-  #  notifies :restart, resources(:service => "unicorn")
 end
