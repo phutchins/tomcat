@@ -1,11 +1,12 @@
 corndog_path = node['corndog']['app']['current_link']
+corndog_shared_path = node['corndog']['app']['shared_path']
 gem_package 'dotenv-rails' do
   action :install
 end
 
 Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 
-template "#{corndog_path}/.env" do
+template "#{corndog_shared_path}/.env" do
   source "dotenv.erb"
   owner "root"
   group "root"
