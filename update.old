@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+  echo usage: $0 cookbook-name
+  exit
+fi
+COOKBOOK=$1
+rm -rf ./$COOKBOOK
+cp -r ../$COOKBOOK .
+rm -rf ./$COOKBOOK/.git
+
+git add . --all
+git commit -m "Updating $COOKBOOK"
+git pull
+git push
