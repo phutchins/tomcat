@@ -1,5 +1,12 @@
 #!/bin/bash
-berks install
+
+if [ -z "$1" ]; then
+  if $1 -eq "all"; then
+    berks install
+  else
+    berks install $1
+  fi
+fi
 
 git add . --all
 git commit -m "Added updates from berks install"
