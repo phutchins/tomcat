@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-  berks install $1
+  berks update $1
 else
   berks install
 fi
