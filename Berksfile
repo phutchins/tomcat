@@ -1,2 +1,4 @@
-cookbook 'unicorn', :git => 'git://github.com/aws/opsworks-cookbooks/unicorn.git'
+cookbook 'unicorn', github: 'aws/opsworks-cookbooks', rel: 'unicorn'
+cookbook 'nginx', github: 'aws/opsworks-cookbooks', rel: 'nginx'
+cookbook 'deploy', github: 'aws/opsworks-cookbooks', rel: 'deploy'
 cookbook 'corndog-chef', :git => 'git://github.com/CDEI/corndog-chef.git'

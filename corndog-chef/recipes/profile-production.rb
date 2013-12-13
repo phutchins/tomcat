@@ -18,6 +18,8 @@ mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
 mongodb_option_1 ||= node['corndog']['mongodb']['option_1']
 mongodb_option_2 ||= node['corndog']['mongodb']['option_2']
 mongodb_option_3 ||= node['corndog']['mongodb']['option_3']
+cloudfront_host ||= node['corndog']['cloudfront']['host']
+cloudfront_asset_hosts ||= node['corndog']['cloudfront']['asset_hosts']
 
 # Attributes from the OpsWorks Environment
 redis_uri = 'redis://'
@@ -41,7 +43,9 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_OPTION_1' => mongodb_option_1,
   'MONGODB_OPTION_2' => mongodb_option_2,
   'MONGODB_OPTION_3' => mongodb_option_3,
-  'REDIS_URI' => redis_uri
+  'REDIS_URI' => redis_uri,
+  'CLOUDFRONT_HOST' => cloudfront_host,
+  'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts
 }
 
 # Load defaults for all Corndog hosts and environments

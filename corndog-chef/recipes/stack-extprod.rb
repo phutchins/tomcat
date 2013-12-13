@@ -15,6 +15,8 @@ mongodb_password = "carsrstillc00l"
 mongodb_options_1 = "consistency: :strong"
 mongodb_options_2 = nil
 mongodb_options_3 = nil
+cloudfront_site = "https://www.dealermatch.com"
+cloudfront_asset_hosts = "https://do4yd0ji84ogk.cloudfront.net"
 
 # Assign environmentals to node
 node.normal['corndog']['profile'] = profile
@@ -32,5 +34,7 @@ node.normal['corndog']['mongodb']['password'] = mongodb_password
 node.normal['corndog']['mongodb']['options_1'] = mongodb_options_1
 node.normal['corndog']['mongodb']['options_2'] = mongodb_options_2
 node.normal['corndog']['mongodb']['options_3'] = mongodb_options_3
+node.normal['corndog']['cloudfront']['site'] = cloudfront_site
+node.normal['corndog']['cloudfront']['asset_hosts'] = cloudfront_asset_hosts
 
 include_recipe "corndog-chef::profile-#{profile}"

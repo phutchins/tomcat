@@ -26,7 +26,7 @@ node['opsworks']['layers']['redis']['instances'].each do |instance|
   Chef::Log.info("Adding instance '#{instance[0]}' to Redis URI with hostname '#{instance[1]['public_dns_name']}'")
   redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
 end
-redis_uri.chomp
+redis_uri.chop!
 # If override is not nil, use that
 redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
