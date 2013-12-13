@@ -1,11 +1,9 @@
 #!/bin/bash
 
 if [ -z "$1" ]; then
-  if $1 -eq "all"; then
-    berks install
-  else
-    berks install $1
-  fi
+  berks install $1
+else
+  berks install
 fi
 
 git add . --all
