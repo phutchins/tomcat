@@ -7,7 +7,7 @@ template "/etc/bluepill_resque.pill" do
     :rails_env => node['deploy']['corndog']['rails_env']
   })
   #notifies :run, "execute[bluepill-resque-restart]", :immediately
-  notifies :run, "recipe[corndog-chef::resque-restart]"
+  notifies :run, "recipe[corndog-chef::resque-start]"
 end
 
 log "RAILS_ENV set to: #{node['deploy']['corndog']['rails_env']}"
