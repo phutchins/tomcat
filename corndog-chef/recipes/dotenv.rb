@@ -7,7 +7,7 @@ end
 Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 
 if !Dir.exists?(corndog_shared_path)
-  Chef::Log.info("Rails shared path does not exist so not creating dotenv file!"
+  Chef::Log.info("Rails shared path does not exist so not creating dotenv file!")
 end
 
 template "#{corndog_shared_path}/config/dotenv" do
