@@ -17,5 +17,5 @@ template "#{corndog_shared_path}/config/dotenv" do
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
   )
-  only_if { ::Dir.exists?(corndog_shared_path) }
+  only_if { ::Dir.exist?(corndog_shared_path) }
 end
