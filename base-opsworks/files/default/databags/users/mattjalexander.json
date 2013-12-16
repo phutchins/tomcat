@@ -1,0 +1,10 @@
+{
+  "id": "mattjalexander",
+  "username": "mattjalexander",
+  "groups": "devops",
+  "comment": "Matt Alexander",
+  "shell": "/bin/bash",
+  "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJ+huedW4q2mwqkJSZi6VqjCLWuPEXL8tCxb18dxi0bgDbgBWUntoLsDnCU5QYxg4T93tRT3pJP1scZ9byfMP2cHOSjk7LJrZ+bniHyy+BPkrqBOPi3DonU5bFbwNH65aCyVod1KRG2EyThfTGcM9kK8/gc0Wogo2bN55tixNy2l02h0iUlzg3SM8YukP6y/J/OPAr7d+b1Xxrw7E5LVUgro0UMDqzDRoCbH7Yu5VFivZFgKbXSs1yMrYdNKWWs8hBQJv9cGvcu6B+KWPjYZlvPMqiMzWk/fn1NHT76MH+2D8O0QeNfPTlLLaMlAqxkJNqc+L1dz+FL1UXCL9E7CAF",
+  "uid": 1007,
+  "gid": "devops"
+}

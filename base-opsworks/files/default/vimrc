@@ -1,0 +1,176 @@
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
+endif
+" if vimdiff, use different color scheme
+if v:progname =~? "vimdiff"
+  colorscheme peachpuff
+endif
+
+"" set gui font
+set guifont=Source\ Code\ Pro\ Light\:h15
+" Setup Bundle Support
+" The next two lines ensure that the ~/.vim/bundle/ system works
+" to reload bundles-- :BundleInstall
+set rtp+=~/.vim/bundle/vundle,~/.vim/colors
+call vundle#rc()
+
+Bundle 'scrooloose/nerdtree'
+Bundle 'suan/vim-instant-markdown'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/syntastic'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-surround'
+" Bundle 'shougo/neocomplcache'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'nathanaelkane/vim-indent-guides'
+
+
+" set mapleader to something sane (comma)
+let mapleader = ","
+
+set backspace=indent,eol,start
+if has("vms")
+  set nobackup      " do not keep a backup file, use versions instead
+else
+  set nobackup      " keep a backup file
+endif
+set history=50      " keep 50 lines of command line history
+set ruler       " show the cursor position all the time
+set showcmd     " display incomplete commands
+set incsearch       " do incremental searching
+set ts=4
+set shiftwidth=4
+set expandtab
+set background=dark
+set showmatch
+set nowrap
+set ignorecase
+set smartcase
+set wildmenu
+set wildmode=longest,list
+set suffixes+=.pyc      " Ignore .pyc when tab-completing filenames
+set scrolloff=2
+set sidescrolloff=8
+" set scrolljump=10
+" set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+if has('statusline')
+    set laststatus=2
+
+    " Broken down into easily includeable segments
+    set statusline=%<%f\    " Filename
+    set statusline+=%w%h%m%r " Options
+    " set statusline+=%{fugitive#statusline()} "  Git Hotness
+    set statusline+=\ [%{&ff}/%Y]            " filetype
+    " set statusline+=\ [%{getcwd()}]          " current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+
+" these are NOT keyword dividers
+set iskeyword+=_,$,@,%,#
+set listchars=tab:>-,trail:- " show tabs and trailing 
+set matchtime=3 " how many tenths of a second to blink 
+set numberwidth=4 " width of line number col
+
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+  syntax on
+  " set nohls
+endif
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  filetype plugin on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+  augroup END
+
+  " python settings
+    au FileType python setl expandtab
+    au FileType python setl shiftwidth=4
+    au FileType python setl ts=4
+    au FileType python setl number
+
+  " ruby settings
+    au FileType ruby setl expandtab
+    au FileType ruby setl shiftwidth=2
+    au FileType ruby setl ts=2
+    au FileType ruby setl number
+    " .erb files as well
+    au BufNewFile,BufRead *.erb set filetype=eruby
+    " au FileType ruby IndentGuidesEnable
+    au FileType ruby let indent_guides_auto_colors = 0
+    au FileType ruby autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=darkgrey   ctermbg=236
+    au FileType ruby autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey   ctermbg=237
+    au FileType ruby let indent_guides_color_change_percent = 10
+    au FileType ruby let indent_guides_guide_size = 1
+    au FileType ruby let indent_guides_start_level = 2
+
+    " puppet settings
+    au BufRead,BufNewFile *.pp set filetype=puppet
+    au FileType puppet setl number
+
+  " config file settings
+    au BufRead,BufNewFile *.conf set filetype=CONF
+    au FileType CONF setl shiftwidth=2
+    au FileType CONF setl ts=2
+    au FileType CONF setl nonumber
+    " .erb files as well
+    au BufNewFile,BufRead *.erb set filetype=eruby
+  
+else
+
+  set autoindent        " always set autoindenting on
+
+endif " has("autocmd")
+
+"colorscheme ir_black
+
+
+""""""""""""""""""""""""""""""""""""""""""
+"" EXPERIMENTAL!!!!!!"""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""
+
+set completeopt=longest,menuone
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+
