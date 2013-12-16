@@ -36,4 +36,12 @@ node.normal['corndog']['mongodb']['options_1'] = mongodb_options_1
 node.normal['corndog']['mongodb']['options_2'] = mongodb_options_2
 node.normal['corndog']['mongodb']['options_3'] = mongodb_options_3
 
+node.normal['corndog']['solr']['host'] = "index.websolr.com"
+node.normal['corndog']['solr']['port'] = 80
+node.normal['corndog']['solr']['path'] = "/solr/90a76be5e41"
+node.normal['corndog']['solr']['master_host'] = "index.websolr.com"
+node.normal['corndog']['solr']['master_port'] = 80
+node.normal['corndog']['solr']['master_path'] = "/solr/2ffb7bfb331"
+node.normal['corndog']['solr']['log_level'] = "WARNING"
+
 include_recipe "corndog-chef::profile-#{profile}"

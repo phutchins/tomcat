@@ -11,6 +11,13 @@ mongodb_database = node['corndog']['mongodb']['database']
 mongodb_username = node['corndog']['mongodb']['username']
 mongodb_password = node['corndog']['mongodb']['password']
 redis_port = node['corndog']['redis']['port']
+solr_host = node['corndog']['solr']['host']
+solr_port = node['corndog']['solr']['port']
+solr_path = node['corndog']['solr']['path']
+solr_master_host = node['corndog']['solr']['master_host']
+solr_master_port = node['corndog']['solr']['master_port']
+solr_master_path = node['corndog']['solr']['master_path']
+
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
@@ -43,7 +50,13 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_OPTION_2' => mongodb_options_2,
   'MONGODB_OPTION_3' => mongodb_options_3,
   'MONGODB_SESSION_OPTIONS' => mongodb_session_options,
-  'REDIS_URI' => redis_uri
+  'REDIS_URI' => redis_uri,
+  'SOLR_HOST' => solr_host,
+  'SOLR_PORT' => solr_port,
+  'SOLR_PATH' => solr_path,
+  'SOLR_MASTER_HOST' => solr_master_host,
+  'SOLR_MASTER_PORT' => solr_master_port,
+  'SOLR_MASTER_PATH' => solr_master_path
 }
 
 # Load defaults for all Corndog hosts and environments

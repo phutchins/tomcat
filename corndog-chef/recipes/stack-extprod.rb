@@ -37,4 +37,11 @@ node.normal['corndog']['mongodb']['options_3'] = mongodb_options_3
 node.normal['corndog']['cloudfront']['site'] = cloudfront_site
 node.normal['corndog']['cloudfront']['asset_hosts'] = cloudfront_asset_hosts
 
+node.normal['corndog']['solr']['host'] = "23.22.128.7"
+node.normal['corndog']['solr']['path'] = "/solr/a2e7ca6ba2a"
+node.normal['corndog']['solr']['master_host'] = "23.22.128.7"
+node.normal['corndog']['solr']['master_path'] = "/solr/ce48a2afebb"
+node.normal['corndog']['solr']['port'] = 80
+node.normal['corndog']['solr']['log_level'] = "WARNING"
+
 include_recipe "corndog-chef::profile-#{profile}"
