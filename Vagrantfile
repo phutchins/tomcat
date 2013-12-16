@@ -25,17 +25,41 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define :rails do |mysql_config|
+    mysql_config.vm.hostname = "rails-opsworks-v"
+    mysql_config.vm.box = "ubuntu_1204_chef_116"
+    mysql_config.vm.box_url = "http://cdx-devops.s3.amazonaws.com/ubuntu_1204_chef_116.box"
+    mysql_config.vm.network :private_network, ip: "33.33.33.11"
+    mysql_config.vm.network :forwarded_port, guest: 80, host: 80
+
+    mysql_config.vm.provision :chef_solo do |chef|
+      chef.cookbooks_path = "."
+      chef.add_recipe "corndog-chef::app-packages"
+      chef.add_recipe "unicorn::rails"
+      chef.add_recipe "base-opsworks"
+      chef.add_recipe "rails::configure"
+      chef.add_recipe "corndog-chef::steack-devopstest"
+      chef.add_recipe "deploy::rails"
+      chef.json = {
+      }
+    end
+  end
+
   config.vm.define :mysql do |mysql_config|
     mysql_config.vm.hostname = "mysql-opsworks-v"
     mysql_config.vm.box = "ubuntu_1204_chef_116"
     mysql_config.vm.box_url = "http://cdx-devops.s3.amazonaws.com/ubuntu_1204_chef_116.box"
-    mysql_config.vm.network :private_network, ip: "33.33.33.10"
+    mysql_config.vm.network :private_network, ip: "33.33.33.12"
     mysql_config.vm.network :forwarded_port, guest: 8080, host: 8080
 
     mysql_config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "."
+      chef.add_recipe "corndog-chef::app-packages"
+      chef.add_recipe "unicorn::rails"
       chef.add_recipe "base-opsworks"
-      chef.add_recipe "mysql::server_ec2"
+      chef.add_recipe "rails::configure"
+      chef.add_recipe "corndog-chef::steack-devopstest"
+      chef.add_recipe "deploy::rails"
       chef.json = {
       }
     end
