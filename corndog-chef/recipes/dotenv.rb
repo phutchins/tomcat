@@ -6,16 +6,31 @@ end
 
 Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 
-if !::File.directory?(corndog_shared_path)
-  Chef::Log.info("Rails shared path does not exist so not creating dotenv file!")
+#if !::File.directory?(corndog_shared_path)
+#  Chef::Log.info("Rails shared path does not exist so not creating dotenv file!")
+#end
+
+#template "#{corndog_shared_path}/config/dotenv" do
+#  source "dotenv.erb"
+#  owner "root"
+#  group "root"
+#  variables(
+#    :dot_env_attrs => node['corndog']['dotenv']
+#  )
+#  only_if { ::File.directory?(corndog_shared_path) }
+#end
+
+directory "/opt/corndog" do
+  owner "root"
+  group "root"
+  action :create
 end
 
-template "#{corndog_shared_path}/config/dotenv" do
+template "/opt/corndog/dotenv" do
   source "dotenv.erb"
   owner "root"
   group "root"
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
   )
-  only_if { ::File.directory?(corndog_shared_path) }
 end

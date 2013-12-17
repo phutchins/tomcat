@@ -28,10 +28,12 @@ mongodb_options_3 ||= node['corndog']['mongodb']['options_3']
 mongodb_session_options ||= node['corndog']['mongodb']['session_options']
 
 # Attributes from the OpsWorks Environment
-redis_uri = 'redis://'
-node['opsworks']['layers']['redis']['instances'].each do |instance|
-  Chef::Log.info("Adding instance '#{instance[0]}' to Redis URI with hostname '#{instance[1]['public_dns_name']}'")
-  redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
+if !node['opsworks']['layers']['redis']['instances'].nil?
+  redis_uri = 'redis://'
+  node['opsworks']['layers']['redis']['instances'].each do |instance|
+    Chef::Log.info("Adding instance '#{instance[0]}' to Redis URI with hostname '#{instance[1]['public_dns_name']}'")
+    redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
+  end
 end
 redis_uri.chop!
 # If override is not nil, use that
