@@ -1,4 +1,4 @@
-$pid_dir = '/srv/www/corndog/shared/pids'
+pid_dir = '/srv/www/corndog/shared/pids'
 
 Bluepill.application("resque", :log_file => "/var/log/bluepill.log") do |app|
   app.working_dir = "/srv/www/corndog/current"
@@ -13,7 +13,7 @@ Bluepill.application("resque", :log_file => "/var/log/bluepill.log") do |app|
   priority_process.each do |priority, environment|
     app.process("resque_#{priority}") do |process|
       process.group = "resque-workers"
-      process.pid_file = "#{$pid_dir}/resque_#{priority}.pid"
+      process.pid_file = "#{pid_dir}/resque_#{priority}.pid"
       process.environment = environment.merge({ 'RAILS_ENV' => '<%= @rails_env %>' })
       process.start_command = "bundle exec rake resque:workers"
       process.stop_command = "kill -QUIT {{PID}}"
@@ -24,7 +24,7 @@ Bluepill.application("resque", :log_file => "/var/log/bluepill.log") do |app|
   app.process("resque_scheduler") do |process|
     process.stdout = process.stderr = "/data/corndog/shared/log/resque_scheduler.log"
     process.group = "resque-scheduler"
-    process.pid_file = "#{$pid_dir}/resque_scheduler.pid"
+    process.pid_file = "#{pid_dir}/resque_scheduler.pid"
     process.environment = { 'RAILS_ENV' => '<%= @rails_env %>' }
     process.start_command = "bundle exec rake resque:scheduler"
     process.stop_command = "kill -QUIT {{PID}}"
@@ -33,7 +33,7 @@ Bluepill.application("resque", :log_file => "/var/log/bluepill.log") do |app|
 
   app.process("resque_web") do |process|
     process.group = "resque-web"
-    process.pid_file = "#{$pid_dir}/resque_web.pid"
+    process.pid_file = "#{pid_dir}/resque_web.pid"
     process.start_command = "bundle exec resque-web -L -p 8888 /srv/www/corndog/current/config/resque_conf.rb -P /var/run/resque_web.pid"
     process.stop_command  = "kill -QUIT {{PID}}"
     process.daemonize = true
