@@ -21,14 +21,14 @@ Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 #end
 
 directory "/opt/corndog" do
-  owner "corndog"
+  owner "deploy"
   group "www-data"
   action :create
 end
 
 template "/opt/corndog/dotenv" do
   source "dotenv.erb"
-  owner "corndog"
+  owner "deploy"
   group "www-data"
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
