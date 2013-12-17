@@ -1,7 +1,7 @@
 # This file includes all logic for testing like environments
 
 profile = 'testing'
-rails_env = 'production'
+rails_env = 'test'
 node.normal['corndog']['profile'] = profile
 
 # Retrieve attributes from node object
