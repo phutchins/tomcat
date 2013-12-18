@@ -1,3 +1,7 @@
+node.default['corndog']['app']['base_path'] = '/srv/www/corndog'
+node.default['corndog']['app']['current_link'] = '/srv/www/corndog/current'
+node.default['corndog']['app']['shared_path'] = '/srv/www/corndog/shared'
+
 directory "/opt/corndog" do
   owner "deploy"
   group "www-data"
@@ -15,9 +19,9 @@ end
 
 corndog_path = node['corndog']['app']['current_link']
 corndog_shared_path = node['corndog']['app']['shared_path']
-gem_package 'dotenv-rails' do
-  action :install
-end
+#gem_package 'dotenv-rails' do
+#  action :install
+#end
 
 #link "#{release_path}/.env" do
 #  to "/opt/corndog/dotenv"
