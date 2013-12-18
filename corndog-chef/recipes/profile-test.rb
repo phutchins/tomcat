@@ -60,7 +60,7 @@ node.normal['corndog']['dotenv'] = {
   'SOLR_MASTER_HOST' => solr_master_host,
   'SOLR_MASTER_PORT' => solr_master_port,
   'SOLR_MASTER_PATH' => solr_master_path,
-  'CLOUDFRONT_HOST' => cloudfront_host,
+  'CLOUDFRONT_HOST' => cloudfront_site,
   'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts
 }
 
