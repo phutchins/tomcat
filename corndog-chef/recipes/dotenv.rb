@@ -1,3 +1,18 @@
+directory "/opt/corndog" do
+  owner "deploy"
+  group "www-data"
+  action :create
+end
+
+template "/opt/corndog/dotenv" do
+  source "dotenv.erb"
+  owner "deploy"
+  group "www-data"
+  variables(
+    :dot_env_attrs => node['corndog']['dotenv']
+  )
+end
+
 corndog_path = node['corndog']['app']['current_link']
 corndog_shared_path = node['corndog']['app']['shared_path']
 gem_package 'dotenv-rails' do
@@ -20,17 +35,4 @@ Chef::Log.info("DotEnv Attrs: #{node['corndog']['dotenv'].inspect}")
 #  only_if { ::File.directory?(corndog_shared_path) }
 #end
 
-directory "/opt/corndog" do
-  owner "deploy"
-  group "www-data"
-  action :create
-end
 
-template "/opt/corndog/dotenv" do
-  source "dotenv.erb"
-  owner "deploy"
-  group "www-data"
-  variables(
-    :dot_env_attrs => node['corndog']['dotenv']
-  )
-end

@@ -4,7 +4,7 @@ Chef::Log.info("Chef Attributes: #{node['opsworks'].inspect}")
 
 # Environmental Variables
 profile = 'test'
-rails_env = 'test'
+rails_env = 'production'
 stack = 'devopstest'
 redis_port = "6379"
 redis_uri_override = nil
