@@ -65,6 +65,6 @@ node.normal['corndog']['dotenv'] = {
 }
 
 # Load defaults for all Corndog hosts and environments
-include_recipe 'corndog-chef::default'
+run_context.include_recipe 'corndog-chef::default'
 # Create the .env file from the attributes we've set here
-include_recipe 'corndog-chef::dotenv'
+run_context.include_recipe 'corndog-chef::dotenv'
