@@ -17,8 +17,8 @@ mongodb_password = "carsrstillc00l"
 mongodb_options_1 = "consistency: :strong"
 mongodb_options_2 = nil
 mongodb_options_3 = nil
-cloudfront_site = "https://devopstest.dealermatch.biz"
-cloudfront_asset_hosts = "https://d3vxuqwloblfjh.cloudfront.net"
+cloudfront_site = "https://www.dealermatch.com"
+cloudfront_asset_hosts = "https://do4yd0ji84ogk.cloudfront.net"
 
 # Assign environmentals to node
 node.normal['corndog']['profile'] = profile

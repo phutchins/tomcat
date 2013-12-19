@@ -54,7 +54,6 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_OPTION_3' => mongodb_options_3,
   'MONGODB_SESSION_OPTIONS' => mongodb_session_options,
   'REDIS_URI' => redis_uri,
-  'REDIS_URL' => redis_uri,
   'SOLR_HOST' => solr_host,
   'SOLR_PORT' => solr_port,
   'SOLR_PATH' => solr_path,
