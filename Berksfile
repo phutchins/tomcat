@@ -3,7 +3,7 @@
 #cookbook 'deploy', github: 'aws/opsworks-cookbooks', rel: 'deploy'
 #cookbook 'apache2', github: 'aws/opsworks-cookbooks', rel: 'apache2'
 #cookbook 'dependencies', github: 'aws/opsworks-cookbooks', rel: 'dependencies'
-cookbook 'corndog-chef', :git => 'https://github.com/CDEI/corndog-chef.git'
+#cookbook 'corndog-chef', :git => 'https://github.com/CDEI/corndog-chef.git'
 #cookbook 'base-opsworks', :git => 'https://github.com/CDEI/base-opsworks.git'
 #cookbook 'collectd', :git => 'https://github.com/CDEI/collectd.git'
 #cookbook 'apt', :git => 'https://github.com/opscode-cookbooks/apt.git'

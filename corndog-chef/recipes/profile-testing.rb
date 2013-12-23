@@ -1,6 +1,6 @@
 # This file includes all logic for testing like environments
 
-profile = 'production'
+profile = 'testing'
 rails_env = 'production'
 node.normal['corndog']['profile'] = profile
 
