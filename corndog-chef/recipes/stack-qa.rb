@@ -27,8 +27,6 @@ cloudfront_asset_hosts = "https://d3vxuqwloblfjh.cloudfront.net"
 # Assign environmentals to node
 node.normal['corndog']['profile'] = profile
 node.normal['corndog']['stack'] = stack
-# Not sure if we need to set this here (should already be set in OW app deploy configuration)
-node.normal['deploy']['Corndog_APP']['rails_env'] = profile
 node.normal['corndog']['redis']['uri'] = redis_uri_override
 node.normal['corndog']['redis']['port'] = "6379"
 node.normal['corndog']['mongodb']['host_port_1'] = mongodb_host_port_1
