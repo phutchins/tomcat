@@ -3,21 +3,19 @@
 Chef::Log.info("Chef Attributes: #{node['opsworks'].inspect}")
 
 # Environmental Variables
-profile = 'test'
+profile = 'production'
 rails_env = 'production'
 stack = 'devopstest'
 redis_port = "6379"
 redis_uri_override = nil
-#mongodb_host_port_1 = "mongo-devopstest.dealermatch.biz:27017"
 mongodb_host_port_1 = "cde-prod2.m0.mongolayer.com:27017"
 mongodb_host_port_2 = "cde-prod2.m1.mongolayer.com:27017"
 mongodb_host_port_3 = nil
 mongodb_database = "cde_production"
 mongodb_username = "cdx_user"
 mongodb_password = "carsrstillc00l"
-mongodb_options_1 = "consistency: :strong"
-mongodb_options_2 = nil
-mongodb_options_3 = nil
+mongodb_identity_map_enabled = "true"
+mongodb_consistency = ":strong"
 cloudfront_site = "https://devopstest.dealermatch.biz"
 cloudfront_asset_hosts = "https://d3vxuqwloblfjh.cloudfront.net"
 
@@ -35,9 +33,8 @@ node.normal['corndog']['mongodb']['host_port_3'] = mongodb_host_port_3
 node.normal['corndog']['mongodb']['database'] = mongodb_database
 node.normal['corndog']['mongodb']['username'] = mongodb_username
 node.normal['corndog']['mongodb']['password'] = mongodb_password
-node.normal['corndog']['mongodb']['options_1'] = mongodb_options_1
-node.normal['corndog']['mongodb']['options_2'] = mongodb_options_2
-node.normal['corndog']['mongodb']['options_3'] = mongodb_options_3
+node.normal['corndog']['mongodb']['identity_map_enabled'] = mongodb_identity_map_enabled
+node.normal['corndog']['mongodb']['consistency'] = mongodb_consistency
 node.normal['corndog']['cloudfront']['site'] = cloudfront_site
 node.normal['corndog']['cloudfront']['asset_hosts'] = cloudfront_asset_hosts
 
