@@ -2,11 +2,13 @@
 
 if [ -z "$1" ]; then
   berks update $1
+  git add . --all
+  git commit -m "Updated cookbook $1 with berks update"
 else
   berks install
+  git add . --all
+  git commit -m "Updated all cookbooks with berks install"
 fi
 
-git add . --all
-git commit -m "Added updates from berks install"
 git pull
 git push
