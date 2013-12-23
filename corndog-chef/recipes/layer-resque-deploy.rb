@@ -1,5 +1,5 @@
 # only run after deploy (and deploy user) has occurred
-if node['deploy']['corndog']['rails_env']
+if defined? node['deploy']['corndog']['rails_env']
   template "/etc/bluepill_resque.pill" do
     owner 'root'
     group 'root'
