@@ -22,5 +22,7 @@ node.normal['corndog']['solr']['master_host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['master_port'] = 80
 node.normal['corndog']['solr']['master_path'] = '/solr/2ffb7bfb331'
 node.normal['corndog']['solr']['log_level'] = 'WARNING'
+# Commenting out for testing
+#node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
 run_context.include_recipe "corndog-chef::profile-#{profile}"

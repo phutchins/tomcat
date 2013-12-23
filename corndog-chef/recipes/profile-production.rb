@@ -19,6 +19,7 @@ solr_master_port = node['corndog']['solr']['master_port']
 solr_master_path = node['corndog']['solr']['master_path']
 cloudfront_site = node['corndog']['cloudfront']['site']
 cloudfront_asset_hosts = node['corndog']['cloudfront']['asset_hosts']
+cde_marketing_url = node['corndog']['marketing']['url']
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
@@ -59,7 +60,8 @@ node.normal['corndog']['dotenv'] = {
   'SOLR_MASTER_PORT' => solr_master_port,
   'SOLR_MASTER_PATH' => solr_master_path,
   'CLOUDFRONT_SITE' => cloudfront_site,
-  'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts
+  'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts,
+  'CDE_MARKETING_URL' => cde_marketing_url
 }
 
 # Load defaults for all Corndog hosts and environments
