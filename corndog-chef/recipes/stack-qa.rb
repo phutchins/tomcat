@@ -5,20 +5,20 @@ Chef::Log.info("Chef Attributes: #{node['opsworks'].inspect}")
 # Environmental Variables
 profile = 'production'
 rails_env = 'production'
-stack = 'devopstest'
+stack = 'qa'
 redis_port = "6379"
 redis_uri_override = nil
 #mongodb_host_port_1 = "mongo-devopstest.dealermatch.biz:27017"
 mongodb_host_port_1 = "cde-prod2.m0.mongolayer.com:27017"
-mongodb_host_port_2 = "cde-prod2.m1.mongolayer.com:27017"
+mongodb_host_port_2 = nil
 mongodb_host_port_3 = nil
 mongodb_database = "cde_production"
 mongodb_username = "cdx_user"
 mongodb_password = "carsrstillc00l"
 mongodb_options_1 = "consistency: :strong"
-mongodb_options_2 = nil
+mongodb_options_2 = "identity_map_enabled: true"
 mongodb_options_3 = nil
-cloudfront_site = "https://devopstest.dealermatch.biz"
+cloudfront_site = "https://qa.dealermatch.biz"
 cloudfront_asset_hosts = "https://d3vxuqwloblfjh.cloudfront.net"
 
 # Assign environmentals to node
