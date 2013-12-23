@@ -1,9 +1,9 @@
 {
   "sources": {
     "corndog-chef": {
-      "locked_version": "0.0.52",
+      "locked_version": "0.0.54",
       "git": "https://github.com/CDEI/corndog-chef.git",
-      "ref": "47b51d94912b9c55e9c2d0e7422d4b0c66572b43"
+      "ref": "d76895094e8f616269d55b23f621ba984b44c5e0"
     }
   }
 }
