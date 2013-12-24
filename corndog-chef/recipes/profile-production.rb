@@ -19,7 +19,6 @@ solr_master_port = node['corndog']['solr']['master_port']
 solr_master_path = node['corndog']['solr']['master_path']
 cloudfront_site = node['corndog']['cloudfront']['site']
 cloudfront_asset_hosts = node['corndog']['cloudfront']['asset_hosts']
-cde_marketing_url = node['corndog']['marketing']['url']
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
@@ -27,6 +26,7 @@ mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
 mongodb_identity_map_enabled ||= node['corndog']['mongodb']['identity_map_enabled']
 mongodb_consistency ||= node['corndog']['mongodb']['consistency']
 mongodb_session_options ||= node['corndog']['mongodb']['session_options']
+cde_marketing_url ||= node['corndog']['marketing']['url']
 
 # Attributes from the OpsWorks Environment
 if !node['opsworks']['layers']['redis']['instances'].nil?
