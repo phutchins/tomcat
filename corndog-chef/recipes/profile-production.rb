@@ -1,4 +1,4 @@
-# This file includes all logic for testing like environments
+# This file includes all logic for production-like environments
 
 profile = 'production'
 rails_env = 'production'
