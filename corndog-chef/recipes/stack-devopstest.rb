@@ -25,4 +25,4 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 # Commenting out for testing
 #node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
-run_context.include_recipe "corndog-chef::profile-#{profile}"
+run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
