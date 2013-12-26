@@ -1,12 +1,13 @@
 # only run after deploy (and deploy user) has occurred
-if defined? node['deploy']['corndog']['rails_env']
+if FileTest.exists? node[:deploy]['corndog'][:deploy_to]
   template "/etc/bluepill_resque.pill" do
     owner 'root'
     group 'root'
     mode 0644
     source 'resque.rb.erb'
     variables({
-      :rails_env => node['deploy']['corndog']['rails_env']
+      :rails_env => node['deploy']['corndog']['rails_env'],
+      :deploy_to => node['deploy']['corndog']['deploy_to']
     })
     notifies :run, "execute[resque-start]"
   end
@@ -27,3 +28,4 @@ if defined? node['deploy']['corndog']['rails_env']
     action :run
   end
 end
+

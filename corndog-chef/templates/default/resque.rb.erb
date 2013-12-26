@@ -1,9 +1,10 @@
-pid_dir  = '/srv/www/corndog/shared/pids'
-log_dir  = '/srv/www/corndog/shared/log'
-conf_dir = '/srv/www/corndog/current/config'
+slugname = '<%= @deploy_to %>'
+pid_dir  = "#{slugname}/shared/pids"
+log_dir  = "#{slugname}/shared/log"
+conf_dir = "#{slugname}/current/config"
 
 Bluepill.application("resque", :log_file => "#{log_dir}/bluepill.log") do |app|
-  app.working_dir = "/srv/www/corndog/current"
+  app.working_dir = "#{slugname}/current"
   app.uid = 'root'
   app.gid = 'root'
 
