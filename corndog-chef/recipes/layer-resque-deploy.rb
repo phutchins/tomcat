@@ -1,5 +1,5 @@
 # only run after deploy (and deploy user) has occurred
-if FileTest.exists? node[:deploy]['corndog'][:deploy_to]
+if FileTest.exists?(node['deploy']['corndog']['deploy_to'])
   template "/etc/bluepill_resque.pill" do
     owner 'root'
     group 'root'
