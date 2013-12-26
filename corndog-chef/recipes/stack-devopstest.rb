@@ -13,6 +13,7 @@ node.normal['corndog']['mongodb']['username'] = 'cdx_user'
 node.normal['corndog']['mongodb']['password'] = 'carsrstillc00l'
 node.normal['corndog']['mongodb']['identity_map_enabled'] = 'true'
 node.normal['corndog']['mongodb']['consistency'] = ':strong'
+node.normal['corndog']['cloudfront']['enabled'] = true
 node.normal['corndog']['cloudfront']['site'] = 'https://devopstest.dealermatch.biz'
 node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d3vxuqwloblfjh.cloudfront.net'
 node.normal['corndog']['solr']['host'] = 'index.websolr.com'
@@ -38,7 +39,10 @@ node.normal['corndog']['action_mailer']['smtp_settings']['address'] = 'smtp.send
 node.normal['corndog']['action_mailer']['smtp_settings']['port'] = '587'
 node.normal['corndog']['action_mailer']['smtp_settings']['authentication'] = false
 node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'] = true
+node.normal['corndog']['action_mailer']['whitelist_interceptor'] = false
 
+node.normal['corndog']['cde']['admin_password'] = 'Sr1r@cha'
+node.normal['corndog']['cde']['email_routing_domain'] = 'test-ow.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
 node.normal['corndog']['mixpanel']['token'] = '764ee859d87ccf7fa3add1dbd3b68af0'
