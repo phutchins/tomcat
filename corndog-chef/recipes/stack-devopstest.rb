@@ -17,10 +17,10 @@ node.normal['corndog']['cloudfront']['site'] = 'https://devopstest.dealermatch.b
 node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d3vxuqwloblfjh.cloudfront.net'
 node.normal['corndog']['solr']['host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['port'] = 80
-node.normal['corndog']['solr']['path'] = '/solr/90a76be5e41'
+node.normal['corndog']['solr']['path'] = '/solr/bdada2584a2'
 node.normal['corndog']['solr']['master_host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['master_port'] = 80
-node.normal['corndog']['solr']['master_path'] = '/solr/2ffb7bfb331'
+node.normal['corndog']['solr']['master_path'] = '/solr/8c328dc5a19'
 node.normal['corndog']['solr']['log_level'] = 'WARNING'
 # Commenting out for testing
 #node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
