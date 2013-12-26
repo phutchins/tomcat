@@ -6,19 +6,10 @@ node.normal['corndog']['profile'] = profile
 
 # Retrieve attributes from node object
 # Required attributes (add some logic here to fail if not assigned)
-mongodb_host_port_1 = node['corndog']['mongodb']['host_port_1']
 mongodb_database = node['corndog']['mongodb']['database']
 mongodb_username = node['corndog']['mongodb']['username']
 mongodb_password = node['corndog']['mongodb']['password']
 redis_port = node['corndog']['redis']['port']
-solr_host = node['corndog']['solr']['host']
-solr_port = node['corndog']['solr']['port']
-solr_path = node['corndog']['solr']['path']
-solr_master_host = node['corndog']['solr']['master_host']
-solr_master_port = node['corndog']['solr']['master_port']
-solr_master_path = node['corndog']['solr']['master_path']
-cloudfront_site = node['corndog']['cloudfront']['site']
-cloudfront_asset_hosts = node['corndog']['cloudfront']['asset_hosts']
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
@@ -43,7 +34,7 @@ Chef::Log.info("Redis URI: #{redis_uri}")
 
 node.normal['corndog']['dotenv'] = {
   'RAILS_ENV' => rails_env,
-  'MONGODB_HOST_PORT_1' => mongodb_host_port_1,
+  'MONGODB_HOST_PORT_1' => node['corndog']['mongodb']['host_port_1'],
   'MONGODB_HOST_PORT_2' => mongodb_host_port_2,
   'MONGODB_HOST_PORT_3' => mongodb_host_port_3,
   'MONGODB_DATABASE' => mongodb_database,
@@ -53,15 +44,50 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_CONSISTENCY' => mongodb_consistency,
   'REDIS_URI' => redis_uri,
   'REDIS_URL' => redis_uri,
-  'SOLR_HOST' => solr_host,
-  'SOLR_PORT' => solr_port,
-  'SOLR_PATH' => solr_path,
-  'SOLR_MASTER_HOST' => solr_master_host,
-  'SOLR_MASTER_PORT' => solr_master_port,
-  'SOLR_MASTER_PATH' => solr_master_path,
-  'CLOUDFRONT_SITE' => cloudfront_site,
-  'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts,
-  'CDE_MARKETING_URL' => cde_marketing_url
+  'SOLR_HOST' => node['corndog']['solr']['host'],
+  'SOLR_PORT' => node['corndog']['solr']['port'],
+  'SOLR_PATH' => node['corndog']['solr']['path'],
+  'SOLR_MASTER_HOST' => node['corndog']['solr']['master_host'],
+  'SOLR_MASTER_PORT' => node['corndog']['solr']['master_port'],
+  'SOLR_MASTER_PATH' => node['corndog']['solr']['master_path'],
+  'CLOUDFRONT_SITE' => node['corndog']['cloudfront']['site'],
+  'CLOUDFRONT_ASSET_HOSTS' => node['corndog']['cloudfront']['asset_hosts'],
+  'CDE_MARKETING_URL' => cde_marketing_url,
+  'ACTION_MAILER_DEFAULT_URL_OPTIONS_HOST' => node['corndog']['action_mailer']['default_url_options']['host'],
+  'ACTION_MAILER_DELIVERY_METHOD' => node['corndog']['action_mailer']['delivery_method'],
+  'ACTION_MAILER_PERFORM_DELIVERIES' => node['corndog']['action_mailer']['perform_deliveries'],
+  'ACTION_MAILER_RAISE_DELIVERY_ERRORS' => node['corndog']['action_mailer']['raise_delivery_errors'],
+  'ACTION_MAILER_DEFAULT_CHARACTERSET' => node['corndog']['action_mailer']['default_characterset'],
+  'ACTION_MAILER_SMTP_SETTINGS_USER_NAME' => node['corndog']['action_mailer']['smtp_settings']['user_name'],
+  'ACTION_MAILER_SMTP_SETTINGS_PASSWORD' => node['corndog']['action_mailer']['smtp_settings']['password'],
+  'ACTION_MAILER_SMTP_SETTINGS_DOMAIN' => node['corndog']['action_mailer']['smtp_settings']['domain'],
+  'ACTION_MAILER_SMTP_SETTINGS_ADDRESS' => node['corndog']['action_mailer']['smtp_settings']['address'],
+  'ACTION_MAILER_SMTP_SETTINGS_PORT' => node['corndog']['action_mailer']['smtp_settings']['port'],
+  'ACTION_MAILER_SMTP_SETTINGS_AUTHENTICATION' => node['corndog']['action_mailer']['smtp_settings']['AUTHENTICATION'],
+  'ACTION_MAILER_SMTP_SETTINGS_ENABLE_STARTTLS_AUTO' => node['corndog']['action_mailer']['smtp_settings']['ENABLE_STARTTLS_AUTO'],
+  'AWS_IMAGE_BUCKET' => node['corndog']['aws']['image_bucket'],
+  'MIXPANEL_TOKEN' => node['corndog']['mixpanel']['token'],
+  'MIXPANEL_MOBILE_TOKEN' => node['corndog']['mixpanel']['mobile_token'],
+  'MIXPANEL_ASYNC' => node['corndog']['mixpanel']['async'],
+  'MIXPANEL_INSERT_JS_LAST' => node['corndog']['mixpanel']['insert_js_last'],
+  'URBANAIRSHIP_APPLICATION_KEY' => node['corndog']['urbanairship']['application_key'],
+  'URBANAIRSHIP_APPLICATION_SECRET' => node['corndog']['urbanairship']['application_secret'],
+  'URBANAIRSHIP_MASTER_SECRET' => node['corndog']['urbanairship']['master_secret'],
+  'URBANAIRSHIP_LOGGER' => node['corndog']['urbanairship']['logger'],
+  'URBANAIRSHIP_REQUEST_TIMEOUT' => node['corndog']['urbanairship']['request_timeout'],
+  'RECURLY_SUBDOMAIN' => node['corndog']['recurly']['subdomain'],
+  'RECURLY_API_KEY' => node['corndog']['recurly']['api_key'],
+  'RECURLY_JS_KEY' => node['corndog']['recurly']['js_key'],
+  'RECURLY_CURRENCY' => node['corndog']['recurly']['currency'],
+  'RECURLY_DEFAULT_PLAN' => node['corndog']['recurly']['default_plan'],
+  'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
+  'SALESFORCE_CLIENT_CONFIG_CLIENT_SECRET' => node['corndog']['salesforce']['client_config']['client_secret'],
+  'SALESFORCE_CLIENT_CONFIG_CLIENT_ID' => node['corndog']['salesforce']['client_config']['client_id'],
+  'SALESFORCE_CLIENT_CONFIG_SOBJECT_MODULE' => node['corndog']['salesforce']['client_config']['client_module'],
+  'SALESFORCE_CLIENT_CONFIG_DEBUGGING' => node['corndog']['salesforce']['client_config']['debugging'],
+  'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
+  'SALESFORCE_ROBOT_CREDENTIALS_PASSWORD' => node['corndog']['salesforce']['robot_credentials']['password'],
+  'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id']
 }
 
 # Load defaults for all Corndog hosts and environments
