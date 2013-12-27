@@ -1,0 +1,17 @@
+# nginx config
+
+template "/etc/nginx/sites-available/corndog" do
+  owner 'root'
+  group 'root'
+  mode 0644
+  source 'nginx.conf.erb'
+  variables({
+    :hostname => node[:opsworks][:instance][:hostname];
+  })
+  notifies :restart, "service[nginx]"
+end
+
+service "nginx" do
+  action [ :enable, :start ]
+end
+
