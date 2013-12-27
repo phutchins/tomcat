@@ -18,6 +18,15 @@ template "/opt/corndog/dotenv" do
   variables(
     :dot_env_attrs => node['corndog']['dotenv']
   )
+  notifies :restart, "service[unicorn_corndog]", :delayed
+end
+
+service "unicorn_corndog" do
+  start_command "#{node['corndog']['app']['base_path']}/shared/scripts/unicorn start"
+  stop_command "#{node['corndog']['app']['base_path']}/shared/scripts/unicorn stop"
+  restart_command "#{node['corndog']['app']['base_path']}/shared/scripts/unicorn restart"
+  status_command "#{node['corndog']['app']['base_path']}/shared/scripts/unicorn status"
+  action :nothing
 end
 
 corndog_path = node['corndog']['app']['current_link']
