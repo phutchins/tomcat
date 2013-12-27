@@ -6,7 +6,7 @@ template "/etc/nginx/sites-available/corndog" do
   mode 0644
   source 'nginx.conf.erb'
   variables({
-    :hostname => node[:opsworks][:instance][:hostname];
+    :hostname => node[:opsworks][:instance][:hostname]
   })
   notifies :restart, "service[nginx]"
 end
