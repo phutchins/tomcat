@@ -53,6 +53,7 @@ node.normal['corndog']['dotenv'] = {
   'CLOUDFRONT_ENABLED' => node['corndog']['cloudfront']['enabled'],
   'CLOUDFRONT_SITE' => node['corndog']['cloudfront']['site'],
   'CLOUDFRONT_ASSET_HOSTS' => node['corndog']['cloudfront']['asset_hosts'],
+  'CDE_MARKETING_ENABLED' => node['corndog']['marketing']['enabled'],
   'CDE_MARKETING_URL' => cde_marketing_url,
   'ACTION_MAILER_DEFAULT_URL_OPTIONS_HOST' => node['corndog']['action_mailer']['default_url_options_host'],
   'ACTION_MAILER_DELIVERY_METHOD' => node['corndog']['action_mailer']['delivery_method'],

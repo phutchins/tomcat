@@ -14,18 +14,18 @@ node.normal['corndog']['mongodb']['password'] = 'carsrstillc00l'
 node.normal['corndog']['mongodb']['identity_map_enabled'] = 'true'
 node.normal['corndog']['mongodb']['consistency'] = ':strong'
 node.normal['corndog']['cloudfront']['enabled'] = true
-node.normal['corndog']['cloudfront']['site'] = 'https://devopstest.dealermatch.biz'
+node.normal['corndog']['cloudfront']['site'] = 'https://devopstest.dealermatch.com'
 node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d3vxuqwloblfjh.cloudfront.net'
 node.normal['corndog']['solr']['host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['port'] = 80
-node.normal['corndog']['solr']['path'] = '/solr/bdada2584a2'
+node.normal['corndog']['solr']['path'] = '/solr/8c328dc5a19'
 node.normal['corndog']['solr']['master_host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['master_port'] = 80
-node.normal['corndog']['solr']['master_path'] = '/solr/8c328dc5a19'
+node.normal['corndog']['solr']['master_path'] = '/solr/bdada2584a2'
 node.normal['corndog']['solr']['log_level'] = 'WARNING'
-# Commenting out for testing
-#node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
-node.normal['corndog']['marketing']['url'] = nil
+
+node.normal['corndog']['marketing']['enabled'] = false
+node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
 node.normal['corndog']['action_mailer']['default_url_options_host'] = 'www.dealermatch.com'
 node.normal['corndog']['action_mailer']['delivery_method'] = ':smtp'
