@@ -15,18 +15,17 @@ template "/etc/bluepill_resque.pill" do
   notifies :run, "execute[resque-start]"
 end
 
-
 execute "resque-stop" do
   user "root"
-  command "bluepill resque stop"
-  only_if "ps -ef | egrep resque | egrep -v egrep | egrep -v bluepilld"
+  command "bluepill resque stop; sleep 5"
+  #only_if "ps -ef | egrep resque | egrep -v egrep | egrep -v bluepilld"
   action :run
 end
 
 execute "resque-start" do
   user "root"
   command "bluepill load /etc/bluepill_resque.pill"
-  not_if "ps -ef | egrep resque | egrep -v egrep | egrep -v bluepilld"
+  #not_if "ps -ef | egrep resque | egrep -v egrep | egrep -v bluepilld"
   action :run
 end
 
