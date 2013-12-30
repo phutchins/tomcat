@@ -37,9 +37,9 @@ template "/etc/newrelic/nrsysmond.cfg" do
   group "root"
   mode 0644
   variables = ({
-    :loglevel => node['newrelic']['loglevel'],
-    :app_name => node['corndog']['stack'],
-    :license_key => license_key
+    :LOGLEVEL => node['newrelic']['loglevel'],
+    :APP_NAME => node['corndog']['stack'],
+    :LICENSE_KEY => license_key
   })
   notifies :restart, "service[newrelic-sysmond]"
 end
