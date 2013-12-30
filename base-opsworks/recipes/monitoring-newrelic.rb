@@ -27,8 +27,21 @@ package "newrelic-sysmond" do
   action :install
 end
 
-execute "newrelic-license-key-add" do
-  command "nrsysmond-config --set license_key=#{license_key}"
+#execute "newrelic-license-key-add" do
+#  command "nrsysmond-config --set license_key=#{license_key}"
+#end
+
+template "/etc/newrelic/nrsysmond.cfg" do
+  source "nrsysmond.cfg"
+  owner "root"
+  group "root"
+  mode 0644
+  variables = ({
+    :loglevel => node['newrelic']['loglevel'],
+    :app_name => node['corndog']['stack'],
+    :license_key => license_key
+  })
+  notifies :restart, "service[newrelic-sysmond]"
 end
 
 service "newrelic-sysmond" do
