@@ -2,7 +2,7 @@ gpg_key_id = node['newrelic']['repository_key']
 gpg_key_url = "http://download.newrelic.com/#{gpg_key_id}.gpg"
 
 execute "newrelic-add-gpg-key" do
-  command "wget -O- #{gpg_key_url} | apt_key add -"
+  command "wget -O- #{gpg_key_url} | apt-key add -"
   notifies :run, "execute[newrelic-apt-get-update]", :immediately
   not_if "apt-key list | grep #{gpg_key_id}"
 end
