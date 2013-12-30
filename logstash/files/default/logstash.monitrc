@@ -1,6 +1,0 @@
-check process logstash with pidfile /var/run/logstash.pid
-  start program = "/bin/bash /data/logstash/logstash_wrapper.sh start"
-  stop  program = "/bin/bash /data/logstash/logstash_wrapper.sh stop"
-  #if failed host localhost port 9292
-  #protocol http then restart
-  if 5 restarts within 5 cycles then timeout
