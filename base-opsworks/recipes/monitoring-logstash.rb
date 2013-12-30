@@ -10,43 +10,42 @@ node.default = {
           :type => "rails",
           :path => [ "/srv/www/corndog/shared/log/<%= stack_name %>.log" ],
           :tags => [ 'rails' ],
-          { :multiline => {
-              :pattern => "^\s",
-              :what    => "previous"
-            }
+          :multiline => {
+            :pattern => "^\s",
+            :what    => "previous"
           }
-        }
+        },
         :file => {
           :type => "unicorn",
           :path => [ '/srv/www/corndog/shared/log/unicorn.log' ],
           :tags => [ 'unicorn' ]
-        }
+        },
         :file => {
           :type => "unicorn",
           :path => [ '/data/corndog/shared/log/unicorn.stderr.log' ],
           :tags => [ 'unicorn', 'error' ]
-        }
+        },
         :file => {
           :type => "unicorn",
           :path => [ '/data/corndog/shared/log/unicorn.stdout.log' ],
           :tags => [ 'unicorn', 'access' ]
-        }
+        },
         :file => {
           :type => "deploy",
           :path => [ '/home/deploy/*.log' ],
           :tags => [ 'deploy' ]
-        }
+        },
         :file => {
           :type => "nginx-error",
           :path => [ '/var/log/nginx/corndog.error.log' ],
           :tags => [ 'nginx','error' ]
-        }
+        },
         :file => {
           :type => "nginx-access",
           :path => [ '/var/log/nginx/corndog.access*.log' ],
           :tags => [ 'nginx','access' ]
         }
-      ]
+      ],
       :filters => [
         { :grep => {
             :match => { '@message' => '^$' },
