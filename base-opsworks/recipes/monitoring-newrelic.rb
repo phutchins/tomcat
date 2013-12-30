@@ -1,5 +1,6 @@
 gpg_key_id = node['newrelic']['repository_key']
 gpg_key_url = "http://download.newrelic.com/#{gpg_key_id}.gpg"
+license_key = node['newrelic']['license_key']
 
 execute "newrelic-add-gpg-key" do
   command "wget -O- #{gpg_key_url} | apt-key add -"
@@ -14,6 +15,11 @@ remote_file "/etc/apt/sources.list.d/newrelic.list" do
   mode 0644
   notifies :run, "execute[newrelic-apt-get-update]", :immediately
   action :create_if_missing
+end
+
+execute "newrelic-license-key-add" do
+  command "nrsysmond-config --set license_key=#{license_key}"
+  not_if "file /etc/newrelic/nrsysmond.cfg"
 end
 
 execute "newrelic-apt-get-update" do
