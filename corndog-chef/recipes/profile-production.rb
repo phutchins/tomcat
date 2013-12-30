@@ -90,7 +90,8 @@ node.normal['corndog']['dotenv'] = {
   'SALESFORCE_CLIENT_CONFIG_DEBUGGING' => node['corndog']['salesforce']['client_config']['debugging'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
   'SALESFORCE_ROBOT_CREDENTIALS_PASSWORD' => node['corndog']['salesforce']['robot_credentials']['password'],
-  'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id']
+  'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id'],
+  'NEWRELIC_APP_NAME' => node['corndog']['stack']
 }
 
 # Load defaults for all Corndog hosts and environments
