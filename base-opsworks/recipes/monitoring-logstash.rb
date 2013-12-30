@@ -2,7 +2,7 @@ node.default['logstash']['agent']['server_ipaddress'] = "logs.dealermatch.biz"
 
 stack_name = node['corndog']['stack']
 
-node.default = (
+node.default = {
   :logstash => {
     :server => {
       :inputs => [
@@ -84,6 +84,6 @@ node.default = (
       ]
     }
   }
-)
+}
 
 include_recipe "logstash::agent"
