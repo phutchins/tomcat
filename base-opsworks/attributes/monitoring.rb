@@ -8,4 +8,4 @@ default['collectd']['plugin-ntpd'] = false
 default['collectd']['plugin-swap'] = false
 
 # Newrelic attributes
-default['newrelic']['gpg_key_id'] = "548C16BF"
+default['newrelic']['repository_key'] = "548C16BF"
