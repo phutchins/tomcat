@@ -27,5 +27,5 @@ end
 
 service "newrelic-sysmond" do
   supports :status => true, :start => true, :stop => true, :restart => true
-  aaction [:enable, :start]
+  action [:enable, :start]
 end
