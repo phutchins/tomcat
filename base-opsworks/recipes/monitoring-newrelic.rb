@@ -32,7 +32,7 @@ end
 #end
 
 template "/etc/newrelic/nrsysmond.cfg" do
-  source "nrsysmond.cfg"
+  source "nrsysmond.cfg.erb"
   owner "root"
   group "root"
   mode 0644
