@@ -10,9 +10,10 @@ node.default = {
           :type => "rails",
           :path => [ "/srv/www/corndog/shared/log/<%= stack_name %>.log" ],
           :tags => [ 'rails' ],
-          :codec => multiline {
-            :pattern => "^\s",
-            :what    => "previous"
+          { :multiline => {
+              :pattern => "^\s",
+              :what    => "previous"
+            }
           }
         }
         :file => {
