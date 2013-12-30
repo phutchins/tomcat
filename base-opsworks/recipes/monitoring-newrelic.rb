@@ -17,9 +17,6 @@ remote_file "/etc/apt/sources.list.d/newrelic.list" do
   action :create_if_missing
 end
 
-execute "newrelic-license-key-add" do
-  command "nrsysmond-config --set license_key=#{license_key}"
-end
 
 execute "newrelic-apt-get-update" do
   command "apt-get update"
@@ -28,6 +25,10 @@ end
 
 package "newrelic-sysmond" do
   action :install
+end
+
+execute "newrelic-license-key-add" do
+  command "nrsysmond-config --set license_key=#{license_key}"
 end
 
 service "newrelic-sysmond" do
