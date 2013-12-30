@@ -19,7 +19,6 @@ end
 
 execute "newrelic-license-key-add" do
   command "nrsysmond-config --set license_key=#{license_key}"
-  not_if "file /etc/newrelic/nrsysmond.cfg"
 end
 
 execute "newrelic-apt-get-update" do
