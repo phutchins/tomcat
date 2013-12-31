@@ -56,10 +56,10 @@ node.default = {
             :pattern => "^\s|Processing|Completed|Redirected",
             :what => 'previous'
         } },
-        condition: 'if "nginx" in [tags] and "access" in [tags]',
-        block: {
-          grok: {
-            match: [
+        :condition => 'if "nginx" in [tags] and "access" in [tags]',
+        :block => {
+          :grok => {
+            :match => [
               "message",
               "%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}"
             ]
