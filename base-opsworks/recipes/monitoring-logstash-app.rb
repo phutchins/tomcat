@@ -1,5 +1,5 @@
 node.override[:logstash] = {
-  :server => {
+  :agent => {
     :inputs => [
       :file => {
         :type => "rails",
