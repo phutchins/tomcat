@@ -7,3 +7,4 @@ version          	"0.0.3"
 
 depends 'collectd'
 depends 'openssl'
+depends 'logstash'
