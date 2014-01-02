@@ -1,0 +1,2 @@
+#!/bin/bash
+/opt/aws/opsworks/current/bin/chef-shell -j `ls -tr /var/lib/aws/opsworks/chef/*.json | tail -1` -s

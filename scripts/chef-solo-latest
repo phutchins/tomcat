@@ -1,0 +1,2 @@
+#!/bin/bash
+ruby1.8 /opt/aws/opsworks/current/bin/chef-solo -j `ls -tr /var/lib/aws/opsworks/chef/*.json | tail -1` -c /opt/aws/opsworks/current/conf/solo.rb -L `ls -tr /var/lib/aws/opsworks/chef/*.log | tail -1`
