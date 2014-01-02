@@ -61,13 +61,13 @@ node.override[:logstash] = {
               'message',
               '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}'
             ]
+          },
+          :geoip => {
+            :source => 'clientip',
+            :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
           }
         }
       },
-      { :geoip => {
-          :source => 'clientip',
-          :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
-      } },
       { :mutate => {
           :replace => [ "source_host", "<%= stack_name %>-<%= host_role %>" ],
           :add_tag => [ "<%= stack_name %>-appserver" ]
