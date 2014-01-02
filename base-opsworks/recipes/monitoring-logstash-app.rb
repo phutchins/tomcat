@@ -1,3 +1,9 @@
+# Pull this from somewhere in opsworks attrs
+node.default['corndog']['host_role'] = 'rails_app'
+
+stack_name = node['corndog']['stack']
+host_role = node['corndog']['host_role']
+
 node.override[:logstash] = {
   :agent => {
     :inputs => [
