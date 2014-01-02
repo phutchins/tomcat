@@ -51,7 +51,7 @@ node.override[:logstash] = {
           :pattern => "^\s|Processing|Completed|Redirected",
           :what => 'previous'
       } },
-      :condition => 'if "nginx" in [tags] and "access" in [tags]',
+      :condition => 'if "nginx" in [tags] and "access" in [tags]'
         :block => {
           :grok => {
             :match => [
