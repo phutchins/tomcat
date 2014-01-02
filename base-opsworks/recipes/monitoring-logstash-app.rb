@@ -46,11 +46,14 @@ node.override[:logstash] = {
           :match => { '@message' => '^$' },
           :drop => true
       } },
-      { :grep => {
-          :match => { '@tags' => 'rails' },
-          :pattern => "^\s|Processing|Completed|Redirected",
-          :what => 'previous'
-      } },
+      { :condition => 'if "rails" in [tags]',
+        :block => [
+          :multiline => {
+            :pattern => "^\s|Processing|Completed|Redirected",
+            :what => 'previous'
+          }
+        ]
+      },
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
