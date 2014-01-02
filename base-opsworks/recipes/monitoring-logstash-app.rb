@@ -55,7 +55,7 @@ node.override[:logstash] = {
         ]
       },
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
-        :block => {
+        :block => [
           :grok => {
             :match => [
               'message',
@@ -66,7 +66,7 @@ node.override[:logstash] = {
             :source => 'clientip',
             :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
           }
-        }
+        ]
       },
       { :mutate => {
           :replace => [ "source_host", "<%= stack_name %>-<%= host_role %>" ],
