@@ -59,7 +59,8 @@ node.override[:logstash] = {
               '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}'
             ]
           }
-      } },
+        }
+      },
       { :geoip => {
           :source => 'clientip',
           :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
