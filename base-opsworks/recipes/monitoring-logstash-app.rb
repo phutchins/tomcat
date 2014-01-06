@@ -1,5 +1,6 @@
 # Pull this from somewhere in opsworks attrs
 node.default['corndog']['host_role'] = 'rails_app'
+node.deafult['corndog']['profile'] = 'production'
 
 stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
