@@ -10,7 +10,7 @@ node.override[:logstash] = {
     :inputs => [
       { :file => {
         :type => "rails",
-        :path => [ "/srv/www/corndog/shared/log/<%= profile_name %>.log" ],
+        :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
         :tags => [ 'rails' ],
         :multiline => {
           :pattern => "^\s",
@@ -76,8 +76,8 @@ node.override[:logstash] = {
         }
       },
       { :mutate => {
-          :replace => [ "source_host", "<%= stack_name %>-<%= host_role %>" ],
-          :add_tag => [ "<%= stack_name %>_appserver" ]
+          :replace => [ "source_host", "#{stack_name}-#{host_role}" ],
+          :add_tag => [ "#{stack_name}_appserver" ]
       } }
     ],
     :outputs => [
