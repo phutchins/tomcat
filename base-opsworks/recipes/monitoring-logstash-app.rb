@@ -8,7 +8,7 @@ host_role = node['corndog']['host_role']
 node.override[:logstash] = {
   :agent => {
     :inputs => [
-      :file => {
+      { :file => {
         :type => "rails",
         :path => [ "/srv/www/corndog/shared/log/<%= profile_name %>.log" ],
         :tags => [ 'rails' ],
@@ -16,37 +16,37 @@ node.override[:logstash] = {
           :pattern => "^\s",
           :what    => "previous"
         }
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "unicorn",
         :path => [ '/srv/www/corndog/shared/log/unicorn.log' ],
         :tags => [ 'unicorn' ]
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "unicorn",
         :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
         :tags => [ 'unicorn', 'error' ]
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "unicorn",
         :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
         :tags => [ 'unicorn', 'access' ]
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "deploy",
         :path => [ '/home/deploy/*.log' ],
         :tags => [ 'deploy' ]
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "nginx-error",
         :path => [ '/var/log/nginx/corndog.error.log' ],
         :tags => [ 'nginx','error' ]
-      },
-      :file => {
+      } },
+      { :file => {
         :type => "nginx-access",
         :path => [ '/var/log/nginx/corndog.access.log' ],
         :tags => [ 'nginx','access' ]
-      }
+      } }
     ],
     :filters => [
 #      { :grep => {
