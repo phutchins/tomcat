@@ -2,6 +2,7 @@
 node.default['corndog']['host_role'] = 'rails_app'
 
 stack_name = node['corndog']['stack']
+profile_name = node['corndog']['profile']
 host_role = node['corndog']['host_role']
 
 node.override[:logstash] = {
@@ -9,7 +10,7 @@ node.override[:logstash] = {
     :inputs => [
       :file => {
         :type => "rails",
-        :path => [ "/srv/www/corndog/shared/log/<%= stack_name %>.log" ],
+        :path => [ "/srv/www/corndog/shared/log/<%= profile_name %>.log" ],
         :tags => [ 'rails' ],
         :multiline => {
           :pattern => "^\s",
@@ -23,12 +24,12 @@ node.override[:logstash] = {
       },
       :file => {
         :type => "unicorn",
-        :path => [ '/data/corndog/shared/log/unicorn.stderr.log' ],
+        :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
         :tags => [ 'unicorn', 'error' ]
       },
       :file => {
         :type => "unicorn",
-        :path => [ '/data/corndog/shared/log/unicorn.stdout.log' ],
+        :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
         :tags => [ 'unicorn', 'access' ]
       },
       :file => {
@@ -43,15 +44,15 @@ node.override[:logstash] = {
       },
       :file => {
         :type => "nginx-access",
-        :path => [ '/var/log/nginx/corndog.access*.log' ],
+        :path => [ '/var/log/nginx/corndog.access.log' ],
         :tags => [ 'nginx','access' ]
       }
     ],
     :filters => [
-      { :grep => {
-          :match => { '@message' => '^$' },
-          :drop => true
-      } },
+#      { :grep => {
+#          :match => { '@message' => '^$' },
+#          :drop => true
+#      } },
       { :condition => 'if "rails" in [tags]',
         :block => {
           :multiline => {
@@ -76,7 +77,7 @@ node.override[:logstash] = {
       },
       { :mutate => {
           :replace => [ "source_host", "<%= stack_name %>-<%= host_role %>" ],
-          :add_tag => [ "<%= stack_name %>-appserver" ]
+          :add_tag => [ "<%= stack_name %>_appserver" ]
       } }
     ],
     :outputs => [
