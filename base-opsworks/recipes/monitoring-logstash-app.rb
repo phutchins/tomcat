@@ -12,11 +12,7 @@ node.override[:logstash] = {
       { :file => {
         :type => "rails",
         :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
-        :tags => [ 'rails' ],
-        :multiline => {
-          :pattern => "^\s",
-          :what    => "previous"
-        }
+        :tags => [ 'rails' ]
       } },
       { :file => {
         :type => "unicorn",
@@ -50,18 +46,22 @@ node.override[:logstash] = {
       } }
     ],
     :filters => [
-#      { :grep => {
-#          :match => { '@message' => '^$' },
-#          :drop => true
-#      } },
+      { :grep => {
+          :match => { '@message' => '^$' },
+          :drop => true
+      } },
+      { :multiline => {
+        :type => 'rails',
+        :pattern => '^\s',
+        :what => 'previous'
+      } },
       { :condition => 'if "rails" in [tags]',
         :block => {
           :multiline => {
             :pattern => "^\s|Processing|Completed|Redirected",
             :what => 'previous'
           }
-        }
-      },
+      } },
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
@@ -74,8 +74,7 @@ node.override[:logstash] = {
             :source => 'clientip',
             :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
           }
-        }
-      },
+      } },
       { :mutate => {
           :replace => [ "source_host", "#{stack_name}-#{host_role}" ],
           :add_tag => [ "#{stack_name}_appserver" ]
