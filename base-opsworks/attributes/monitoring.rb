@@ -15,4 +15,5 @@ default['newrelic']['loglevel'] = "info"
 
 # Logstash attributes
 override['logstash']['user'] = 'root'
-override['logstash']['supervisor_gid'] = 'root'
+override['logstash']['group'] = 'root'
+#override['logstash']['supervisor_gid'] = 'root'
