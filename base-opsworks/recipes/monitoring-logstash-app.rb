@@ -36,10 +36,6 @@ node.override[:logstash] = {
       } }
     ],
     :filters => [
-      { :grep => {
-          :match => { '@message' => '^$' },
-          :drop => true
-      } },
       { :condition => 'if "rails" in [tags]',
         :block => {
           :multiline => {
