@@ -2,8 +2,6 @@ include_recipe 'openssl'
 
 node.default['logstash']['agent']['server_ipaddress'] = "logs.dealermatch.biz"
 
-node.default['logstash']['agent']['upstart_with_sudo'] = true
-
 script "make logs readable" do
   interpreter "bash"
   user "root"

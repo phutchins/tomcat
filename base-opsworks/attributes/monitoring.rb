@@ -14,6 +14,3 @@ default['newrelic']['app_name'] = "default"
 default['newrelic']['loglevel'] = "info"
 
 # Logstash attributes
-override['logstash']['user'] = 'root'
-override['logstash']['group'] = 'root'
-#override['logstash']['supervisor_gid'] = 'root'
