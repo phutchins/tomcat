@@ -16,11 +16,6 @@ node.override[:logstash] = {
       } },
       { :file => {
         :type => "unicorn",
-        :path => [ '/srv/www/corndog/shared/log/unicorn.log' ],
-        :tags => [ 'unicorn' ]
-      } },
-      { :file => {
-        :type => "unicorn",
         :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
         :tags => [ 'unicorn', 'error' ]
       } },
@@ -28,11 +23,6 @@ node.override[:logstash] = {
         :type => "unicorn",
         :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
         :tags => [ 'unicorn', 'access' ]
-      } },
-      { :file => {
-        :type => "deploy",
-        :path => [ '/home/deploy/*.log' ],
-        :tags => [ 'deploy' ]
       } },
       { :file => {
         :type => "nginx-error",
@@ -50,13 +40,12 @@ node.override[:logstash] = {
           :match => { '@message' => '^$' },
           :drop => true
       } },
-      { :multiline => {
-        :type => 'rails',
-        :pattern => '^\s',
-        :what => 'previous'
-      } },
       { :condition => 'if "rails" in [tags]',
         :block => {
+          :multiline => {
+            :pattern => '^\s',
+            :what => 'previous'
+          },
           :multiline => {
             :pattern => "^\s|Processing|Completed|Redirected",
             :what => 'previous'
@@ -77,7 +66,7 @@ node.override[:logstash] = {
       } },
       { :mutate => {
           :replace => [ "source_host", "#{stack_name}-#{host_role}" ],
-          :add_tag => [ "#{stack_name}_appserver" ]
+          :add_tag => [ "#{stack_name}", "#{host_role}" ]
       } }
     ],
     :outputs => [
