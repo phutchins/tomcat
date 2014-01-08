@@ -1,4 +1,8 @@
 include_recipe 'openssl'
+
+node.default['logstash']['user'] = 'root'
+node.default['logstash']['group'] = 'root'
+
 node.default['logstash']['agent']['server_ipaddress'] = "logs.dealermatch.biz"
 
 script "make logs readable" do
