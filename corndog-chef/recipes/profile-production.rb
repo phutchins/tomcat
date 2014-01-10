@@ -78,6 +78,7 @@ node.normal['corndog']['dotenv'] = {
   'URBANAIRSHIP_MASTER_SECRET' => node['corndog']['urbanairship']['master_secret'],
   'URBANAIRSHIP_LOGGER' => node['corndog']['urbanairship']['logger'],
   'URBANAIRSHIP_REQUEST_TIMEOUT' => node['corndog']['urbanairship']['request_timeout'],
+  'RECURLY_ENABLED' => node['corndog']['recurly']['enabled'],
   'RECURLY_SUBDOMAIN' => node['corndog']['recurly']['subdomain'],
   'RECURLY_API_KEY' => node['corndog']['recurly']['api_key'],
   'RECURLY_JS_KEY' => node['corndog']['recurly']['js_key'],

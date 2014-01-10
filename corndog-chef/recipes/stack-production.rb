@@ -56,6 +56,7 @@ node.normal['corndog']['urbanairship']['master_secret'] = '-JsSRR_SSZGvh4wWws_fT
 node.normal['corndog']['urbanairship']['logger'] = 'Rails.logger'
 node.normal['corndog']['urbanairship']['request_timeout'] = '5'
 
+node.normal['corndog']['recurly']['enabled'] = 'true'
 node.normal['corndog']['recurly']['subdomain'] = 'dealermatch'
 node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6'
 node.normal['corndog']['recurly']['js_key'] = 'c2d02fe9e08444c5a2c9c381c7b018e0'
