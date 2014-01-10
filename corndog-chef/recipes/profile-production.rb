@@ -47,6 +47,7 @@ node.normal['corndog']['dotenv'] = {
   'SOLR_HOST' => node['corndog']['solr']['host'],
   'SOLR_PORT' => node['corndog']['solr']['port'],
   'SOLR_PATH' => node['corndog']['solr']['path'],
+  'SOLR_LOG_LEVEL' => node['corndog']['solr']['log_level'],
   'SOLR_MASTER_HOST' => node['corndog']['solr']['master_host'],
   'SOLR_MASTER_PORT' => node['corndog']['solr']['master_port'],
   'SOLR_MASTER_PATH' => node['corndog']['solr']['master_path'],
