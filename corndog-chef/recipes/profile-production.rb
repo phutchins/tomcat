@@ -18,6 +18,7 @@ mongodb_identity_map_enabled ||= node['corndog']['mongodb']['identity_map_enable
 mongodb_consistency ||= node['corndog']['mongodb']['consistency']
 mongodb_session_options ||= node['corndog']['mongodb']['session_options']
 cde_marketing_url ||= node['corndog']['marketing']['url']
+newrelic_app_name = node['corndog']['newrelic_app_name'] || node['corndog']['stack']
 
 # Attributes from the OpsWorks Environment
 if !node['opsworks']['layers']['redis']['instances'].nil?
@@ -93,7 +94,7 @@ node.normal['corndog']['dotenv'] = {
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
   'SALESFORCE_ROBOT_CREDENTIALS_PASSWORD' => node['corndog']['salesforce']['robot_credentials']['password'],
   'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id'],
-  'NEWRELIC_APP_NAME' => node['corndog']['stack']
+  'NEWRELIC_APP_NAME' => newrelic_app_name
 }
 
 # Load defaults for all Corndog hosts and environments

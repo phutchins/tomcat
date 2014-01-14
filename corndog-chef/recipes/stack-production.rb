@@ -72,4 +72,6 @@ node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@
 node.normal['corndog']['salesforce']['robot_credentials']['password'] = 'D0nkeyC0rn!!g7gXEHjBTIf7sqsNLgHbijaY'
 node.normal['corndog']['salesforce']['robot_id'] = '005d0000001VVK2AAO'
 
+node.normal['corndog']['newrelic_app_name'] = 'production-ow'
+
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
