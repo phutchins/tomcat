@@ -1,3 +1,5 @@
+include_receipe 'stack-defaults'
+
 # This file includes all attributes that apply only to the devopstest stack
 
 # Assign environmentals to node
@@ -41,12 +43,6 @@ node.normal['corndog']['mixpanel']['token'] = '7d6cc1e88f3c7b32fd2c17dc4a9b5b2b'
 node.normal['corndog']['mixpanel']['mobile_token'] = 'd7c84ac071f14ca51fbb74b86034ad39'
 node.normal['corndog']['mixpanel']['async'] = true
 node.normal['corndog']['mixpanel']['insert_js_last'] = true
-
-node.normal['corndog']['urbanairship']['application_key'] = 'Hhy_49_KROKPHm33h5ssFQ'
-node.normal['corndog']['urbanairship']['application_secret'] = 'wGWe_o9KRcSoTDTIVf9w7A'
-node.normal['corndog']['urbanairship']['master_secret'] = 'gn5yboSGQIWqduIxMFleVg'
-node.normal['corndog']['urbanairship']['logger'] = 'Rails.logger'
-node.normal['corndog']['urbanairship']['request_timeout'] = '5'
 
 node.normal['corndog']['recurly']['enabled'] = 'false'
 

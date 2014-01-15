@@ -85,8 +85,6 @@ node.normal['corndog']['dotenv'] = {
   'URBANAIRSHIP_APPLICATION_KEY' => node['corndog']['urbanairship']['application_key'],
   'URBANAIRSHIP_APPLICATION_SECRET' => node['corndog']['urbanairship']['application_secret'],
   'URBANAIRSHIP_MASTER_SECRET' => node['corndog']['urbanairship']['master_secret'],
-  'URBANAIRSHIP_LOGGER' => node['corndog']['urbanairship']['logger'],
-  'URBANAIRSHIP_REQUEST_TIMEOUT' => node['corndog']['urbanairship']['request_timeout'],
   'RECURLY_ENABLED' => node['corndog']['recurly']['enabled'],
   'RECURLY_SUBDOMAIN' => node['corndog']['recurly']['subdomain'],
   'RECURLY_API_KEY' => node['corndog']['recurly']['api_key'],
@@ -102,6 +100,7 @@ node.normal['corndog']['dotenv'] = {
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
   'SALESFORCE_ROBOT_CREDENTIALS_PASSWORD' => node['corndog']['salesforce']['robot_credentials']['password'],
   'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id'],
+  'STACK' => node['corndog']['stack'],
   'NEWRELIC_APP_NAME' => newrelic_app_name
 }
 
