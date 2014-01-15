@@ -1,4 +1,4 @@
-run_context.include_receipe 'corndog-chef::stack-defaults'
+run_context.include_recipe 'corndog-chef::stack-defaults'
 
 # This file includes all attributes that apply only to the devopstest stack
 
