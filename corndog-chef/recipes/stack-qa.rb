@@ -1,4 +1,4 @@
-include_receipe 'stack-defaults'
+run_context.include_receipe 'stack-defaults'
 
 # This file includes all attributes that apply only to the devopstest stack
 
