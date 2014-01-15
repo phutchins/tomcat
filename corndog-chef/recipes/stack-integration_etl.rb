@@ -35,7 +35,7 @@ node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto']
 node.normal['corndog']['action_mailer']['whitelist_interceptor'] = false
 
 node.normal['corndog']['cde']['email_routing_domain'] = 'test-ow.dealermatch.com'
-node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
+node.normal['corndog']['aws']['image_bucket'] = 'cde-integration-etl-images'
 
 node.normal['corndog']['mixpanel']['token'] = '7d6cc1e88f3c7b32fd2c17dc4a9b5b2b'
 node.normal['corndog']['mixpanel']['mobile_token'] = 'd7c84ac071f14ca51fbb74b86034ad39'
