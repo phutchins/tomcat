@@ -31,6 +31,16 @@ redis_uri.chop!
 redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
+# Avoid optional attributes being nil
+node.default['corndog']['salesforce']['client_config']['host'] ||= ""
+node.default['corndog']['salesforce']['client_config']['client_secret'] ||= ""
+node.default['corndog']['salesforce']['client_config']['client_id'] ||= ""
+node.default['corndog']['salesforce']['client_config']['client_module'] ||= ""
+node.default['corndog']['salesforce']['client_config']['debugging'] ||= ""
+node.default['corndog']['salesforce']['robot_credentials']['username'] ||= ""
+node.default['corndog']['salesforce']['robot_credentials']['password'] ||= ""
+node.default['corndog']['salesforce']['robot_id'] ||= ""
+
 node.normal['corndog']['dotenv'] = {
   'RAILS_ENV' => rails_env,
   'MONGODB_HOST_PORT_1' => node['corndog']['mongodb']['host_port_1'],
