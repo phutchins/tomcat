@@ -3,7 +3,7 @@
 # Assign environmentals to node
 node.normal['corndog']['profile'] = 'production'
 node.normal['corndog']['stack'] = 'qa_etl'
-node.normal['corndog']['redis']['uri'] = 'localhost'
+node.normal['corndog']['redis']['uri'] = nil
 node.normal['corndog']['redis']['port'] = '6379'
 node.normal['corndog']['mongodb']['host_port_1'] = 'mongo3.dealermatch.biz:27017'
 node.normal['corndog']['mongodb']['host_port_2'] = nil
