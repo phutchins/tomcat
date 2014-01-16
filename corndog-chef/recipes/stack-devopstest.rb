@@ -47,11 +47,6 @@ node.normal['corndog']['cde']['admin_password'] = 'Sr1r@cha'
 node.normal['corndog']['cde']['email_routing_domain'] = 'test-ow.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
-node.normal['corndog']['mixpanel']['token'] = '764ee859d87ccf7fa3add1dbd3b68af0'
-node.normal['corndog']['mixpanel']['mobile_token'] = 'ad2faf77a73820161da4d7fe9c6bdeeb'
-node.normal['corndog']['mixpanel']['async'] = true
-node.normal['corndog']['mixpanel']['insert_js_last'] = true
-
 node.normal['corndog']['recurly']['enabled'] = 'false'
 node.normal['corndog']['recurly']['subdomain'] = 'dealermatch'
 node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6'

@@ -51,8 +51,6 @@ node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
 node.normal['corndog']['mixpanel']['token'] = '764ee859d87ccf7fa3add1dbd3b68af0'
 node.normal['corndog']['mixpanel']['mobile_token'] = 'ad2faf77a73820161da4d7fe9c6bdeeb'
-node.normal['corndog']['mixpanel']['async'] = true
-node.normal['corndog']['mixpanel']['insert_js_last'] = true
 
 node.normal['corndog']['urbanairship']['application_key'] = 'ovzuP3xrRtaITIEbgeNVJw'
 node.normal['corndog']['urbanairship']['application_secret'] = 'v24KJXUYTpabaV2QOi4wOA'

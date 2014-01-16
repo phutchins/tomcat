@@ -47,11 +47,6 @@ node.normal['corndog']['cde']['admin_password'] = 'abselectstart'
 node.normal['corndog']['cde']['email_routing_domain'] = 'staging-ey.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-staging-images'
 
-node.normal['corndog']['mixpanel']['token'] = '7d6cc1e88f3c7b32fd2c17dc4a9b5b2b'
-node.normal['corndog']['mixpanel']['mobile_token'] = 'd7c84ac071f14ca51fbb74b86034ad39'
-node.normal['corndog']['mixpanel']['async'] = true
-node.normal['corndog']['mixpanel']['insert_js_last'] = true
-
 node.normal['corndog']['recurly']['enabled'] = 'false'
 node.normal['corndog']['recurly']['subdomain'] = 'dealermatch'
 node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6'
