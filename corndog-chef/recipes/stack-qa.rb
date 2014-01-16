@@ -47,12 +47,6 @@ node.normal['corndog']['cde']['admin_password'] = 'Sr1r@cha'
 node.normal['corndog']['cde']['email_routing_domain'] = 'qa-ey.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
-node.normal['corndog']['recurly']['subdomain'] = nil
-node.normal['corndog']['recurly']['api_key'] = nil
-node.normal['corndog']['recurly']['js_key'] = nil
-node.normal['corndog']['recurly']['currency'] = nil
-node.normal['corndog']['recurly']['default_plan'] = nil
-
 node.normal['corndog']['salesforce']['client_config']['host'] = 'test.salesforce.com'
 node.normal['corndog']['salesforce']['client_config']['client_secret'] = '6556291173479883030'
 node.normal['corndog']['salesforce']['client_config']['client_id'] = '3MVG9rFJvQRVOvk7G2JVJouG3aJz8IIToKNyI.At3Hbg_M.jHhJHork7_JB2tvkBn3fTrWJYtqx9WhnlH55wE'

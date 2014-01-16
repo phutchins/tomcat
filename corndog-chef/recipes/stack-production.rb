@@ -56,11 +56,9 @@ node.normal['corndog']['urbanairship']['application_key'] = 'ovzuP3xrRtaITIEbgeN
 node.normal['corndog']['urbanairship']['application_secret'] = 'v24KJXUYTpabaV2QOi4wOA'
 node.normal['corndog']['urbanairship']['master_secret'] = '-JsSRR_SSZGvh4wWws_fTQ'
 
-node.normal['corndog']['recurly']['enabled'] = 'true'
 node.normal['corndog']['recurly']['subdomain'] = 'dealermatch'
 node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6'
 node.normal['corndog']['recurly']['js_key'] = 'c2d02fe9e08444c5a2c9c381c7b018e0'
-node.normal['corndog']['recurly']['currency'] = 'USD'
 node.normal['corndog']['recurly']['default_plan'] = 'monthly_a_web'
 
 node.normal['corndog']['salesforce']['enabled'] = 'true'
