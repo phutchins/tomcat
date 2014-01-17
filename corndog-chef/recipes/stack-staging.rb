@@ -47,13 +47,4 @@ node.normal['corndog']['cde']['admin_password'] = 'abselectstart'
 node.normal['corndog']['cde']['email_routing_domain'] = 'staging-ey.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-staging-images'
 
-node.normal['corndog']['salesforce']['client_config']['host'] = 'test.salesforce.com'
-node.normal['corndog']['salesforce']['client_config']['client_secret'] = '6556291173479883030'
-node.normal['corndog']['salesforce']['client_config']['client_id'] = '3MVG9rFJvQRVOvk7G2JVJouG3aJz8IIToKNyI.At3Hbg_M.jHhJHork7_JB2tvkBn3fTrWJYtqx9WhnlH55wE'
-node.normal['corndog']['salesforce']['client_config']['sobject_module'] = 'SFDC'
-node.normal['corndog']['salesforce']['client_config']['debugging'] = 'true'
-node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com.offermsg'
-node.normal['corndog']['salesforce']['robot_credentials']['password'] = 'D0nkeyC0rn!!g7gXEHjBTIf7sqsNLgHbijaY'
-node.normal['corndog']['salesforce']['robot_id'] = '005d0000001VVK2AAO'
-
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"

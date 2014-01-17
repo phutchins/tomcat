@@ -42,6 +42,4 @@ node.normal['corndog']['cde']['admin_password'] = 'abselectstart'
 node.normal['corndog']['cde']['email_routing_domain'] = 'qa-etl.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-qa-etl-images'
 
-node.normal['corndog']['salesforce']['enabled'] = false
-
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"

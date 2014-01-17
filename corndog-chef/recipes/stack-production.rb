@@ -61,15 +61,9 @@ node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6
 node.normal['corndog']['recurly']['js_key'] = 'c2d02fe9e08444c5a2c9c381c7b018e0'
 node.normal['corndog']['recurly']['default_plan'] = 'monthly_a_web'
 
-node.normal['corndog']['salesforce']['enabled'] = 'true'
 node.normal['corndog']['salesforce']['client_config']['host'] = 'login.salesforce.com'
-node.normal['corndog']['salesforce']['client_config']['client_secret'] = '6556291173479883030'
-node.normal['corndog']['salesforce']['client_config']['client_id'] = '3MVG9rFJvQRVOvk7G2JVJouG3aJz8IIToKNyI.At3Hbg_M.jHhJHork7_JB2tvkBn3fTrWJYtqx9WhnlH55wE'
-node.normal['corndog']['salesforce']['client_config']['sobject_module'] = 'SFDC'
-node.normal['corndog']['salesforce']['client_config']['debugging'] = 'true'
 node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com'
-node.normal['corndog']['salesforce']['robot_credentials']['password'] = 'D0nkeyC0rn!!g7gXEHjBTIf7sqsNLgHbijaY'
-node.normal['corndog']['salesforce']['robot_id'] = '005d0000001VVK2AAO'
+node.normal['corndog']['salesforce']['unsubscribe_endpoint'] = 'https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8'
 
 node.normal['corndog']['newrelic_app_name'] = 'production-ow'
 

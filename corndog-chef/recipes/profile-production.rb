@@ -31,16 +31,6 @@ redis_uri.chop!
 redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
-# Avoid optional attributes being nil
-node.default['corndog']['salesforce']['client_config']['host'] ||= ""
-node.default['corndog']['salesforce']['client_config']['client_secret'] ||= ""
-node.default['corndog']['salesforce']['client_config']['client_id'] ||= ""
-node.default['corndog']['salesforce']['client_config']['client_module'] ||= ""
-node.default['corndog']['salesforce']['client_config']['debugging'] ||= ""
-node.default['corndog']['salesforce']['robot_credentials']['username'] ||= ""
-node.default['corndog']['salesforce']['robot_credentials']['password'] ||= ""
-node.default['corndog']['salesforce']['robot_id'] ||= ""
-
 node.normal['corndog']['dotenv'] = {
   'RAILS_ENV' => rails_env,
   'MONGODB_HOST_PORT_1' => node['corndog']['mongodb']['host_port_1'],
@@ -87,15 +77,9 @@ node.normal['corndog']['dotenv'] = {
   'RECURLY_API_KEY' => node['corndog']['recurly']['api_key'],
   'RECURLY_JS_KEY' => node['corndog']['recurly']['js_key'],
   'RECURLY_DEFAULT_PLAN' => node['corndog']['recurly']['default_plan'],
-  'SALESFORCE_ENABLED' => node['corndog']['salesforce']['enabled'],
   'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
-  'SALESFORCE_CLIENT_CONFIG_CLIENT_SECRET' => node['corndog']['salesforce']['client_config']['client_secret'],
-  'SALESFORCE_CLIENT_CONFIG_CLIENT_ID' => node['corndog']['salesforce']['client_config']['client_id'],
-  'SALESFORCE_CLIENT_CONFIG_SOBJECT_MODULE' => node['corndog']['salesforce']['client_config']['client_module'],
-  'SALESFORCE_CLIENT_CONFIG_DEBUGGING' => node['corndog']['salesforce']['client_config']['debugging'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
-  'SALESFORCE_ROBOT_CREDENTIALS_PASSWORD' => node['corndog']['salesforce']['robot_credentials']['password'],
-  'SALESFORCE_ROBOT_ID' => node['corndog']['salesforce']['robot_id'],
+  'SALESFORCE_UNSUBSCRIBE_ENDPOINT' => node['corndog']['salesforce']['unsubscribe_endpoint'],
   'STACK' => node['corndog']['stack'],
   'NEWRELIC_APP_NAME' => newrelic_app_name
 }

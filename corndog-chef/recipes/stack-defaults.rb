@@ -6,6 +6,10 @@ node.normal['corndog']['recurly']['api_key'] = '60633d0d1f7e4e1b979cecbabe4ca65d
 node.normal['corndog']['recurly']['js_key'] = '0c017960e0914cea9a85548fc50a06eb'
 node.normal['corndog']['recurly']['default_plan'] = 'monthly_a'
 
+node.normal['corndog']['salesforce']['client_config']['host'] = 'test.salesforce.com'
+node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com.offermsg'
+node.normal['corndog']['salesforce']['unsubscribe_endpoint'] = '/unsubscribe/thanks'
+
 node.normal['corndog']['urbanairship']['application_key'] = 'Hhy_49_KROKPHm33h5ssFQ'
 node.normal['corndog']['urbanairship']['application_secret'] = 'wGWe_o9KRcSoTDTIVf9w7A'
 node.normal['corndog']['urbanairship']['master_secret'] = 'gn5yboSGQIWqduIxMFleVg'
