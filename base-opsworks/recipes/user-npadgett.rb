@@ -1,6 +1,6 @@
 user "npadgett" do
   comment "Nick Padgett"
-  uid 1005
+  uid 1007
   gid 500
   home "/home/npadgett"
   shell "/bin/bash"
