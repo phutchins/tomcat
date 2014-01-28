@@ -3,6 +3,8 @@
 profile = 'production'
 rails_env = 'production'
 node.normal['corndog']['profile'] = profile
+# Monitoring
+node.override['collectd']['graphite_prefix'] = "#{node['corndog']['stack']}.#{node['corndog']['node_type']}.#{node[:opsworks][:instance][:aws_instance_id]}"
 
 # Retrieve attributes from node object
 # Required attributes (add some logic here to fail if not assigned)

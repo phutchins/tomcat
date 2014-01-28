@@ -1,6 +1,6 @@
 default['graphite']['server_address'] = 'graphs.dealermatch.biz'
 default['collectd']['fqdn_lookup'] = 'false'
-default['collectd']['graphite_prefix'] = "hosts.#{node.chef_environment}"
+default['collectd']['graphite_prefix'] = "#{node.chef_environment}.#{node.fqdn}"
 default['collectd']['logging_enabled'] = true
 
 # Default settings for plugins
