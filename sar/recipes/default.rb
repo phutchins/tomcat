@@ -11,7 +11,7 @@ template '/etc/default/sysstat' do
     :sar_enabled => node['sar']['enabled'],
     :sa1_options => node['sar']['sa1_options'],
     :sa2_options => node['sar']['sa2_options']
-           )}
+  })
 end
 
 template '/etc/cron.d/sysstat' do
@@ -21,5 +21,5 @@ template '/etc/cron.d/sysstat' do
   group 'root'
   variables({
     :run_every_minutes => node['sar']['run_every_minutes']
-           )}
+  })
 end
