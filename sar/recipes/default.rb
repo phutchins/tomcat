@@ -20,6 +20,6 @@ template '/etc/cron.d/sysstat' do
   owner 'root'
   group 'root'
   variables({
-    :run_every_minutes => node['sar']['run_every_minutes']
+    :run_every_minutes => node['sar']['cron']['run_every_minutes']
   })
 end
