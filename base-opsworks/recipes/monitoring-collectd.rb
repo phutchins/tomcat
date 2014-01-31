@@ -1,6 +1,7 @@
 fqdn = node[:fqdn]
 fqdn.slice! ".localdomain" || node[:fqdn]
-node.normal['collectd']['graphite_prefix'] = "#{node[:opsworks][:stack][:name]}.#{fqdn}"
+#node.normal['collectd']['graphite_prefix'] = "#{node[:opsworks][:stack][:name]}.#{fqdn}"
+node.normal['collectd']['graphite_prefix'] = node[:opsworks][:stack][:name]
 
 include_recipe 'collectd'
 include_recipe 'collectd::client_graphite'
