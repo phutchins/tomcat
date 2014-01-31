@@ -5,7 +5,7 @@ template "/etc/bluepill_resque.pill" do
   owner 'root'
   group 'root'
   mode 0644
-  source 'resque.rb.erb'
+  source 'bluepill_resque.rb.erb'
   variables({
     #:rails_env => node['deploy']['corndog']['rails_env'],
     :rails_env => 'production',
