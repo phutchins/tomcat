@@ -1,6 +1,7 @@
 default['graphite']['server_address'] = 'graphs.dealermatch.biz'
 default['collectd']['fqdn_lookup'] = 'false'
-node_name = node[:fqdn].slice ".localdomain" || node[:fqdn]
+fqdn = node[:fqdn]
+fqdn.slice! ".localdomain" || node[:fqdn]
 default['collectd']['graphite_prefix'] = "#{node[:opsworks][:stack][:name]}.#{node_name}"
 default['collectd']['logging_enabled'] = true
 
