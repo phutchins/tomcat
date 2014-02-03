@@ -1,10 +1,10 @@
+node.normal['corndog']['stack'] = 'production'
 run_context.include_recipe 'corndog-chef::stack-defaults'
 
 # This file includes all attributes that apply only to the devopstest stack
 
 # Assign environmentals to node
 node.normal['corndog']['profile'] = 'production'
-node.normal['corndog']['stack'] = 'production'
 node.normal['corndog']['redis']['uri'] = nil
 node.normal['corndog']['redis']['port'] = '6379'
 node.normal['corndog']['mongodb']['host_port_1'] = 'cde-production.member2.mongolayer.com:27017'
@@ -15,9 +15,7 @@ node.normal['corndog']['mongodb']['username'] = 'cdx_user'
 node.normal['corndog']['mongodb']['password'] = 'carsrstillc00l'
 node.normal['corndog']['mongodb']['identity_map_enabled'] = 'true'
 node.normal['corndog']['mongodb']['consistency'] = ':strong'
-node.normal['corndog']['cloudfront']['enabled'] = true
-node.normal['corndog']['cloudfront']['site'] = 'https://app.dealermatch.com'
-node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d33wctcf0b47zj.cloudfront.net'
+node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://do4yd0ji84ogk.cloudfront.net'
 node.normal['corndog']['solr']['host'] = '23.22.128.7'
 node.normal['corndog']['solr']['port'] = 80
 node.normal['corndog']['solr']['path'] = '/solr/a2e7ca6ba2a'

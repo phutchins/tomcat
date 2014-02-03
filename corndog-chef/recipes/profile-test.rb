@@ -17,7 +17,6 @@ solr_path = node['corndog']['solr']['path']
 solr_master_host = node['corndog']['solr']['master_host']
 solr_master_port = node['corndog']['solr']['master_port']
 solr_master_path = node['corndog']['solr']['master_path']
-cloudfront_site = node['corndog']['cloudfront']['site']
 cloudfront_asset_hosts = node['corndog']['cloudfront']['asset_hosts']
 
 # Additional attributes
@@ -61,7 +60,6 @@ node.normal['corndog']['dotenv'] = {
   'SOLR_MASTER_HOST' => solr_master_host,
   'SOLR_MASTER_PORT' => solr_master_port,
   'SOLR_MASTER_PATH' => solr_master_path,
-  'CLOUDFRONT_SITE' => cloudfront_site,
   'CLOUDFRONT_ASSET_HOSTS' => cloudfront_asset_hosts
 }
 

@@ -14,3 +14,4 @@ node.normal['corndog']['urbanairship']['application_key'] = 'Hhy_49_KROKPHm33h5s
 node.normal['corndog']['urbanairship']['application_secret'] = 'wGWe_o9KRcSoTDTIVf9w7A'
 node.normal['corndog']['urbanairship']['master_secret'] = 'gn5yboSGQIWqduIxMFleVg'
 
+node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{node.normal['corndog']['stack']}-ey.dealermatch.com"
