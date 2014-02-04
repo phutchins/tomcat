@@ -29,7 +29,8 @@ node.normal['corndog']['force_ssl'] = 'false'
 node.normal['corndog']['marketing']['enabled'] = true
 node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
-node.normal['corndog']['cde']['email_routing_domain'] = 'test-ow.dealermatch.com'
+node.normal['corndog']['email_routing_domain'] = 'messages.dealermatch.com'
+
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
 node.normal['corndog']['mixpanel']['token'] = '764ee859d87ccf7fa3add1dbd3b68af0'

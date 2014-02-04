@@ -26,3 +26,5 @@ node.normal['corndog']['action_mailer']['smtp_settings']['address'] = 'smtp.send
 node.normal['corndog']['action_mailer']['smtp_settings']['port'] = '587'
 node.normal['corndog']['action_mailer']['smtp_settings']['authentication'] = 'plain'
 node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'] = 'true'
+
+node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}-ey.dealermatch.com"

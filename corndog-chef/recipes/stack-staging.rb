@@ -27,7 +27,6 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 node.normal['corndog']['marketing']['enabled'] = false
 node.normal['corndog']['marketing']['url'] = nil
 
-node.normal['corndog']['cde']['email_routing_domain'] = 'staging-ey.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-staging-images'
 
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
