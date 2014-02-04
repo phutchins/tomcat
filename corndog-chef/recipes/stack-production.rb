@@ -26,7 +26,6 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 
 node.normal['corndog']['force_ssl'] = 'false'
 
-node.normal['corndog']['marketing']['enabled'] = true
 node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
 node.normal['corndog']['email_routing_domain'] = 'messages.dealermatch.com'

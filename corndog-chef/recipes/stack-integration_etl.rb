@@ -18,6 +18,4 @@ node.normal['corndog']['solr']['port'] = 80
 node.normal['corndog']['solr']['path'] = '/solr/2f9b22f97f1'
 node.normal['corndog']['solr']['log_level'] = 'WARNING'
 
-node.normal['corndog']['marketing']['enabled'] = false
-
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
