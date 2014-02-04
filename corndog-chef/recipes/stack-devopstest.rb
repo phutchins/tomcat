@@ -27,6 +27,4 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 node.normal['corndog']['marketing']['enabled'] = false
 node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
-node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
-
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"

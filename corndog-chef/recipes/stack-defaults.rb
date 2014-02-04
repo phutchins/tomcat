@@ -28,3 +28,5 @@ node.normal['corndog']['action_mailer']['smtp_settings']['authentication'] = 'pl
 node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'] = 'true'
 
 node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}-ey.dealermatch.com"
+
+node.normal['corndog']['aws']['image_bucket'] = "cde-#{subdomain_prefix}-images"

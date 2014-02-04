@@ -20,6 +20,4 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 
 node.normal['corndog']['marketing']['enabled'] = false
 
-node.normal['corndog']['aws']['image_bucket'] = 'cde-integration-etl-images'
-
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
