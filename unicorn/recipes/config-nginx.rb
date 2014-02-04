@@ -1,6 +1,6 @@
 # nginx config
 cookbook_file "log_format" do
-  path '/etc/nginx/conf.d/log_format'
+  path '/etc/nginx/conf.d/log_format.conf'
   owner 'root'
   group 'root'
   mode 0644
