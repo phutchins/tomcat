@@ -50,7 +50,6 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_IDENTITY_MAP_ENABLED' => mongodb_identity_map_enabled,
   'MONGODB_CONSISTENCY' => mongodb_consistency,
   'REDIS_URI' => redis_uri,
-  'REDIS_URL' => redis_uri,
   'SOLR_HOST' => solr_host,
   'SOLR_PORT' => solr_port,
   'SOLR_PATH' => solr_path,

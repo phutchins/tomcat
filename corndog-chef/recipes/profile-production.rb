@@ -40,7 +40,6 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_USERNAME' => mongodb_username,
   'MONGODB_PASSWORD' => mongodb_password,
   'REDIS_URI' => redis_uri,
-  'REDIS_URL' => redis_uri,
   'SOLR_HOST' => node['corndog']['solr']['host'],
   'SOLR_PORT' => node['corndog']['solr']['port'],
   'SOLR_PATH' => node['corndog']['solr']['path'],
