@@ -61,7 +61,6 @@ node.override[:logstash] = {
           }
       } },
       { :mutate => {
-          :replace => [ "source_host", "#{stack_name}-#{host_role}" ],
           :add_tag => [ "#{stack_name}", "#{host_role}" ]
       } }
     ],
