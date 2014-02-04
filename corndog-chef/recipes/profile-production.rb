@@ -16,7 +16,6 @@ redis_port = node['corndog']['redis']['port']
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
 mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
-mongodb_session_options ||= node['corndog']['mongodb']['session_options']
 newrelic_app_name = node['corndog']['newrelic_app_name'] || node['corndog']['stack']
 
 # Attributes from the OpsWorks Environment
@@ -51,7 +50,6 @@ node.normal['corndog']['dotenv'] = {
   'SOLR_MASTER_PATH' => node['corndog']['solr']['master_path'],
   'CLOUDFRONT_ASSET_HOSTS' => node['corndog']['cloudfront']['asset_hosts'],
   'CDE_MARKETING_URL' => node['corndog']['marketing']['url'],
-  'FORCE_SSL' => node['corndog']['force_ssl'],
   'ACTION_MAILER_DEFAULT_URL_OPTIONS_HOST' => node['corndog']['action_mailer']['default_url_options_host'],
   'ACTION_MAILER_SMTP_SETTINGS_USER_NAME' => node['corndog']['action_mailer']['smtp_settings']['user_name'],
   'ACTION_MAILER_SMTP_SETTINGS_PASSWORD' => node['corndog']['action_mailer']['smtp_settings']['password'],
