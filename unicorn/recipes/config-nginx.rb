@@ -1,4 +1,10 @@
 # nginx config
+cookbook_file "log_format" do
+  path '/etc/nginx/conf.d'
+  owner 'root'
+  group 'root'
+  mode 0644
+end
 
 template "/etc/nginx/sites-available/corndog" do
   owner 'root'
