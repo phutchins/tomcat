@@ -27,21 +27,6 @@ node.normal['corndog']['solr']['log_level'] = 'WARNING'
 node.normal['corndog']['marketing']['enabled'] = false
 node.normal['corndog']['marketing']['url'] = '/users/sign_in'
 
-node.normal['corndog']['action_mailer']['default_url_options_host'] = 'qa-ey.dealermatch.com'
-node.normal['corndog']['action_mailer']['delivery_method'] = ':smtp'
-node.normal['corndog']['action_mailer']['perform_deliveries'] = true
-node.normal['corndog']['action_mailer']['raise_delivery_errors'] = false
-node.normal['corndog']['action_mailer']['default_characterset'] = 'utf-8'
-node.normal['corndog']['action_mailer']['smtp_settings']['user_name'] = 'stangreen'
-node.normal['corndog']['action_mailer']['smtp_settings']['password'] = 'wholesalenet'
-node.normal['corndog']['action_mailer']['smtp_settings']['domain'] = 'localhost.localdomain'
-node.normal['corndog']['action_mailer']['smtp_settings']['address'] = 'smtp.sendgrid.net'
-node.normal['corndog']['action_mailer']['smtp_settings']['port'] = '587'
-node.normal['corndog']['action_mailer']['smtp_settings']['authentication'] = false
-node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'] = true
-node.normal['corndog']['action_mailer']['whitelist_interceptor'] = false
-
-node.normal['corndog']['cde']['admin_password'] = 'Sr1r@cha'
 node.normal['corndog']['cde']['email_routing_domain'] = 'qa-ey.dealermatch.com'
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
