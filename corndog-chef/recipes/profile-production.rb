@@ -16,7 +16,6 @@ redis_port = node['corndog']['redis']['port']
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
 mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
-newrelic_app_name = node['corndog']['newrelic_app_name'] || node['corndog']['stack']
 
 # Attributes from the OpsWorks Environment
 if !node['opsworks']['layers']['redis']['instances'].nil?
@@ -71,8 +70,7 @@ node.normal['corndog']['dotenv'] = {
   'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
   'SALESFORCE_UNSUBSCRIBE_ENDPOINT' => node['corndog']['salesforce']['unsubscribe_endpoint'],
-  'STACK' => node['corndog']['stack'],
-  'NEWRELIC_APP_NAME' => newrelic_app_name
+  'STACK' => node['corndog']['stack']
 }
 
 # Load defaults for all Corndog hosts and environments
