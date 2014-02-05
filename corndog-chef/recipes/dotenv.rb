@@ -1,7 +1,3 @@
-node.default['corndog']['app']['base_path'] = '/srv/www/corndog'
-node.default['corndog']['app']['current_link'] = '/srv/www/corndog/current'
-node.default['corndog']['app']['shared_path'] = '/srv/www/corndog/shared'
-
 directory "/opt/corndog" do
   owner "deploy"
   group "www-data"
