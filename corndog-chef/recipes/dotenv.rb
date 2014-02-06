@@ -1,6 +1,6 @@
-node['corndog']['app']['base_path'] = '/srv/www/corndog'
-node['corndog']['app']['current_link'] = '/srv/www/corndog/current'
-node['corndog']['app']['shared_path'] = '/srv/www/corndog/shared'
+node.normal['corndog']['app']['base_path'] = '/srv/www/corndog'
+node.normal['corndog']['app']['current_link'] = '/srv/www/corndog/current'
+node.normal['corndog']['app']['shared_path'] = '/srv/www/corndog/shared'
 
 directory "/opt/corndog" do
   owner "deploy"
