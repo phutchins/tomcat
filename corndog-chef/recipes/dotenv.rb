@@ -1,3 +1,5 @@
+include_attribute "corndog-chef::app"
+
 directory "/opt/corndog" do
   owner "deploy"
   group "www-data"
