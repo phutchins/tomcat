@@ -5,7 +5,7 @@ run_context.include_recipe 'corndog-chef::stack-defaults'
 # This file includes all attributes that apply only to the devopstest stack
 
 # Assign environmentals to node
-node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://dorg1gxa8jgh1.cloudfront.net'
+node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d32lfm0jr6byac.cloudfront.net'
 
 node.normal['corndog']['mongodb']['host_port_1'] = 'c0.cde-qa.m0.mongolayer.com:27017'
 node.normal['corndog']['mongodb']['database'] = 'cde_production'

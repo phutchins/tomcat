@@ -9,7 +9,7 @@ node.normal['corndog']['action_mailer']['default_url_options_host'] = 'www.deale
 
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
-node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://do4yd0ji84ogk.cloudfront.net'
+node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d33wctcf0b47zj.cloudfront.net'
 
 node.normal['corndog']['email_routing_domain'] = 'messages.dealermatch.com'
 
