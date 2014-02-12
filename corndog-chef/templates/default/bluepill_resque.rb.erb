@@ -8,21 +8,28 @@ Bluepill.application("resque", :log_file => "#{log_dir}/bluepill.log") do |app|
   app.uid = 'root'
   app.gid = 'root'
 
-  priority_process = {
-    high: { 'QUEUES' => 'high', 'COUNT' => '2' },
-    medium: { 'QUEUES' => 'high,medium', 'COUNT' => '3' },
-    low: { 'QUEUES' => 'high,medium,low,*', 'COUNT' => '5' }
-  }
-  priority_process.each do |priority, environment|
-    app.process("resque_#{priority}") do |process|
-      process.group = "resque-workers"
-      process.pid_file = "#{pid_dir}/resque_#{priority}.pid"
-      process.environment = environment.merge({ 'RAILS_ENV' => '<%= @rails_env %>' })
-      process.start_command = "bundle exec rake resque:workers"
-      process.stop_command = "kill -QUIT {{PID}}"
-      process.daemonize = true
+  priority_processes = [
+    [:high, 2, { 'QUEUES' => 'high' }],
+    [:medium, 3, { 'QUEUES' => 'high,medium,medium_low' }],
+    [:low, 5, { 'QUEUES' => 'high,medium,medium_low,low,*' }]
+  ]
+
+  priority_processes.each do |priority_process|
+    priority = priority_process[0]
+    process_count = priority_process[1]
+    environment = priority_process[2]
+    process_count.times do |process_num|
+      app.process("resque_#{priority}_#{process_num}") do |process|
+        process.stdout = process.stderr = "/data/corndog/shared/log/resque_#{priority}.log"
+        process.group = "resque-workers"
+        process.pid_file = "/data/run/resque_#{priority}_#{process_num}.pid"
+        process.environment = environment.merge({ 'RAILS_ENV' => '<%= @rails_env %>' })
+        process.start_command = "bundle exec rake resque:work"
+        process.stop_command = "kill -QUIT {{PID}}"
+        process.daemonize = true
+      end
     end
-  end # priority_process
+  end
 
   app.process("resque_scheduler") do |process|
     process.stdout = process.stderr = "#{log_dir}/resque_scheduler.log"
