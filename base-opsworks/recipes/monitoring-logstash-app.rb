@@ -54,7 +54,7 @@ node.override[:logstash] = {
       } },
       {  :grok => {
           :type => "rails",
-          :pattern => "%{RAILS3}",
+          :pattern => "%{RAILS3_LOG}",
           :patterns_dir => '/opt/logstash/agent/etc/patterns'
       } },
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
