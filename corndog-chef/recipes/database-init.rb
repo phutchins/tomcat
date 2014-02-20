@@ -5,7 +5,7 @@ dbcall = "mysql -u root -p#{node[:mysql][:server_root_password]}"
 
 execute "create kbb_etl database" do
   user = 'deploy'
-  command "echo 'create database if not exists kbb_etl' | mysql"
+  command "echo 'create database if not exists kbb_etl' | #{dbcall}"
   not_if = "echo 'show databases' | #{dbcall} | egrep kbb_etl"
   Chef::Log.info("creating kbb_etl database")
 end
@@ -18,7 +18,7 @@ end
 
 execute "create etl_load_target database" do
   user = "deploy"
-  command "echo 'create database if not exists etl_load_target' | mysql"
+  command "echo 'create database if not exists etl_load_target' | #{dbcall}"
   not_if = "echo 'show databases' | #{dbcall} | egrep etl_load_target"
   Chef::Log.info("creating etl_load_target database")
 end
