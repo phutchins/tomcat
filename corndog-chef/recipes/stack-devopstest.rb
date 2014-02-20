@@ -7,8 +7,8 @@ run_context.include_recipe 'corndog-chef::stack-defaults'
 # Assign environmentals to node
 node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d5a12sbnyk1s7.cloudfront.net'
 
-node.normal['corndog']['mongodb']['host_port_1'] = 'cde-prod2.m0.mongolayer.com:27017'
-node.normal['corndog']['mongodb']['host_port_2'] = 'cde-prod2.m1.mongolayer.com:27017'
+node.normal['corndog']['mongodb']['host_port_1'] = 'mongodb-devopstest-1.dealermatch.biz:27017'
+#node.normal['corndog']['mongodb']['host_port_2'] = 'cde-prod2.m1.mongolayer.com:27017'
 node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
 node.normal['corndog']['solr']['path'] = '/solr/8c328dc5a19'

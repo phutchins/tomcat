@@ -6,6 +6,13 @@ stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
 host_role = node['corndog']['host_role']
 
+script "make logs readable" do
+  interpreter "bash"
+  user "root"
+  cwd "/var/log"
+  code "chmod -R 664 /var/log/nginx"
+end
+
 node.override[:logstash] = {
   :patterns => {
     :rails => {
@@ -41,6 +48,10 @@ node.override[:logstash] = {
       } }
     ],
     :filters => [
+      { :grok => {
+        :patern => "^$",
+        :drop_if_match => true
+      } },
       { :condition => 'if "rails" in [tags]',
         :block => {
           :multiline => {
