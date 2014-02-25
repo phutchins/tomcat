@@ -12,6 +12,7 @@ node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
 node.normal['corndog']['solr']['path'] = '/solr/e3cb33a92d8'
 
-node.normal['corndog']['salesforce']['robot_credentials_username'] = 'cdx-bi@dealermatch.com.qa'
+node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com.qa'
 
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
+
