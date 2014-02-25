@@ -11,7 +11,7 @@ node.normal['corndog']['mongodb']['host_port_1'] = 'mongodb-devopstest-1.dealerm
 
 node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
-node.normal['corndog']['solr']['master_path'] = '/solr/8c328dc5a19'
-node.normal['corndog']['solr']['path'] = '/solr/bdada2584a2'
+node.normal['corndog']['solr']['path'] = '/solr/8c328dc5a19'
+node.normal['corndog']['solr']['master_path'] = '/solr/bdada2584a2'
 
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
