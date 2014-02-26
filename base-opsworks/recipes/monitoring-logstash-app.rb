@@ -42,6 +42,11 @@ node.override[:logstash] = {
         :tags => [ 'nginx','error' ]
       } },
       { :file => {
+        :type => "salesforce_offer_thread",
+        :path => [ '/data/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
+        :tags => [ 'salesforce','offer_thread' ]
+      } },
+      { :file => {
         :type => "nginx-access",
         :path => [ '/var/log/nginx/corndog.access.log' ],
         :tags => [ 'nginx','access' ]
@@ -67,6 +72,11 @@ node.override[:logstash] = {
           :type => "rails",
           :pattern => "%{RAILS3_LOG}",
           :patterns_dir => '/opt/logstash/agent/etc/patterns'
+      } },
+      { :grok => {
+        :type => "salesforce_offer_thread",
+        :pattern => "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]",
+        :patterns_dir => '/opt/logstash/agent/etc/patterns'
       } },
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
