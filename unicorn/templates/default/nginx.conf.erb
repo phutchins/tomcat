@@ -68,6 +68,7 @@ server {
   # other
   rewrite "^/(?i)compare" http://www2.dealermatch.com/compare redirect;
   rewrite "^/(?i)seattle" http://www2.dealermatch.com/seattle redirect;
+  rewrite "^/(?i)vw" http://www2.dealermatch.com/vw redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {

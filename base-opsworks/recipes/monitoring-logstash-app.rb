@@ -43,7 +43,7 @@ node.override[:logstash] = {
       } },
       { :file => {
         :type => "salesforce_offer_thread",
-        :path => [ '/data/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
+        :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
         :tags => [ 'salesforce','offer_thread' ]
       } },
       { :file => {
@@ -86,9 +86,8 @@ node.override[:logstash] = {
               '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}'
             ]
           },
-          :geoip => {
-            :source => 'clientip',
-            :add_field => [ "coords", "%{geoip.longitude},%{geoip.latitude}" ]
+          :date => {
+            :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
           }
       } },
       { :mutate => {
