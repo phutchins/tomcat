@@ -22,62 +22,54 @@ node.override[:logstash] = {
   :agent => {
     :inputs => [
       { :file => {
-        :type => "rails",
-        :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
-        :tags => [ 'rails' ]
+          :type => "rails",
+          :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
+          :tags => [ 'rails' ]
       } },
       { :file => {
-        :type => "unicorn",
-        :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
-        :tags => [ 'unicorn', 'error' ]
+          :type => "unicorn",
+          :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
+          :tags => [ 'unicorn', 'error' ]
       } },
       { :file => {
-        :type => "unicorn",
-        :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
-        :tags => [ 'unicorn', 'access' ]
+          :type => "unicorn",
+          :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
+          :tags => [ 'unicorn', 'access' ]
       } },
       { :file => {
-        :type => "nginx-error",
-        :path => [ '/var/log/nginx/corndog.error.log' ],
-        :tags => [ 'nginx','error' ]
+          :type => "nginx-error",
+          :path => [ '/var/log/nginx/corndog.error.log' ],
+          :tags => [ 'nginx','error' ]
       } },
       { :file => {
-        :type => "salesforce_offer_thread",
-        :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
-        :tags => [ 'salesforce','offer_thread' ]
+          :type => "salesforce_offer_thread",
+          :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
+          :tags => [ 'salesforce','offer_thread' ]
       } },
       { :file => {
-        :type => "nginx-access",
-        :path => [ '/var/log/nginx/corndog.access.log' ],
-        :tags => [ 'nginx','access' ]
+          :type => "nginx-access",
+          :path => [ '/var/log/nginx/corndog.access.log' ],
+          :tags => [ 'nginx','access' ]
       } }
     ],
     :filters => [
       { :grok => {
-        :pattern => "^$",
-        :drop_if_match => true
+          :pattern => "^$",
+          :drop_if_match => true
       } },
       { :condition => 'if "rails" in [tags]',
-        :block => {
-          :multiline => {
-            :pattern => '^\s',
-            :what => 'previous'
-          },
-          :multiline => {
-            :pattern => "^\s|Processing|Completed|Redirected",
-            :what => 'previous'
-          },
-      } },
-      {  :grok => {
-          :type => "rails",
-          :pattern => "%{RAILS3_LOG}",
-          :patterns_dir => '/opt/logstash/agent/etc/patterns'
-      } },
-      { :grok => {
-        :type => "salesforce_offer_thread",
-        :pattern => "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]",
-        :patterns_dir => '/opt/logstash/agent/etc/patterns'
-      } },
+        {  :grok => {
+           :type => "rails",
+           :pattern => "%{RAILS3_LOG}"
+        } },
+      },
+
+      { :condition => 'if [type] == "salesforce_offer_thread',
+        { :grok => {
+          :pattern => "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]"
+        } },
+      },
+
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
