@@ -24,32 +24,32 @@ node.override[:logstash] = {
       { :file => {
           :type => "rails",
           :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
-          :tags => [ 'rails' ]
+          :tags => [ 'rails','opsworks' ]
       } },
       { :file => {
           :type => "unicorn",
           :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
-          :tags => [ 'unicorn', 'error' ]
+          :tags => [ 'unicorn', 'error','opsworks' ]
       } },
       { :file => {
           :type => "unicorn",
           :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
-          :tags => [ 'unicorn', 'access' ]
+          :tags => [ 'unicorn', 'access','opsworks' ]
       } },
       { :file => {
           :type => "nginx-error",
           :path => [ '/var/log/nginx/corndog.error.log' ],
-          :tags => [ 'nginx','error' ]
+          :tags => [ 'nginx','error','opsworks' ]
       } },
       { :file => {
           :type => "salesforce_offer_thread",
           :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
-          :tags => [ 'salesforce','offer_thread' ]
+          :tags => [ 'salesforce','offer_thread','opsworks' ]
       } },
       { :file => {
           :type => "nginx-access",
           :path => [ '/var/log/nginx/corndog.access.log' ],
-          :tags => [ 'nginx','access' ]
+          :tags => [ 'nginx','access','opsworks' ]
       } }
     ],
     :filters => [
@@ -81,7 +81,7 @@ node.override[:logstash] = {
           :date => {
             :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
           }
-      } },
+      } }
       { :mutate => {
           :add_tag => [ "#{stack_name}", "#{host_role}" ]
       } }
