@@ -53,37 +53,39 @@ node.override[:logstash] = {
       } }
     ],
     :filters => [
-      { :grok => {
-          :pattern => "^$",
-          :drop_if_match => true
+      { grok: {
+          match: "^$",
+          drop_if_match: true
       } },
-      { :condition => 'if "rails" in [tags]',
-        {  :grok => {
-           :type => "rails",
-           :pattern => "%{RAILS3_LOG}"
-        } },
-      },
 
-      { :condition => 'if [type] == "salesforce_offer_thread',
-        { :grok => {
-          :pattern => "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]"
-        } },
-      },
-
-      { :condition => 'if "nginx" in [tags] and "access" in [tags]',
-        :block => {
-          :grok => {
-            :match => [
-              'message',
-              '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}'
-            ]
-          },
-          :date => {
-            :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
+      { condition: 'if "rails" in [tags]',
+        block: {
+          grok: {
+            match: [ "message", "%{RAILS3_LOG}" ]
           }
-      } }
-      { :mutate => {
-          :add_tag => [ "#{stack_name}", "#{host_role}" ]
+        } },
+
+      { condition: 'if [type] == "salesforce_offer_thread"',
+        block: {
+          grok: {
+            match: [ "message", "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]" ]
+          }
+        } },
+
+      { condition: 'if "nginx" in [tags] and "access" in [tags]',
+        block: {
+          grok: {
+            match: [ 'message', '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}' ]
+          }
+        } },
+
+      { date: {
+          match: [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
+        }
+      },
+
+      { mutate: {
+          add_tag: [ "#{stack_name}", "#{host_role}" ]
       } }
     ],
     :outputs => [
