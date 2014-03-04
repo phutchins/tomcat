@@ -52,7 +52,7 @@ node.override[:logstash] = {
           :tags => [ 'nginx','access','opsworks' ]
       } }
     ],
-    :filters => [
+    filters: [
       { grok: {
           match: "^$",
           drop_if_match: true
