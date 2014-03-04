@@ -11,6 +11,8 @@ node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
 node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d33wctcf0b47zj.cloudfront.net'
 
+node.normal['corndog']['deal_shield']['ftp']['folder'] = 'Dealshield'
+
 node.normal['corndog']['email_routing_domain'] = 'messages.dealermatch.com'
 
 node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
