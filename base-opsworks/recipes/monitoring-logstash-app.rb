@@ -60,13 +60,13 @@ node.override[:logstash] = {
 
       { :condition => 'if "rails" in [tags]',
         :block => {
-          :grok => {
-            :match => [ "message", "%{RAILS3_LOG}" ]
-          }
-          #:multiline => {
-          #  :pattern => "^\\s|Processing|Completed|Redirected",
-          #  :what => "previous"
+          #:grok => {
+            #:match => [ "message", "%{RAILS3_LOG}" ]
           #}
+          :multiline => {
+            :pattern => "^\\s|Processing|Completed|Redirected",
+            :what => "previous"
+          }
         } },
 
       { :condition => 'if [type] == "salesforce_offer_thread"',
