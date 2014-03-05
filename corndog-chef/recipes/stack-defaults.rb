@@ -12,6 +12,7 @@ node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto']
 
 node.normal['corndog']['aws']['image_bucket'] = "cde-#{subdomain_prefix}-images"
 
+# This doesn't work for anything but production. We might should check if its prod to set dot com else set dot biz. Or just leave it blank.
 node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{subdomain_prefix}.dealermatch.com"
 
 node.normal['corndog']['deal_shield']['ftp']['folder'] = "Dealshield/#{stack}"
