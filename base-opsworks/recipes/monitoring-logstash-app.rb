@@ -38,7 +38,7 @@ node.override[:logstash] = {
       } },
       { :file =>{
           :type => "nginx-error",
-          :path => [ '/var/log/nginx/corndog.error.log' ],
+          :path => [ '/var/log/nginx/*error*' ],
           :tags => [ 'nginx','error','opsworks' ]
       } },
       { :file => {
@@ -48,7 +48,7 @@ node.override[:logstash] = {
       } },
       { :file => {
           :type => "nginx-access",
-          :path => [ '/var/log/nginx/corndog.access.log' ],
+          :path => [ '/var/log/nginx/*access*' ],
           :tags => [ 'nginx','access','opsworks' ]
       } }
     ],
