@@ -6,11 +6,17 @@ stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
 host_role = node['corndog']['host_role']
 
+directory "/var/log/nginx" do
+  owner 'www-data'
+  group 'root'
+  mode 0755
+end
+
 script "make logs readable" do
   interpreter "bash"
   user "root"
   cwd "/var/log"
-  code "chmod -R 664 /var/log/nginx"
+  code "chmod 664 /var/log/nginx/*"
 end
 
 node.override[:logstash] = {
@@ -36,19 +42,19 @@ node.override[:logstash] = {
           :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
           :tags => [ 'unicorn', 'access','opsworks' ]
       } },
-      { :file =>{
-          :type => "nginx-error",
-          :path => [ '/var/log/nginx/corndog.error.log' ],
-          :tags => [ 'nginx','error','opsworks' ]
-      } },
       { :file => {
           :type => "salesforce_offer_thread",
           :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
           :tags => [ 'salesforce','offer_thread','opsworks' ]
       } },
+      { :file =>{
+          :type => "nginx-error",
+          :path => [ '/var/log/nginx/*error*.log' ],
+          :tags => [ 'nginx','error','opsworks' ]
+      } },
       { :file => {
           :type => "nginx-access",
-          :path => [ '/var/log/nginx/corndog.access.log' ],
+          :path => [ '/var/log/nginx/*access*.log' ],
           :tags => [ 'nginx','access','opsworks' ]
       } }
     ],
