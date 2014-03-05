@@ -1,4 +1,5 @@
-subdomain_prefix = node.normal['corndog']['stack'].gsub('_', '-')
+stack = node.normal['corndog']['stack']
+subdomain_prefix = stack.gsub('_', '-')
 
 node.normal['corndog']['action_mailer']['default_url_options_host'] = "#{subdomain_prefix}.dealermatch.com"
 node.normal['corndog']['action_mailer']['smtp_settings']['user_name'] = 'stangreen'
@@ -12,6 +13,8 @@ node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto']
 node.normal['corndog']['aws']['image_bucket'] = "cde-#{subdomain_prefix}-images"
 
 node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{subdomain_prefix}.dealermatch.com"
+
+node.normal['corndog']['deal_shield']['ftp']['folder'] = "Dealshield/#{stack}"
 
 node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}.dealermatch.com"
 

@@ -57,6 +57,7 @@ node.normal['corndog']['dotenv'] = {
   'ACTION_MAILER_SMTP_SETTINGS_AUTHENTICATION' => node['corndog']['action_mailer']['smtp_settings']['authentication'],
   'ACTION_MAILER_SMTP_SETTINGS_ENABLE_STARTTLS_AUTO' => node['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'],
   'CDE_EMAIL_ROUTING_DOMAIN' => node['corndog']['email_routing_domain'],
+  'DEAL_SHIELD_FTP_FOLDER' => node['corndog']['deal_shield']['ftp']['folder'],
   'AWS_IMAGE_BUCKET' => node['corndog']['aws']['image_bucket'],
   'MIXPANEL_TOKEN' => node['corndog']['mixpanel']['token'],
   'MIXPANEL_MOBILE_TOKEN' => node['corndog']['mixpanel']['mobile_token'],
