@@ -8,6 +8,8 @@ run_context.include_recipe 'corndog-chef::stack-defaults'
 node.normal['corndog']['mongodb']['host_port_1'] = 'charlotte.mongohq.com:10033'
 node.normal['corndog']['mongodb']['database'] = 'cde_etl_integration'
 
+node.normal['corndog']['cloudfront']['asset_hosts'] = "https://integration-etl.dealermatch.biz"
+
 node.normal['corndog']['solr']['path'] = '/solr/2f9b22f97f1'
 
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
