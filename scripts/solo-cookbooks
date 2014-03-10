@@ -1,0 +1,2 @@
+cookbook 'base-opsworks', :git => 'git@github.com:CDEI/base-opsworks.git'
+cookbook 'corndog-chef', :git => 'git@github.com:CDEI/corndog-chef.git'
