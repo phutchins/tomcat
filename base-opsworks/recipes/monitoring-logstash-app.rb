@@ -86,14 +86,13 @@ node.override[:logstash] = {
         :block => {
           :grok => {
             :match => [ 'message', '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}' ]
+          },
+          :date => {
+            :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ],
+            :add_tag => "ts"
           }
         } },
 
-      { :date => {
-          :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ],
-          :add_tag => "ts"
-        }
-      },
 
       { :mutate => {
           :add_tag => [ "#{stack_name}", "#{host_role}" ]
