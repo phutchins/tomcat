@@ -10,7 +10,7 @@ apt_repository "nginx-stable-precise" do
   notifies :run, "execute[apt-get update]", :immediately
 end
 
-apt_package "nginx" do
+apt_package "nginx-full" do
   action :install
   version "1.4.5-1+precise0"
 end
