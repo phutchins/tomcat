@@ -1,7 +1,7 @@
 include_recipe 'apt'
 
-apt_repository "nginx" do
-  uri "http://ppa.launchpad.net/nginx"
+apt_repository "nginx-stable-precise" do
+  uri "http://ppa.launchpad.net/nginx/stable/ubuntu"
   distribution "precise"
   components ["main"]
   keyserver "keyserver.ubuntu.com"
