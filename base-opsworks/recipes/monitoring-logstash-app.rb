@@ -90,7 +90,7 @@ node.override[:logstash] = {
         } },
 
       { :date => {
-          :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
+          :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ],
           :add_tag => "ts"
         }
       },
