@@ -12,5 +12,5 @@ end
 
 apt_package "nginx-common" do
   action :install
-  version "1.4.5-1+precise0"
+  version "1.4.6-1+precise0"
 end
