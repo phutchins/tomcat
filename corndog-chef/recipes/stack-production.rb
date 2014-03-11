@@ -9,7 +9,7 @@ node.normal['corndog']['action_mailer']['default_url_options_host'] = 'www.deale
 
 node.normal['corndog']['aws']['image_bucket'] = 'cde-images'
 
-node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://d33wctcf0b47zj.cloudfront.net'
+node.normal['corndog']['cloudfront']['asset_hosts'] = 'https://dgos3g1ufzdpi.cloudfront.net'
 
 node.normal['corndog']['deal_shield']['ftp']['folder'] = 'Dealshield'
 
