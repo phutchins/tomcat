@@ -9,8 +9,9 @@ apt_repository "nginx-stable-precise" do
   action :add
   notifies :run, "execute[apt-get update]", :immediately
 end
-
-package "nginx" do
-  action :install
-  version "1.4.6-1+precise0"
+%w{nginx nginx-full nginx-common}.each do |pkg|
+  package pkg do
+    action :install
+    version "1.4.6-1+precise0"
+  end
 end
