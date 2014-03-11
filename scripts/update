@@ -1,36 +1,6 @@
 #!/usr/bin/env ruby
+require_relative 'socore'
 
-def update_cookbook
-  # check if cookbook exists, if not check it out
+core = Socore.new
 
-  # if so do a git pull (with force?)
-end
-
-
-def read_config
-  $cookbooks = {}
-  File.readlines(File.join(File.dirname(__FILE__), "solo-cookbooks")).each do |line|
-    line.gsub!("\n", "")
-    regex_result = line.match(/(\w+)?cookbook '([-\w]+)', :git => '([^']*)'/)
-    $cookbooks[regex_result[2].to_s] = regex_result[3].to_s
-  end
-  $cookbooks
-end
-
-cookbooks = read_config
-
-cookbooks.each do |name, uri|
-  puts "Cookbook: #{name}, URI: #{uri}"
-  # Can't do git pull here, must check out and copy the files over the existing ones.
-  # Is there a way to diff the files first to see if there have been any changes? Or keep track of the last commit pulled?
-  #   maybe keep a pull.lock file that has the last hash pulled for each cookbook and pull and copy only if its changed
-  pull_output = `cd ../#{name} ; git pull`
-  return_code = $?.to_i
-  puts "Return Code: #{return_code}"
-  if !return_code == 0
-    checkout_output = `cd ../ ; git checkout #{uri}`
-    puts "Checked out #{name}"
-  else
-    puts "Updated #{name}"
-  end
-end
+core.socore
