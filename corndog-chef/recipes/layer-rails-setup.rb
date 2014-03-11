@@ -12,7 +12,7 @@ end
 %w{nginx nginx-full nginx-common}.each do |pkg|
   package pkg do
     action :install
-    options "--force-confdef --force-confold"
+    options "-o Dpkg::Options::='--force-confold'"
     version "1.4.6-1+precise0"
   end
 end
