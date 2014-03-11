@@ -12,5 +12,6 @@ end
 
 apt_package "nginx-full" do
   action :install
+  options "--asume-no"
   version "1.4.5-1+precise0"
 end
