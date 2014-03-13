@@ -100,15 +100,16 @@ node.override[:logstash] = {
 
       { :condition => 'if [type] == "deploy"',
         :block => {
+
           :grok => {
             :match => [ 'message', '\\[%{TIMESTAMP_ISO8601:timestamp}\\] %{DATA:level}: %{GREEDYDATA:message}' ]
           },
+
           :date => {
             :match => [ "timestamp", "ISO8601" ],
             :add_tag => "ts"
           }
         } },
-
 
       { :mutate => {
           :add_tag => [ "#{stack_name}", "#{host_role}" ]
