@@ -56,6 +56,11 @@ node.override[:logstash] = {
           :type => "nginx-access",
           :path => [ '/var/log/nginx/*access*.log' ],
           :tags => [ 'nginx','access' ]
+      } },
+      { :file => {
+          :type => "deploy",
+          :path => [ '/var/lib/aws/opsworks/chef/*.log' ],
+          :tags => [ 'deploy','chef' ]
       } }
     ],
     :filters => [
