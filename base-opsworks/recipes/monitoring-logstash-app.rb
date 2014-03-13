@@ -116,7 +116,7 @@ node.override[:logstash] = {
     ],
     :outputs => [
       :redis => {
-        :host => 'logstash-redis.dealermatch.biz',
+        :host => 'logs.dealermatch.biz',
         :port => 16379,
         :data_type => "list",
         :key => "logstash"
