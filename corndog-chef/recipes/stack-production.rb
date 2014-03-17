@@ -17,6 +17,8 @@ node.normal['corndog']['email_routing_domain'] = 'messages.dealermatch.com'
 
 node.normal['corndog']['marketing']['url'] = 'http://www3.dealermatch.com'
 
+node.normal['corndog']['matchpro']['endpoint'] = 'https://matchpro.dealermatch.com/api/recommended_vehicles'
+
 node.normal['corndog']['mixpanel']['token'] = '764ee859d87ccf7fa3add1dbd3b68af0'
 node.normal['corndog']['mixpanel']['mobile_token'] = 'ad2faf77a73820161da4d7fe9c6bdeeb'
 
