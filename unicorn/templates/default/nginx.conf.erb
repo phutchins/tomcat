@@ -6,6 +6,7 @@ server {
   listen 80;
   server_name corndog <%= @hostname %>;
   access_log /var/log/nginx/corndog.access.log main;
+  error_log  /var/log/nginx/corndog.error.log info;
 
   keepalive_timeout 5;
 

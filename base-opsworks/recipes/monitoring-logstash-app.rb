@@ -98,13 +98,22 @@ node.override[:logstash] = {
           }
         } },
 
+      { :condition => 'if "nginx" in [tags] and "error" in [tags]',
+        :block => {
+          :grok => {
+            :match => [ 'message', '%{GREEDYDATA:timestamp} \\[%{DATA:loglevel}\\] %{GREEDYDATA:errmsg}' ]
+          },
+          :date => {
+            :match => [ "timestamp", "YYYY/MM/dd HH:mm:ss" ],
+            :add_tag => "ts"
+          }
+        } },
+
       { :condition => 'if [type] == "deploy"',
         :block => {
-
           :grok => {
-            :match => [ 'message', '\\[%{TIMESTAMP_ISO8601:timestamp}\\] %{DATA:level}: %{GREEDYDATA:message}' ]
+            :match => [ 'message', '\\[%{TIMESTAMP_ISO8601:timestamp}\\] %{DATA:level}: %{GREEDYDATA:msg}' ]
           },
-
           :date => {
             :match => [ "timestamp", "ISO8601" ],
             :add_tag => "ts"
@@ -117,7 +126,7 @@ node.override[:logstash] = {
     ],
     :outputs => [
       :redis => {
-        :host => 'logs.dealermatch.biz',
+        :host => 'logstash-redis.dealermatch.biz',
         :port => 16379,
         :data_type => "list",
         :key => "logstash"
