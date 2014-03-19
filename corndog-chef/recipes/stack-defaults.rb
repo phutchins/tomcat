@@ -22,7 +22,7 @@ node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}.dealermatc
 node.normal['corndog']['marketing']['url'] = '/users/sign_in'
 
 node.normal['corndog']['matchpro']['endpoint'] = 'https://matchpro-qa.dealermatch.biz/api/recommended_vehicles'
-node.normal['corndog']['matchpro']['username'] = 'corndog@matchpro.com'
+node.normal['corndog']['matchpro']['user'] = 'corndog@matchpro.com'
 node.normal['corndog']['matchpro']['password'] = 'donkeycarsrc00l'
 
 node.normal['corndog']['mixpanel']['token'] = '7d6cc1e88f3c7b32fd2c17dc4a9b5b2b'
