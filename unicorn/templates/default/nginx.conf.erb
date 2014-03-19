@@ -70,7 +70,9 @@ server {
   rewrite "^/(?i)seattle" http://www2.dealermatch.com/seattle redirect;
   rewrite "^/(?i)vw" http://www2.dealermatch.com/vw redirect;
   rewrite "^/(?i)ng" http://www2.dealermatch.com/ng redirect;
-  rewrite "^/(?i)namad" http://www2.dealermatch.com/namad redirect;
+  rewrite "^/(?i)dd16" http://www2.dealermatch.com/dd16 redirect;
+  rewrite "^/(?i)drivingsales" http://www2.dealermatch.com/drivingsales redirect;
+  rewrite "^/(?i)connect" http://www2.dealermatch.com/connect redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
