@@ -74,6 +74,7 @@ server {
   rewrite "^/(?i)dd16" http://www2.dealermatch.com/dd16 redirect;
   rewrite "^/(?i)drivingsales" http://www2.dealermatch.com/drivingsales redirect;
   rewrite "^/(?i)connect" http://www2.dealermatch.com/connect redirect;
+  rewrite "^/(?i)namad" http://www2.dealermatch.com/namad redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
