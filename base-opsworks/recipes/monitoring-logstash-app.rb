@@ -17,6 +17,7 @@ script "make logs readable" do
   user "root"
   cwd "/var/log"
   code "chmod 664 /var/log/nginx/*"
+  only_if "test -d /var/log/nginx"
 end
 
 node.override[:logstash] = {
