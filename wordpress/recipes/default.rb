@@ -19,7 +19,7 @@ end
 
 template "wp-config.php" do
   source = 'wp-config.php.erb'
-  user   = 'www-data'
+  user   = 'deploy'
   group  = 'www-data'
   mode   = 0644
   path   = '/srv/www/wordpress/current/wp-config.php'
