@@ -3,7 +3,7 @@ upstream unicorn_matchpro {
 }
 
 server {
-  listen 443;
+  listen 80;
   server_name matchpro <%= @hostname %>;
   access_log /var/log/nginx/matchpro.access.log;
   keepalive_timeout 5;
