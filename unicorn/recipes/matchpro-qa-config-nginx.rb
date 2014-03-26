@@ -1,10 +1,10 @@
 # nginx config
-cookbook_file "log_format" do
-  path '/etc/nginx/conf.d/log_format.conf'
-  owner 'root'
-  group 'root'
-  mode 0644
-end
+#cookbook_file "log_format" do
+#  path '/etc/nginx/conf.d/log_format.conf'
+#  owner 'root'
+#  group 'root'
+#  mode 0644
+#end
 
 template "/etc/nginx/sites-available/matchpro" do
   owner 'root'
