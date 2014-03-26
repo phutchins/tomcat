@@ -18,11 +18,11 @@ when stack == 'production'
 end
 
 template "wp-config.php" do
-  source = 'wp-config.php.erb'
-  user   = 'deploy'
-  group  = 'www-data'
-  mode   = 0644
-  path   = '/srv/www/wordpress/shared/wp-config.php'
+  source 'wp-config.php.erb'
+  user   'deploy'
+  group  'www-data'
+  mode   0644
+  path   '/srv/www/wordpress/shared/wp-config.php'
   notifies :restart, "service[apache2]", :immediately
   variables({
     :dbname => dbname,
