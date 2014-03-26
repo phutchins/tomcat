@@ -1,0 +1,43 @@
+upstream unicorn_matchpro {
+ server unix:/srv/www/matchpro/shared/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+  listen 443;
+  server_name matchpro <%= @hostname %>;
+  access_log /var/log/nginx/matchpro.access.log;
+  keepalive_timeout 5;
+  root /srv/www/matchpro/current/public/;
+
+  location / {
+    if ($http_x_forwarded_proto != 'https') {
+      rewrite ^ https://$host$request_uri? permanent;
+    }
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+    proxy_read_timeout 60;
+    proxy_send_timeout 60;
+
+    # If you don't find the filename in the static files
+    # Then request it from the unicorn server
+    if (!-f $request_filename) {
+      proxy_pass http://unicorn_matchpro;
+      break;
+    }
+  }
+
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+    allow 127.0.0.1;
+    deny all;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root /srv/www/matchpro/current/public/;
+  }
+}
+
