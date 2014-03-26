@@ -22,7 +22,7 @@ template "wp-config.php" do
   user   = 'deploy'
   group  = 'www-data'
   mode   = 0644
-  path   = '/srv/www/wordpress/current/wp-config.php'
+  path   = '/srv/www/wordpress/shared/wp-config.php'
   notifies :restart, "service[apache2]", :immediately
   variables({
     :dbname => dbname,
