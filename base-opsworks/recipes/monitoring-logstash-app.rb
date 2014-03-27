@@ -47,6 +47,16 @@ node.override[:logstash] = {
           :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
           :tags => [ 'salesforce','offer_thread' ]
       } },
+      { :file => {
+          :type => "resque",
+          :path => [ '/srv/www/corndog/shared/log/resque*.log' ],
+          :tags => [ 'resque' ]
+      } },
+      { :file => {
+          :type => "mail_delivery",
+          :path => [ '/srv/www/corndog/shared/log/mail_delivery.log' ],
+          :tags => [ 'mail_delivery' ]
+      } },
       { :file =>{
           :type => "nginx-error",
           :path => [ '/var/log/nginx/*error*.log' ],
