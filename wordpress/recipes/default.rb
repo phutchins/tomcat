@@ -36,7 +36,7 @@ end
 directory "upload" do
   user  'deploy'
   group 'www-data'
-  mode  0774
+  mode  0775
   path  '/srv/www/wordpress/current/wp-content/uploads'
 end
 
