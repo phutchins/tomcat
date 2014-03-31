@@ -33,14 +33,14 @@ template "wp-config.php" do
   })
 end
 
-#cookbook_file "wp-config.php" do
-  #user  = 'www-data'
-  #group = 'www-data'
-  #mode  = 0644
+directory "upload" do
+  user  = 'deploy'
+  group = 'www-data'
+  mode  = 0774
   #path  = '/srv/www/wordpress/current/wp-config.php'
   #source = "wp-config.php.#{stack}"
   #notifies :restart, "service[apache2]", :immediately
-#end
+end
 
 service "apache2" do
   init_command = '/etc/init.d/apache2'
