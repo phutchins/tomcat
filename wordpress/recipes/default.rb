@@ -37,9 +37,7 @@ directory "upload" do
   user  = 'deploy'
   group = 'www-data'
   mode  = 0774
-  #path  = '/srv/www/wordpress/current/wp-config.php'
-  #source = "wp-config.php.#{stack}"
-  #notifies :restart, "service[apache2]", :immediately
+  path  = '/srv/www/wordpress/current/wp-content/uploads'
 end
 
 service "apache2" do
