@@ -34,10 +34,10 @@ template "wp-config.php" do
 end
 
 directory "upload" do
-  user  = 'deploy'
-  group = 'www-data'
-  mode  = 0774
-  path  = '/srv/www/wordpress/current/wp-content/uploads'
+  user  'deploy'
+  group 'www-data'
+  mode  0774
+  path  '/srv/www/wordpress/current/wp-content/uploads'
 end
 
 service "apache2" do
