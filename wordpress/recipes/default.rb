@@ -1,10 +1,5 @@
 stack = node[:wordpress][:stack]
 
-# override attributes
-node.override[:apache][:prefork][:minspareservers] = 2
-node.override[:apache][:prefork][:maxspareservers] = 4
-node.override[:apache][:prefork][:startservers] = 4
-##
 
 dbuser = 'master'
 dbpass = 'D0nkeyc0rn!'
@@ -13,8 +8,14 @@ dbhost = 'cdx-wordpress.c4fsy8hm6tiy.us-east-1.rds.amazonaws.com'
 case
 when stack == 'test'
   dbname = 'wptest'
+  node.override[:apache][:prefork][:minspareservers] = 2
+  node.override[:apache][:prefork][:maxspareservers] = 4
+  node.override[:apache][:prefork][:startservers] = 4
 when stack == 'production'
   dbname = 'wordpress'
+  #node.override[:apache][:prefork][:minspareservers] = 2
+  #node.override[:apache][:prefork][:maxspareservers] = 4
+  #node.override[:apache][:prefork][:startservers] = 4
 end
 
 template "wp-config.php" do

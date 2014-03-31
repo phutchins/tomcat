@@ -71,6 +71,11 @@ node.override[:logstash] = {
           :type => "deploy",
           :path => [ '/var/lib/aws/opsworks/chef/*.log' ],
           :tags => [ 'deploy','chef' ]
+      } },
+      { :file => {
+          :type => "catchall",
+          :path => [ '/srv/www/corndog/shared/log/*.log' ],
+          :tags => [ 'catchall' ]
       } }
     ],
     :filters => [
