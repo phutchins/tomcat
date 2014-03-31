@@ -48,6 +48,11 @@ node.override[:logstash] = {
           :tags => [ 'salesforce','offer_thread' ]
       } },
       { :file => {
+          :type => "catchall",
+          :path => [ '/srv/www/corndog/shared/log/*.log' ],
+          :tags => [ 'catchall' ]
+      } },
+      { :file => {
           :type => "resque",
           :path => [ '/srv/www/corndog/shared/log/resque*.log' ],
           :tags => [ 'resque' ]
@@ -71,11 +76,6 @@ node.override[:logstash] = {
           :type => "deploy",
           :path => [ '/var/lib/aws/opsworks/chef/*.log' ],
           :tags => [ 'deploy','chef' ]
-      } },
-      { :file => {
-          :type => "catchall",
-          :path => [ '/srv/www/corndog/shared/log/*.log' ],
-          :tags => [ 'catchall' ]
       } }
     ],
     :filters => [
