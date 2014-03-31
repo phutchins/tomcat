@@ -28,6 +28,11 @@ node.override[:logstash] = {
   :agent => {
     :inputs => [
       { :file => {
+          :type => "catchall",
+          :path => [ '/srv/www/corndog/shared/log/*.log' ],
+          :tags => [ 'catchall' ]
+      } },
+      { :file => {
           :type => "rails",
           :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
           :tags => [ 'rails' ]
@@ -46,11 +51,6 @@ node.override[:logstash] = {
           :type => "salesforce_offer_thread",
           :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
           :tags => [ 'salesforce','offer_thread' ]
-      } },
-      { :file => {
-          :type => "catchall",
-          :path => [ '/srv/www/corndog/shared/log/*.log' ],
-          :tags => [ 'catchall' ]
       } },
       { :file => {
           :type => "resque",
