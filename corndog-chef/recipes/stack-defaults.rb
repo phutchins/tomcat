@@ -1,7 +1,7 @@
 stack = node.normal['corndog']['stack']
 subdomain_prefix = stack.gsub('_', '-')
 
-node.normal['corndog']['action_mailer']['default_url_options_host'] = "#{subdomain_prefix}.dealermatch.com"
+node.normal['corndog']['action_mailer']['default_url_options_host'] = "#{subdomain_prefix}.dealermatch.biz"
 node.normal['corndog']['action_mailer']['smtp_settings']['user_name'] = 'stangreen'
 node.normal['corndog']['action_mailer']['smtp_settings']['password'] = 'wholesalenet'
 node.normal['corndog']['action_mailer']['smtp_settings']['domain'] = 'localhost.localdomain'
@@ -13,11 +13,11 @@ node.normal['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto']
 node.normal['corndog']['aws']['image_bucket'] = "cde-#{subdomain_prefix}-images"
 
 # This doesn't work for anything but production. We might should check if its prod to set dot com else set dot biz. Or just leave it blank.
-node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{subdomain_prefix}.dealermatch.com"
+node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{subdomain_prefix}.dealermatch.biz"
 
 node.normal['corndog']['deal_shield']['ftp']['folder'] = "Dealshield/#{stack}"
 
-node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}.dealermatch.com"
+node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}.dealermatch.biz"
 
 node.normal['corndog']['marketing']['url'] = '/users/sign_in'
 
