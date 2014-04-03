@@ -1,4 +1,5 @@
 include_recipe 'apt'
+include_recipe 'aws'
 
 %w{nginx-full_1.4.6-1+precise0_amd64.deb nginx-common_1.4.6-1+precise0_all.deb nginx_1.4.6-1+precise0_all.deb}.each do |pkg|
   s3_file "/var/cache/apt/archives/#{pkg}" do
