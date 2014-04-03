@@ -10,6 +10,6 @@ version          "0.0.1"
   supports os
 end
 
-%w{ yumrepo apt }.each do |ckbk|
+%w{ yum apt }.each do |ckbk|
   recommends ckbk
 end
