@@ -22,7 +22,7 @@ end
 node.override[:logstash] = {
   :patterns => {
     :rails => {
-      :RAILS3_LOG => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\\s*Processing by (?<controller>[^#]+)#(?<action>\\w+) as (?<format>\\S+)(?:\\n  Parameters: %{DATA:params}\\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \\(Views: %{NUMBER:viewms}ms \\| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
+      :RAILS3 => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\\s*Processing by (?<controller>[^#]+)#(?<action>\\w+) as (?<format>\\S+)(?:\\n  Parameters: %{DATA:params}\\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \\(Views: %{NUMBER:viewms}ms \\| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
     }
   },
   :agent => {
@@ -86,18 +86,16 @@ node.override[:logstash] = {
           #:match => [ 'message' ,"^$" ],
           #:drop_if_match => true
 #      } },
-
       { :condition => 'if "rails" in [tags]',
         :block => {
-          #:grok => {
-            #:match => [ "message", "%{RAILS3_LOG}" ]
-          #}
           :multiline => {
-            :pattern => "^\\s|Processing|Completed|Redirected",
+            :pattern => "^Started",
             :what => "previous"
+          },
+          :grok => {
+            :match => [ "message", "%{RAILS3}" ]
           }
-        } },
-
+      } },
       { :condition => 'if [type] == "salesforce_offer_thread"',
         :block => {
           :grok => {
