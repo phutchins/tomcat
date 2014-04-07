@@ -52,14 +52,12 @@ after_fork do |server, worker|
   # and Redis.  TokyoCabinet file handles are safe to reuse
   # between any number of forked children (assuming your kernel
   # correctly implements pread()/pwrite() system calls)
-  Rails.logger = ActiveRecord::Base.logger = ActionController::Base.logger = begin
-    path = Rails.configuration.paths["log"].first
-    f = File.open(path.sub(".log", "-#{worker.nr}.log"), "a")
-    f.binmode
-    f.sync = true
-    logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BufferedLogger.new(f))
-    logger.level = ActiveSupport::BufferedLogger.const_get(Rails.configuration.log_level.to_s.upcase)
-
-    logger
+  if log = Rails.logger.instance_values['log']
+    ext = File.extname log.path
+    new_path =log.path.gsub %r{(.*)(#{Regexp.escape ext})}, "\\1.#{worker.nr}\\2"
+    Rails.logger.instance_eval do
+      @log.close
+      @log= open_log new_path, 'a+'
+    end
   end
 end
