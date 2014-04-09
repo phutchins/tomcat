@@ -1,3 +1,4 @@
+include_recipe 'logstash'
 include_recipe 'logstash::agent'
 
 node.default['corndog']['host_role'] = 'rails_app'
