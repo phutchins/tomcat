@@ -64,7 +64,7 @@ filter {
   }
 
   mutate {
-      'add_tag' => ["<%= @stack_name %>", "<%= @host_role %>"]
+    'add_tag' => ["<%= @stack_name %>", "<%= @host_role %>"]
   }
 }
 
