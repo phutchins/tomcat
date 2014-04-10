@@ -1,79 +1,81 @@
 input {
 
-  #file {
-  #  'exclude' => ["production*log", "unicorn*log", "salesforce*", "resque*.log", "mail_delivery.log", "newrelic*", "cron*", "bluepill*"]
-  #  'path' => ["/srv/www/corndog/shared/log/*.log"]
-  #  'tags' => ["catchall"]
-  #  'type' => "catchall"
-  #}
-
   file {
-    'path' => ["/srv/www/corndog/shared/log/production.log"]
-    'tags' => ["rails"]
-    'type' => "rails"
+    exclude => ["production*log", "unicorn*log", "salesforce*", "resque*.log", "mail_delivery.log", "newrelic*", "cron*", "bluepill*"]
+    path => ["/srv/www/corndog/shared/log/*.log"]
+    tags => ["catchall"]
+    type => "catchall"
   }
 
   file {
-    'path' => ["/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log"]
-    'tags' => ["salesforce", "offer_thread"]
-    'type' => "salesforce_offer_thread"
+    path => ["/srv/www/corndog/shared/log/production.log"]
+    tags => ["rails"]
+    type => "rails"
   }
 
   file {
-    'path' => ["/srv/www/corndog/shared/log/resque*.log"]
-    'tags' => ["resque"]
-    'type' => "resque"
+    path => ["/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log"]
+    tags => ["salesforce", "offer_thread"]
+    type => "salesforce_offer_thread"
   }
 
   file {
-    'path' => ["/srv/www/corndog/shared/log/mail_delivery.log"]
-    'tags' => ["mail_delivery"]
-    'type' => "mail_delivery"
+    path => ["/srv/www/corndog/shared/log/resque*.log"]
+    tags => ["resque"]
+    type => "resque"
   }
 
   file {
-    'path' => ["/var/lib/aws/opsworks/chef/*.log"]
-    'tags' => ["deploy", "chef"]
-    'type' => "deploy"
+    path => ["/srv/www/corndog/shared/log/mail_delivery.log"]
+    tags => ["mail_delivery"]
+    type => "mail_delivery"
+  }
+
+  file {
+    path => ["/var/lib/aws/opsworks/chef/*.log"]
+    tags => ["deploy", "chef"]
+    type => "deploy"
   }
 }
 
 filter {
 
-  if "rails" in [tags] {
+  if [type] == 'rails' {
     multiline {
-      'pattern' => "^\s|Processing|Completed|Redirected"
-         'what' => "previous"
+      pattern => "^Started"
+         what => "previous"
     }
-  }
+    grok {
+      match => ["message", '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\s*Processing by (?<controller>[^#]+)#(?<action>\w+) as (?<format>\S+)(?:\n Parameters: %{DATA:params}\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}' ]
+    }
 
   if [type] == "salesforce_offer_thread" {
     grok {
-      'match' => ["message", "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]"]
+      match => ["message", "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]"]
     }
   }
 
   if [type] == "deploy" {
     grok {
-      'match' => ["message", "\[%{TIMESTAMP_ISO8601:timestamp}\] %{DATA:level}: %{GREEDYDATA:msg}"]
+      match => ["message", "\[%{TIMESTAMP_ISO8601:timestamp}\] %{DATA:level}: %{GREEDYDATA:msg}"]
     }
     date {
-      'add_tag' => "ts"
-        'match' => ["timestamp", "ISO8601"]
+      add_tag => "ts"
+        match => ["timestamp", "ISO8601"]
     }
   }
 
   mutate {
-    'add_tag' => ["<%= @stack_name %>", "<%= @host_role %>"]
+    add_tag => ["<%= @stack_name %>"]
   }
 }
 
 output {
   redis {
-    'data_type' => "list"
-    'host' => "logstash-redis.dealermatch.biz"
-    'key' => "logstash"
-    'port' => "16379"
+    data_type => "list"
+    host      => "logstash-redis.dealermatch.biz"
+    key       => "logstash"
+    port      => "16379"
   }
 }
 
