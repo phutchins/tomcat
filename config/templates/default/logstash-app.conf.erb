@@ -1,11 +1,11 @@
 input {
 
-  file {
-    'exclude' => ["production*log", "unicorn*log", "salesforce*", "resque*.log", "mail_delivery.log", "newrelic*", "cron*", "bluepill*"]
-    'path' => ["/srv/www/corndog/shared/log/*.log"]
-    'tags' => ["catchall"]
-    'type' => "catchall"
-  }
+  #file {
+  #  'exclude' => ["production*log", "unicorn*log", "salesforce*", "resque*.log", "mail_delivery.log", "newrelic*", "cron*", "bluepill*"]
+  #  'path' => ["/srv/www/corndog/shared/log/*.log"]
+  #  'tags' => ["catchall"]
+  #  'type' => "catchall"
+  #}
 
   file {
     'path' => ["/srv/www/corndog/shared/log/production.log"]
