@@ -28,7 +28,7 @@ template 'logstash.conf' do
   group node['logstash']['group']
   variables(:stack_name => stack_name, :host_role => host_role)
   mode '0644'
-  notifies :restart, logstash_service_resource
+  notifies :restart, service[logstash_logstash_agent]
 end
 
 
