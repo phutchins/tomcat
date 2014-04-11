@@ -9,3 +9,4 @@ version     '0.0.55'
 depends "sar"
 depends "s3_file"
 depends "base-opsworks"
+depends "redis"
