@@ -111,7 +111,7 @@ node.override[:logstash] = {
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
-            :match => [ 'message', '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}' ]
+            :match => [ 'message', "%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}" ]
           },
           :date => {
             :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ],
@@ -147,7 +147,7 @@ node.override[:logstash] = {
     ],
     :outputs => [
       :redis => {
-        :host => 'logstash-redis.dealermatch.biz',
+        :host => 'log.dealermatch.biz',
         :port => 16379,
         :data_type => "list",
         :key => "logstash"
