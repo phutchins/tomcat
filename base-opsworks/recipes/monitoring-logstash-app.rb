@@ -90,6 +90,7 @@ node.override[:logstash] = {
         :block => {
           :multiline => {
             :pattern => "^Started",
+            :negate => true,
             :what => "previous"
           },
           :grok => {
