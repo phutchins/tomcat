@@ -2,8 +2,6 @@ include_recipe 'logstash::agent'
 
 node.default['corndog']['host_role'] = 'rails_app'
 node.default['corndog']['profile'] = 'production'
-node.override['logstash']['user'] = 'deploy'
-node.override['logstash']['group'] = 'www-data'
 
 stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
