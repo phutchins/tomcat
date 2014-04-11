@@ -92,9 +92,9 @@ node.override[:logstash] = {
 
       { :condition => 'if "rails" in [tags]',
         :block => {
-          #:grok => {
-            #:match => [ "message", "%{RAILS3_LOG}" ]
-          #}
+          :grok => {
+            :match => [ "message", "%{RAILS3_LOG}" ]
+          }
           :multiline => {
             :pattern => "^\\s|Processing|Completed|Redirected",
             :what => "previous"
@@ -111,7 +111,7 @@ node.override[:logstash] = {
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
-            :match => [ 'message', "%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}" ]
+            :match => [ 'message', '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}' ]
           },
           :date => {
             :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ],
