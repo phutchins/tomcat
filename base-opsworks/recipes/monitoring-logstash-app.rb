@@ -16,80 +16,78 @@ end
 node.override[:logstash] = {
   :patterns => {
     :rails => {
-      :RAILS3_LOG => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\s*Processing by (?<controller>[^#]+)#(?<action>\w+) as (?<format>\S+)(?:\n  Parameters: %{DATA:params}\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
+      :RAILS3_LOG => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\\s*Processing by (?<controller>[^#]+)#(?<action>\\w+) as (?<format>\\S+)(?:\\n  Parameters: %{DATA:params}\\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \\(Views: %{NUMBER:viewms}ms \\| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
     }
   },
   :agent => {
     :inputs => [
       { :file => {
-        :type => "rails",
-        :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
-        :tags => [ 'rails' ]
+          :type => "rails",
+          :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
+          :tags => [ 'rails','opsworks' ]
       } },
       { :file => {
-        :type => "unicorn",
-        :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
-        :tags => [ 'unicorn', 'error' ]
+          :type => "unicorn",
+          :path => [ '/srv/www/corndog/shared/log/unicorn.stderr.log' ],
+          :tags => [ 'unicorn', 'error','opsworks' ]
       } },
       { :file => {
-        :type => "unicorn",
-        :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
-        :tags => [ 'unicorn', 'access' ]
+          :type => "unicorn",
+          :path => [ '/srv/www/corndog/shared/log/unicorn.stdout.log' ],
+          :tags => [ 'unicorn', 'access','opsworks' ]
+      } },
+      { :file =>{
+          :type => "nginx-error",
+          :path => [ '/var/log/nginx/corndog.error.log' ],
+          :tags => [ 'nginx','error','opsworks' ]
       } },
       { :file => {
-        :type => "nginx-error",
-        :path => [ '/var/log/nginx/corndog.error.log' ],
-        :tags => [ 'nginx','error' ]
+          :type => "salesforce_offer_thread",
+          :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
+          :tags => [ 'salesforce','offer_thread','opsworks' ]
       } },
       { :file => {
-        :type => "salesforce_offer_thread",
-        :path => [ '/srv/www/corndog/shared/log/salesforce_offer_thread_monitor.log' ],
-        :tags => [ 'salesforce','offer_thread' ]
-      } },
-      { :file => {
-        :type => "nginx-access",
-        :path => [ '/var/log/nginx/corndog.access.log' ],
-        :tags => [ 'nginx','access' ]
+          :type => "nginx-access",
+          :path => [ '/var/log/nginx/corndog.access.log' ],
+          :tags => [ 'nginx','access','opsworks' ]
       } }
     ],
     :filters => [
-      { :grok => {
-        :patern => "^$",
-        :drop_if_match => true
-      } },
+#      { :grok => {
+          #:match => [ 'message' ,"^$" ],
+          #:drop_if_match => true
+#      } },
+
       { :condition => 'if "rails" in [tags]',
         :block => {
+          #:grok => {
+            #:match => [ "message", "%{RAILS3_LOG}" ]
+          #}
           :multiline => {
-            :pattern => '^\s',
-            :what => 'previous'
-          },
-          :multiline => {
-            :pattern => "^\s|Processing|Completed|Redirected",
-            :what => 'previous'
-          },
-      } },
-      {  :grok => {
-          :type => "rails",
-          :pattern => "%{RAILS3_LOG}",
-          :patterns_dir => '/opt/logstash/agent/etc/patterns'
-      } },
-      { :grok => {
-        :type => "salesforce_offer_thread",
-        :pattern => "\[%{TIMESTAMP_ISO8601:timestamp}\] \[%{LOGLEVEL:log_level}\] \[%{DATA:message}\] \[%{NUMBER:occurrences}\]",
-        :patterns_dir => '/opt/logstash/agent/etc/patterns'
-      } },
+            :pattern => "^\\s|Processing|Completed|Redirected",
+            :what => "previous"
+          }
+        } },
+
+      { :condition => 'if [type] == "salesforce_offer_thread"',
+        :block => {
+          :grok => {
+            :match => [ "message", "\\[%{TIMESTAMP_ISO8601:timestamp}\\] \\[%{LOGLEVEL:log_level}\\] \\[%{DATA:message}\\] \\[%{NUMBER:occurrences}\\]" ]
+          }
+        } },
+
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
           :grok => {
-            :match => [
-              'message',
-              '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}'
-            ]
-          },
-          :date => {
-            :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
+            :match => [ 'message', '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \\[%{HTTPDATE:timestamp}\\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}' ]
           }
-      } },
+        } },
+
+      { :date => {
+          :match => [ "timestamp", "dd/MMM/YYYY:HH:mm:ss Z" ]
+        }
+      },
+
       { :mutate => {
           :add_tag => [ "#{stack_name}", "#{host_role}" ]
       } }
