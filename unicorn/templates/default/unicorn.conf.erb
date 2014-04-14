@@ -53,15 +53,13 @@ after_fork do |server, worker|
   # between any number of forked children (assuming your kernel
   # correctly implements pread()/pwrite() system calls)
 
-  #::Rails.logger = ActiveRecord::Base.logger = ActionController::Base.logger = begin
-  #  #path = config.paths["log"].first
-  #  path = "/srv/www/corndog/shared/log/production.log"
-  #  f = File.open(path.sub(".log", "-#{worker.nr}.log"), "a")
-  #  f.binmode
-  #  f.sync = true
-  #  logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BufferedLogger.new(f))
-  #  logger.level = ActiveSupport::BufferedLogger.const_get("INFO")
-  #  #logger.level = ActiveSupport::BufferedLogger.const_get(Rails.configuration.log_level.to_s.upcase)
-  #  logger
-  #end
+  ::Rails.logger = ActiveRecord::Base.logger = ActionController::Base.logger = begin
+    path = File.join(::Rails.root, "log")
+    f = File.open(path.sub(".log", "-#{worker.nr}.log"), "a")
+    f.sync = true
+    logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BufferedLogger.new(f))
+    logger.level = ActiveSupport::BufferedLogger.const_get()
+    #logger.level = ActiveSupport::BufferedLogger.const_get(Rails.configuration.log_level.to_s.upcase)
+    logger
+  end
 end
