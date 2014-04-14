@@ -58,8 +58,7 @@ after_fork do |server, worker|
     f = File.open(path.sub(".log", "-#{worker.nr}.log"), "a")
     f.sync = true
     logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BufferedLogger.new(f))
-    logger.level = ActiveSupport::BufferedLogger.const_get()
-    #logger.level = ActiveSupport::BufferedLogger.const_get(Rails.configuration.log_level.to_s.upcase)
+    logger.level = Logger::INFO
     logger
   end
 end
