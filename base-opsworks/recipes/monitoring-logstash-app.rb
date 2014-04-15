@@ -25,7 +25,7 @@ end
 node.override[:logstash] = {
   :patterns => {
     :rails => {
-      :RAILS3_LOG => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\\s*Processing by (?<controller>[^#]+)#(?<action>\\w+) as (?<format>\\S+)(?:\\n  Parameters: %{DATA:params}\\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \\(Views: %{NUMBER:viewms}ms \\| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
+      :RAILS3 => '(?m)Started %{WORD:verb} "%{URIPATHPARAM:request}" for %{IPORHOST:clientip} at (?<timestamp>%{YEAR:year}-%{MONTHNUM:month}-%{MONTHDAY:day} %{HOUR:hour}:%{MINUTE:minute}:%{SECOND:second} %{ISO8601_TIMEZONE:timezone})\s*Processing by (?<controller>[^#]+)#(?<action>\w+) as (?<format>\S+)(?:\n  Parameters: %{DATA:params}\n)?%{DATA}Completed %{NUMBER:response}%{DATA} in %{NUMBER:totalms}ms \(Views: %{NUMBER:viewms}ms \| ActiveRecord: %{NUMBER:activerecordms}ms%{GREEDYDATA}'
     }
   },
   :agent => {
@@ -147,7 +147,7 @@ node.override[:logstash] = {
     ],
     :outputs => [
       :redis => {
-        :host => 'log.dealermatch.biz',
+        :host => 'logs.dealermatch.biz',
         :port => 16379,
         :data_type => "list",
         :key => "logstash"

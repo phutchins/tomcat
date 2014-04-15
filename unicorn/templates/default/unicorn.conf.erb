@@ -54,7 +54,7 @@ after_fork do |server, worker|
   # correctly implements pread()/pwrite() system calls)
 
   ::Rails.logger = ActiveRecord::Base.logger = ActionController::Base.logger = begin
-    path = File.join(::Rails.root, "log")
+    path = File.join(::Rails.root, "log", "production.log")
     f = File.open(path.sub(".log", "-#{worker.nr}.log"), "a")
     f.sync = true
     logger = ActiveSupport::TaggedLogging.new(ActiveSupport::BufferedLogger.new(f))
