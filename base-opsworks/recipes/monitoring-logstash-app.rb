@@ -30,14 +30,14 @@ node.override[:logstash] = {
       { :file => {
           :type => "catchall",
           :path => [ '/srv/www/corndog/shared/log/*.log' ],
-          :exclude => [ "#{profile_name}.log", "unicorn*log", "salesforce*",
+          :exclude => [ "#{profile_name}*.log", "unicorn*log", "salesforce*",
                         "resque*.log", "mail_delivery.log", "newrelic*",
                         "cron*", "bluepill*" ],
           :tags => [ 'catchall' ]
       } },
       { :file => {
           :type => "rails",
-          :path => [ "/srv/www/corndog/shared/log/#{profile_name}.log" ],
+          :path => [ "/srv/www/corndog/shared/log/#{profile_name}*.log" ],
           :tags => [ 'rails' ]
       } },
       { :file => {
