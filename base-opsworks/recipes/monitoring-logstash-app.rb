@@ -91,21 +91,23 @@ node.override[:logstash] = {
 #      } },
 
       { :condition => 'if "rails" in [tags]',
-        { :block => {
+        :block => {
           :multiline => {
             :pattern => "^\\s|Processing|Completed|Redirected",
             :what => "previous"
           },
           :grok => {
             :match => [ "message", "%{RAILS3}" ]
-          } }
-      } },
+          }
+        }
+      },
       { :condition => 'if [type] == "salesforce_offer_thread"',
         :block => {
           :grok => {
             :match => [ "message", "\\[%{TIMESTAMP_ISO8601:timestamp}\\] \\[%{LOGLEVEL:log_level}\\] \\[%{DATA:message}\\] \\[%{NUMBER:occurrences}\\]" ]
           }
-        } },
+        }
+      },
 
       { :condition => 'if "nginx" in [tags] and "access" in [tags]',
         :block => {
