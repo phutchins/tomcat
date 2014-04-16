@@ -1,6 +1,6 @@
 # app configuration
 
-packages =     %w[ imagemagick libmagickwand-dev htop openjdk-7-jdk ]
+packages =     %w[ imagemagick libmagickwand-dev htop openjdk-7-jdk zip ]
 gem_packages = %w[ bluepill god ]
 
 packages.each do |p|
