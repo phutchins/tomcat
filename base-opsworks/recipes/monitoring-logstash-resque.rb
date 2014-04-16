@@ -5,19 +5,6 @@ stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
 host_role = node['corndog']['host_role']
 
-directory "/var/log/nginx" do
-  owner 'www-data'
-  group 'root'
-  mode 0755
-end
-
-script "make logs readable" do
-  interpreter "bash"
-  user "root"
-  cwd "/var/log"
-  code "chmod 664 /var/log/nginx/*"
-end
-
 include_recipe 'logstash::agent'
 
 node.default['corndog']['host_role'] = 'resque'

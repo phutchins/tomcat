@@ -60,26 +60,6 @@ filter {
     }
   }
 
-  if "nginx" in [tags] and "access" in [tags] {
-    grok {
-      'match' => ["message", '%{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent} %{QS:forwardedfor} %{NUMBER:timing}']
-    }
-    date {
-      'add_tag' => "ts"
-      'match' => ["timestamp", "dd/MMM/YYYY:HH:mm:ss Z"]
-    }
-  }
-
-  if "nginx" in [tags] and "error" in [tags] {
-    grok {
-      'match' => ["message", "%{GREEDYDATA:timestamp} \[%{DATA:loglevel}\] %{GREEDYDATA:errmsg}"]
-    }
-    date {
-      'add_tag' => "ts"
-      'match' => ["timestamp", "YYYY/MM/dd HH:mm:ss"]
-    }
-  }
-
   if [type] == "deploy" {
     grok {
       'match' => ["message", "\[%{TIMESTAMP_ISO8601:timestamp}\] %{DATA:level}: %{GREEDYDATA:msg}"]
