@@ -43,7 +43,7 @@ node.normal['corndog']['redis']['uri'] = nil
 node.normal['corndog']['redis']['port'] = '6379'
 
 node.normal['corndog']['salesforce']['client_config']['host'] = 'test.salesforce.com'
-node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com.offermsg'
+node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com.qa'
 node.normal['corndog']['salesforce']['unsubscribe_endpoint'] = '/unsubscribe/thanks'
 
 node.normal['corndog']['solr']['host'] = 'index.websolr.com'
