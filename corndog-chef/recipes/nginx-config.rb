@@ -4,6 +4,7 @@ cookbook_file "log_format" do
   owner 'root'
   group 'root'
   mode 0644
+  notifies :restart, "service[nginx]"
 end
 
 template "/etc/nginx/sites-available/corndog" do
