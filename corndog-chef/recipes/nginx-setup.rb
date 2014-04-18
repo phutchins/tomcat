@@ -42,6 +42,7 @@ end
 #end
 
 execute 'install_init_system_helpers' do
-  command 'dpkg -i /var/cache/apt/archives/init-system-helpsers_1.7~precise1~ppa1_all.deb'
+  command 'dpkg -i /var/cache/apt/archives/init-system-helpers_1.7~precise1~ppa1_all.deb'
   action :run
+  only_if { File.exists?("/var/cache/apt/archives/init-system-helpers_1.7~precise1~ppa1_all.deb") }
 end
