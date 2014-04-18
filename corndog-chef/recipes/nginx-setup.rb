@@ -31,7 +31,7 @@ nginx_packages.each do |pkg_name, file_name|
   package pkg_name do
     action :install
     source "/var/cache/apt/archives/#{file_name}"
-    options "-o Dpkg::Options::='--force-depends --force-confold'"
+    options "-o Dpkg::Options::='--force-depends','--force-confold'"
   end
 end
 
