@@ -35,8 +35,13 @@ nginx_packages.each do |pkg_name, file_name|
   end
 end
 
-package "init-system-helpers" do
-  action :install
-  source "/var/cache/apt/archives/init-system-helpers_1.7~precise1~ppa1_all.deb"
-  version "1.7~precise1~ppa1"
+#package "init-system-helpers" do
+#  action :install
+#  source "/var/cache/apt/archives/init-system-helpers_1.7~precise1~ppa1_all.deb"
+#  version "1.7~precise1~ppa1"
+#end
+
+execute 'install_init_system_helpers' do
+  command 'dpkg -i /var/cache/apt/archives/init-system-helpsers_1.7~precise1~ppa1_all.deb'
+  action :run
 end
