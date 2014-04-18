@@ -3,8 +3,7 @@ include_recipe 's3_file'
 nginx_packages = {
   "nginx-full" => "nginx-full_1.4.6-precise_amd64.deb",
   "nginx-common" => "nginx-common_1.4.6-precise_all.deb",
-  "nginx" => "nginx_1.4.6-precise_all.deb",
-  "init-system-helpers" => "init-system-helpers_1.7~precise1~ppa1_all.deb"
+  "nginx" => "nginx_1.4.6-precise_all.deb"
 }
 
 nginx_packages.each do |pkg_name, file_name|
@@ -34,4 +33,10 @@ nginx_packages.each do |pkg_name, file_name|
     source "/var/cache/apt/archives/#{file_name}"
     options "-o Dpkg::Options::='--force-depends --force-confold'"
   end
+end
+
+package "init-system-helpers" do
+  action :install
+  source "/var/cache/apt/archives/init-system-helpers_1.7~precise1~ppa1_all.deb"
+  version "1.7~precise1~ppa1"
 end
