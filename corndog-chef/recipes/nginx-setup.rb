@@ -5,7 +5,7 @@ nginx_packages = {
   #"nginx-full" => "nginx-full_1.4.6-precise_amd64.deb",
   #"nginx-common" => "nginx-common_1.4.6-precise_all.deb",
   #"nginx" => "nginx_1.4.6-precise_all.deb"
-  "init-system-helpsers" => "1.7",
+  "init-system-helpsers" => "1.7~precise1~ppa1",
   "nginx-full" => "1.4.6-1+precise0",
   "nginx-common" => "1.4.6-1+precise0",
   "nginx" => "1.4.6-1+precise0"
@@ -22,7 +22,7 @@ nginx_packages = {
 #end
 
 apt_repository "DM_Apt_Repo" do
-  uri "http://apt-repo.dealermatch.biz/repo"
+  uri "http://apt.dealermatch.biz/repo"
   distribution "precise"
   components ["main"]
 #  keyserver "keyserver.ubuntu.com"
