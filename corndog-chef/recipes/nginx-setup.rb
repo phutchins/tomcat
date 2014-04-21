@@ -37,7 +37,7 @@ nginx_packages.each do |pkg_name, pkg_version|
     version pkg_version
 #    source "/var/cache/apt/archives/#{file_name}"
 #    options "-o Dpkg::Options::='--force-depends','--force-confold'"
-    options "-o Dpkg::Options::='--force-yes'"
+    options "--force-yes"
   end
 end
 
