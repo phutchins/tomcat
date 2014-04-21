@@ -1,3 +1,4 @@
+include_recipe 'apt'
 include_recipe 's3_file'
 
 nginx_packages = {
@@ -27,7 +28,7 @@ apt_repository "DM_Apt_Repo" do
 #  keyserver "keyserver.ubuntu.com"
 #  key "C300EE8C"
   action :add
-  notifies :run, "execute[apt-get-update]", :immediately
+  notifies :run, "execute[apt-get update]", :immediately
 end
 
 nginx_packages.each do |pkg_name, pkg_version|
