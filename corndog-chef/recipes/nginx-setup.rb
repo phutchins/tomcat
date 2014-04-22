@@ -36,8 +36,7 @@ nginx_packages.each do |pkg_name, pkg_version|
     action :install
     version pkg_version
 #    source "/var/cache/apt/archives/#{file_name}"
-    options "-o Dpkg::Options::='--force-confold'"
-    options "--force-yes"
+    options "--force-yes -o Dpkg::Options::='--force-confold'"
   end
 end
 
