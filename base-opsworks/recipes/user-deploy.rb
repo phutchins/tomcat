@@ -5,3 +5,10 @@ cookbook_file "/etc/sudoers.d/deploy" do
   group "root"
   action :create
 end
+
+cookbook_file "/home/deploy/.ssh/authorized_keys" do
+  source "authorized_keys.deploy"
+  mode 0400
+  owner "deploy"
+  action :create
+end
