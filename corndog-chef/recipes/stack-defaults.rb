@@ -47,8 +47,6 @@ node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@
 
 node.normal['corndog']['solr']['host'] = 'index.websolr.com'
 node.normal['corndog']['solr']['port'] = 80
-node.normal['corndog']['solr']['master_host'] = 'index.websolr.com'
-node.normal['corndog']['solr']['master_port'] = 80
 node.normal['corndog']['solr']['log_level'] = 'WARNING'
 
 node.normal['corndog']['urbanairship']['application_key'] = 'Hhy_49_KROKPHm33h5ssFQ'

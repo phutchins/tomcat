@@ -10,7 +10,6 @@ node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
 node.normal['corndog']['cloudfront']['asset_hosts'] = "https://qa-etl.dealermatch.biz"
 
-node.normal['corndog']['solr']['path'] = '/solr/eaa64a9f345'
-node.normal['corndog']['solr']['master_path'] = '/solr/dc2f508b356'
+node.normal['corndog']['solr']['path'] = '/solr/dc2f508b356'
 
 run_context.include_recipe "corndog-chef::profile-#{node['corndog']['profile']}"
