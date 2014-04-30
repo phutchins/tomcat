@@ -33,7 +33,6 @@ node.normal['corndog']['recurly']['default_plan'] = 'monthly_a_web'
 
 node.normal['corndog']['salesforce']['client_config']['host'] = 'login.salesforce.com'
 node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com'
-node.normal['corndog']['salesforce']['unsubscribe_endpoint'] = 'https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8'
 
 node.normal['corndog']['solr']['path'] = '/solr/a2e7ca6ba2a'
 node.normal['corndog']['solr']['master_path'] = '/solr/ce48a2afebb'
