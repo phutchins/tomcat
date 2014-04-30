@@ -32,7 +32,6 @@ node.normal['corndog']['mongodb']['host_port_2'] = nil
 node.normal['corndog']['mongodb']['host_port_3'] = nil
 node.normal['corndog']['mongodb']['username'] = 'cdx_user'
 node.normal['corndog']['mongodb']['password'] = 'carsrstillc00l'
-node.normal['corndog']['mongodb']['archive_batch_size'] = 100
 
 node.normal['corndog']['recurly']['subdomain'] = 'cdx-test'
 node.normal['corndog']['recurly']['api_key'] = '60633d0d1f7e4e1b979cecbabe4ca65d'

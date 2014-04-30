@@ -12,7 +12,6 @@ mongodb_database = node['corndog']['mongodb']['database']
 mongodb_username = node['corndog']['mongodb']['username']
 mongodb_password = node['corndog']['mongodb']['password']
 redis_port = node['corndog']['redis']['port']
-mongodb_archive_batch_size = node['corndog']['mongodb']['archive_batch_size']
 
 # Additional attributes
 mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
@@ -39,7 +38,6 @@ node.normal['corndog']['dotenv'] = {
   'MONGODB_DATABASE' => mongodb_database,
   'MONGODB_USERNAME' => mongodb_username,
   'MONGODB_PASSWORD' => mongodb_password,
-  'MONGODB_ARCHIVE_BATCH_SIZE' => mongodb_archive_batch_size,
   'REDIS_URI' => redis_uri,
   'SOLR_HOST' => node['corndog']['solr']['host'],
   'SOLR_PORT' => node['corndog']['solr']['port'],
