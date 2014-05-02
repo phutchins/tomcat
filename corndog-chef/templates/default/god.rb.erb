@@ -1,0 +1,170 @@
+slugname = "<%= @deploy_to %>"
+pid_dir  = "#{slugname}/shared/pids"
+log_dir  = "#{slugname}/shared/log"
+conf_dir = "#{slugname}/current/config"
+run_dir  = "#{slugname}/current"
+
+priority_processes = [
+  [:high, 2, { 'QUEUES' => 'high' }],
+  [:medium, 3, { 'QUEUES' => 'high,medium,medium_low' }],
+  [:low, 5, { 'QUEUES' => 'high,medium,medium_low,low,*' }]
+]
+
+priority_processes.each do |priority_process|
+  priority = priority_process[0]
+  process_count = priority_process[1]
+  environment = priority_process[2]
+  process_count.times do |process_num|
+    God.watch do |w|
+      w.dir = run_dir
+      w.interval = 30.seconds
+      w.uid = 'deploy'
+      w.name = "resque_#{priority}_#{process_num}"
+      w.group = 'resque'
+      w.env = environment.merge({ 'RAILS_ENV' => '<%= @rails_env %>' })
+      w.start = "bundle exec rake resque:work"
+      w.stop_signal = 'QUIT'
+      w.stop_timeout = 90.seconds
+
+      # restart if memory gets too high
+      w.transition(:up, :restart) do |on|
+        on.condition(:memory_usage) do |c|
+          c.above = 350.megabytes
+          c.times = 2
+        end
+      end
+
+      # determine the state on startup
+      w.transition(:init, { true => :up, false => :start }) do |on|
+        on.condition(:process_running) do |c|
+          c.running = true
+        end
+      end
+
+      # determine when process has finished starting
+      w.transition([:start, :restart], :up) do |on|
+        on.condition(:process_running) do |c|
+          c.running = true
+          c.interval = 5.seconds
+        end
+
+        # failsafe
+        on.condition(:tries) do |c|
+          c.times = 5
+          c.transition = :start
+          c.interval = 5.seconds
+        end
+      end
+
+      # start if process is not running
+      w.transition(:up, :start) do |on|
+        on.condition(:process_running) do |c|
+          c.running = false
+        end
+      end
+
+    end
+  end
+end
+
+God.watch do |w|
+  w.dir = run_dir
+  w.interval = 30.seconds
+  w.uid = 'deploy'
+  w.name = "resque-scheduler"
+  w.group = 'resque'
+  w.env =  { 'RAILS_ENV' => '<%= @rails_env %>' }
+  w.start = "bundle exec rake resque:scheduler"
+  w.stop_signal = 'QUIT'
+  w.stop_timeout = 30.seconds
+
+  # restart if memory gets too high
+  w.transition(:up, :restart) do |on|
+    on.condition(:memory_usage) do |c|
+      c.above = 350.megabytes
+      c.times = 2
+    end
+  end
+
+  # determine the state on startup
+  w.transition(:init, { true => :up, false => :start }) do |on|
+    on.condition(:process_running) do |c|
+      c.running = true
+    end
+  end
+
+  # determine when process has finished starting
+  w.transition([:start, :restart], :up) do |on|
+    on.condition(:process_running) do |c|
+      c.running = true
+      c.interval = 5.seconds
+    end
+
+    # failsafe
+    on.condition(:tries) do |c|
+      c.times = 5
+      c.transition = :start
+      c.interval = 5.seconds
+    end
+  end
+
+  # start if process is not running
+  w.transition(:up, :start) do |on|
+    on.condition(:process_running) do |c|
+      c.running = false
+    end
+  end
+end
+
+God.watch do |w|
+  w.dir = run_dir
+  w.interval = 30.seconds
+  w.behavior(:clean_pid_file)
+  w.uid = 'root'
+  w.name = "resque-web"
+  w.group = 'resque'
+  w.env =  { 'RAILS_ENV' => '<%= @rails_env %>' }
+  w.start = "bundle exec resque-web -L -p 8888 #{conf_dir}/resque_conf.rb -P #{pid_dir}/resque_web.pid"
+  w.stop_signal = 'QUIT'
+  w.stop_timeout = 5.seconds
+  w.pid_file = "#{pid_dir}/resque_web.pid"
+  w.log = "#{log_dir}/webtest.log"
+
+  # restart if memory gets too high
+  w.transition(:up, :restart) do |on|
+    on.condition(:memory_usage) do |c|
+      c.above = 100.megabytes
+      c.times = 2
+    end
+  end
+
+  # determine the state on startup
+  w.transition(:init, { true => :up, false => :start }) do |on|
+    on.condition(:process_running) do |c|
+      c.running = true
+    end
+  end
+
+  # determine when process has finished starting
+  w.transition([:start, :restart], :up) do |on|
+    on.condition(:process_running) do |c|
+      c.running = true
+      c.interval = 5.seconds
+    end
+
+    # failsafe
+    on.condition(:tries) do |c|
+      c.times = 5
+      c.transition = :start
+      c.interval = 5.seconds
+    end
+  end
+
+  # start if process is not running
+  w.transition(:up, :start) do |on|
+    on.condition(:process_running) do |c|
+      c.running = false
+    end
+  end
+end
+
