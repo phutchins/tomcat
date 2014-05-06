@@ -20,6 +20,7 @@ priority_processes.each do |priority_process|
       w.interval = 30.seconds
       w.uid = 'deploy'
       w.name = "resque_#{priority}_#{process_num}"
+      w.log  = "#{log_dir}/resque_#{priority}_#{process_num}.log"
       w.group = 'resque'
       w.env = environment.merge({ 'RAILS_ENV' => '<%= @rails_env %>' })
       w.start = "bundle exec rake resque:work"
