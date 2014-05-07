@@ -70,7 +70,8 @@ node.normal['corndog']['dotenv'] = {
   'RECURLY_DEFAULT_PLAN' => node['corndog']['recurly']['default_plan'],
   'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
-  'STACK' => node['corndog']['stack']
+  'STACK' => node['corndog']['stack'],
+  'NICK_FOO_BAR_TEST' => 'TEST_BAR_FOO_NICK'
 }
 
 # Load defaults for all Corndog hosts and environments
