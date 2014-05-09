@@ -71,7 +71,7 @@ node.normal['corndog']['dotenv'] = {
   'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
   'STACK' => node['corndog']['stack'],
-  'NICK_FOO_BAR_TEST' => 'TEST_BAR_FOO_NICK'
+  'NICK_FOO_BAR_TEST' => 'HERE_I_AM_JASON'
 }
 
 # Load defaults for all Corndog hosts and environments
