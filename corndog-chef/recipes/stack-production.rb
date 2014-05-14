@@ -26,6 +26,10 @@ node.normal['corndog']['mongodb']['host_port_1'] = 'cde-production.member2.mongo
 node.normal['corndog']['mongodb']['host_port_2'] = 'cde-production.member3.mongolayer.com:27017'
 node.normal['corndog']['mongodb']['database'] = 'cde_production'
 
+node.normal['corndog']['mongodb_archive']['host_port_1'] = 'cde-production-archive.m0.mongolayer.com:27017'
+node.normal['corndog']['mongodb_archive']['host_port_2'] = 'cde-production-archive.m1.mongolayer.com:27017'
+node.normal['corndog']['mongodb_archive']['database'] = 'cde_production_archive'
+
 node.normal['corndog']['recurly']['subdomain'] = 'dealermatch'
 node.normal['corndog']['recurly']['api_key'] = 'eae1a4e9a30a4997bbb2c862fa304df6'
 node.normal['corndog']['recurly']['js_key'] = 'c2d02fe9e08444c5a2c9c381c7b018e0'

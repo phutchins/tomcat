@@ -28,10 +28,17 @@ node.normal['corndog']['matchpro']['password'] = 'donkeycarsrc00l'
 node.normal['corndog']['mixpanel']['token'] = '7d6cc1e88f3c7b32fd2c17dc4a9b5b2b'
 node.normal['corndog']['mixpanel']['mobile_token'] = 'd7c84ac071f14ca51fbb74b86034ad39'
 
+mongodb_username = 'cdx_user'
+mongodb_password = 'carsrstillc00l'
+
 node.normal['corndog']['mongodb']['host_port_2'] = nil
 node.normal['corndog']['mongodb']['host_port_3'] = nil
-node.normal['corndog']['mongodb']['username'] = 'cdx_user'
-node.normal['corndog']['mongodb']['password'] = 'carsrstillc00l'
+node.normal['corndog']['mongodb']['username'] = mongodb_username
+node.normal['corndog']['mongodb']['password'] = mongodb_password
+
+node.normal['corndog']['mongodb_archive']['host_port_2'] = nil
+node.normal['corndog']['mongodb_archive']['username'] = mongodb_username
+node.normal['corndog']['mongodb_archive']['password'] = mongodb_password
 
 node.normal['corndog']['recurly']['subdomain'] = 'cdx-test'
 node.normal['corndog']['recurly']['api_key'] = '60633d0d1f7e4e1b979cecbabe4ca65d'
