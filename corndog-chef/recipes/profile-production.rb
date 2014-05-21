@@ -59,7 +59,20 @@ node.normal['corndog']['dotenv'] = {
   'ACTION_MAILER_SMTP_SETTINGS_AUTHENTICATION' => node['corndog']['action_mailer']['smtp_settings']['authentication'],
   'ACTION_MAILER_SMTP_SETTINGS_ENABLE_STARTTLS_AUTO' => node['corndog']['action_mailer']['smtp_settings']['enable_starttls_auto'],
   'CDE_EMAIL_ROUTING_DOMAIN' => node['corndog']['email_routing_domain'],
-  'DEAL_SHIELD_FTP_FOLDER' => node['corndog']['deal_shield']['ftp']['folder'],
+
+  # deal shield FTP info
+  'DEAL_SHIELD_FTP_FOLDER' =>   node['corndog']['deal_shield']['ftp']['folder'],
+  'DEAL_SHIELD_FTP_SERVER' =>   node['corndog']['deal_shield']['ftp']['server'],
+  'DEAL_SHIELD_FTP_USERNAME' => node['corndog']['deal_shield']['ftp']['username'],
+  'DEAL_SHIELD_FTP_PASSWORD' => node['corndog']['deal_shield']['ftp']['password'],
+  'DEAL_SHIELD_FTP_PORT' =>     node['corndog']['deal_shield']['ftp']['port'],
+  # west herr FTP info
+  'WEST_HERR_FTP_FOLDER' =>     node['corndog']['west_herr']['ftp']['folder'],
+  'WEST_HERR_FTP_SERVER' =>     node['corndog']['west_herr']['ftp']['server'],
+  'WEST_HERR_FTP_USERNAME' =>   node['corndog']['west_herr']['ftp']['username'],
+  'WEST_HERR_FTP_PASSWORD' =>   node['corndog']['west_herr']['ftp']['password'],
+  'WEST_HERR_FTP_PORT' =>       node['corndog']['west_herr']['ftp']['port'],
+
   'AWS_IMAGE_BUCKET' => node['corndog']['aws']['image_bucket'],
   'MATCHPRO_ENDPOINT' => node['corndog']['matchpro']['endpoint'],
   'MATCHPRO_USER' => node['corndog']['matchpro']['user'],

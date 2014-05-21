@@ -15,7 +15,17 @@ node.normal['corndog']['aws']['image_bucket'] = "cde-#{subdomain_prefix}-images"
 # This doesn't work for anything but production. We might should check if its prod to set dot com else set dot biz. Or just leave it blank.
 node.normal['corndog']['cloudfront']['asset_hosts'] = "https://#{subdomain_prefix}.dealermatch.biz"
 
-node.normal['corndog']['deal_shield']['ftp']['folder'] = "Dealshield/#{stack}"
+node.normal['corndog']['deal_shield']['ftp']['folder']   = "Dealshield/#{stack}"
+node.normal['corndog']['deal_shield']['ftp']['server']   = 'ftp.dealermatch.com'
+node.normal['corndog']['deal_shield']['ftp']['username'] = 'CDX_Admin'
+node.normal['corndog']['deal_shield']['ftp']['password'] = 'wRAZ7g3M'
+node.normal['corndog']['deal_shield']['ftp']['port']     = '21'
+
+node.normal['corndog']['west_herr']['ftp']['folder']     = "vauto/westherr_#{stack}"
+node.normal['corndog']['west_herr']['ftp']['server']     = 'ftp.dealermatch.com'
+node.normal['corndog']['west_herr']['ftp']['username']   = 'CDX_Admin'
+node.normal['corndog']['west_herr']['ftp']['password']   = 'wRAZ7g3M'
+node.normal['corndog']['west_herr']['ftp']['port']       = '21'
 
 node.normal['corndog']['email_routing_domain'] = "#{subdomain_prefix}.dealermatch.biz"
 
