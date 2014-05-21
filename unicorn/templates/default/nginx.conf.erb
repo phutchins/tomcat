@@ -59,9 +59,7 @@ server {
   rewrite "^/(?i)ucn2" http://www2.dealermatch.com/ucn2 redirect;
   rewrite "^/(?i)ucn3" http://www2.dealermatch.com/ucn3 redirect;
   rewrite "^/(?i)ucn4" http://www2.dealermatch.com/ucn4 redirect;
-  rewrite "^/(?i)ferep" http://www2.dealermatch.com/ferep redirect;
-  rewrite "^/(?i)financeexpress" http://www2.dealermatch.com/financeexpress redirect;
-  # trivial pursuit redirects
+ # trivial pursuit redirects
   rewrite "^/(?i)trivia" http://www2.dealermatch.com/l/15952/2013-12-12/262npt redirect;
   rewrite "^/(?i)40K" http://www2.dealermatch.com/l/15952/2013-12-12/262npt redirect;
   # NADA
@@ -80,6 +78,12 @@ server {
   rewrite "^/(?i)leedombhph2014" http://www2.dealermatch.com/leedombhph2014 redirect;
   rewrite "^/(?i)rating" http://www2.dealermatch.com/rating redirect;
   rewrite "^/(?i)boston" http://www2.dealermatch.com/boston redirect;
+  # 05/15/2014
+  rewrite "^/(?i)fex" http://www2.dealermatch.com/fex redirect;
+  rewrite "^/(?i)fexrep" http://www2.dealermatch.com/fexrep redirect;
+  # 05/21/2014
+  rewrite "^/(?i)autotrader" http://www2.dealermatch.com/autotrader redirect;
+  rewrite "^/(?i)atcrep" http://www2.dealermatch.com/atcrep redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
