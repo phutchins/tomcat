@@ -28,3 +28,5 @@ service "unicorn_corndog" do
   status_command "#{node['corndog']['app']['base_path']}/shared/scripts/unicorn status"
   action :nothing
 end
+
+Chef::Log.info("SettingsLogic Values: #{node['corndog'].inspect}")
