@@ -31,14 +31,14 @@ redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
 node.normal['corndog']['settings_logic'] = {
-  'stack' => node['corndog']['stack'].to_hash,
+  'stack' => node['corndog']['stack'],
   'mongodb' => node['corndog']['mongodb'].to_hash,
   'mongodb_archive' => node['corndog']['mongodb_archive'].to_hash,
-  'redis' => {'uri' => redis_uri}.to_hash,
+  'redis' => {'uri' => redis_uri},
   'solr' => node['corndog']['solr'].to_hash,
   'cloudfront' => node['corndog']['cloudfront'].to_hash,
   'action_mailer' => node['corndog']['action_mailer'].to_hash,
-  'email' => {'routing_domain' => node['corndog']['email_routing_domain'] }.to_hash,
+  'email' => {'routing_domain' => node['corndog']['email_routing_domain'].to_hash },
   'deal_shield' => node['corndog']['deal_shield'].to_hash,
   'west_herr' => node['corndog']['west_herr'].to_hash,
   'aws' => node['corndog']['aws'].to_hash,
