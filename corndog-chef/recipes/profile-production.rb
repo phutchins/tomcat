@@ -51,13 +51,17 @@ node.normal['corndog']['settings_logic'] = {
 
 def ihash(h)
   h.each_pair do |k,v|
-    if v.is_a?(Hash)
+    if v.is_a(Chef::Node::VividMash)
+      Chef::Log.info("ihash - found VividMash - name: #{k} value: #{v}")
+      v.to_hash!
+    elsif v.is_a?(Hash)
       Chef::Log.info("ihash - found hash - name: #{k} type: #{v.class} value: #{v}")
      ihash(v)
     else
      Chef::Log.info("ihash - not a hash - name: #{k} type: #{v.class}")
     end
   end
+  self
 end
 
 ihash(node.normal['corndog']['settings_logic'])
