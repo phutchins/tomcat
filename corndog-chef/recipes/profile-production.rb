@@ -30,6 +30,8 @@ redis_uri.chop!
 redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
+run_context.include_recipe 'corndog-chef::settingslogic'
+
 node.normal['corndog']['dotenv'] = {
   'RAILS_ENV' => rails_env,
   'MONGODB_HOST_PORT_1' => node['corndog']['mongodb']['host_port_1'],
@@ -96,4 +98,3 @@ node.normal['corndog']['dotenv'] = {
 run_context.include_recipe 'corndog-chef::default'
 # Create the .env file from the attributes we've set here
 run_context.include_recipe 'corndog-chef::dotenv'
-run_context.include_recipe 'corndog-chef::settingslogic'
