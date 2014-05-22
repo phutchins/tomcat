@@ -51,7 +51,7 @@ node.normal['corndog']['settings_logic'] = {
 
 def ihash(h)
   h.each_pair do |k,v|
-    if v.is_a(Chef::Node::VividMash)
+    if v.is_a?(Chef::Node::VividMash)
       Chef::Log.info("ihash - found VividMash - name: #{k} value: #{v}")
       v.to_hash!
     elsif v.is_a?(Hash)
