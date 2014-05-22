@@ -52,10 +52,10 @@ node.normal['corndog']['settings_logic'] = {
 def ihash(h)
   h.each_pair do |k,v|
     if v.is_a?(Hash)
-     Chef::Log.info("ihash - found hash #{k}")
+      Chef::Log.info("ihash - found hash - name: #{k} type: #{v.class} value: #{v}")
      ihash(v)
     else
-     Chef::Log.info("ihash - not a hash - type: #{v.class}")
+     Chef::Log.info("ihash - not a hash - name: #{k} type: #{v.class}")
     end
   end
 end
