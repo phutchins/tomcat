@@ -16,8 +16,7 @@ template "/opt/corndog/application.yml" do
   owner "deploy"
   group "www-data"
   variables(
-    :corndog_hash => node['corndog'].to_hash,
-    :stack => node['corndog']['stack']
+    :corndog_hash => node['corndog']['settings_logic'].to_hash
   )
   notifies :restart, "service[unicorn_corndog]", :delayed
 end
