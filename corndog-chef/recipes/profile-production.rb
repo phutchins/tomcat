@@ -31,22 +31,22 @@ redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
 node.normal['corndog']['settings_logic'] = {
-  'stack' => node['corndog']['stack'],
-  'mongodb' => node['corndog']['mongodb'],
-  'mongodb_archive' => node['corndog']['mongodb_archive'],
-  'redis' => {'uri' => redis_uri},
-  'solr' => node['corndog']['solr'],
-  'cloudfront' => node['corndog']['cloudfront'],
-  'action_mailer' => node['corndog']['action_mailer'],
-  'email' => {'routing_domain' => node['corndog']['email_routing_domain'] },
-  'deal_shield' => node['corndog']['deal_shield'],
-  'west_herr' => node['corndog']['west_herr'],
-  'aws' => node['corndog']['aws'],
-  'matchpro' => node['corndog']['matchpro'],
-  'mixpanel' => node['corndog']['mixpanel'],
-  'urbanairship' => node['corndog']['urbanairship'],
-  'recurly' => node['corndog']['recurly'],
-  'salesforce' => node['corndog']['salesforce']
+  'stack' => node['corndog']['stack'].to_hash,
+  'mongodb' => node['corndog']['mongodb'].to_hash,
+  'mongodb_archive' => node['corndog']['mongodb_archive'].to_hash,
+  'redis' => {'uri' => redis_uri}.to_hash,
+  'solr' => node['corndog']['solr'].to_hash,
+  'cloudfront' => node['corndog']['cloudfront'].to_hash,
+  'action_mailer' => node['corndog']['action_mailer'].to_hash,
+  'email' => {'routing_domain' => node['corndog']['email_routing_domain'] }.to_hash,
+  'deal_shield' => node['corndog']['deal_shield'].to_hash,
+  'west_herr' => node['corndog']['west_herr'].to_hash,
+  'aws' => node['corndog']['aws'].to_hash,
+  'matchpro' => node['corndog']['matchpro'].to_hash,
+  'mixpanel' => node['corndog']['mixpanel'].to_hash,
+  'urbanairship' => node['corndog']['urbanairship'].to_hash,
+  'recurly' => node['corndog']['recurly'].to_hash,
+  'salesforce' => node['corndog']['salesforce'].to_hash
 }
 
 def ihash(h)
