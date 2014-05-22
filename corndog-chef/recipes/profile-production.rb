@@ -49,6 +49,19 @@ node.normal['corndog']['settings_logic'] = {
   'salesforce' => node['corndog']['salesforce']
 }
 
+def ihash(h)
+  h.each_pair do |k,v|
+    if v.is_a?(Hash)
+     Chef::Log.info("ihash - found hash #{k}")
+     ihash(v)
+    else
+     Chef::Log.info("ihash - not a hash - type: #{v.class}")
+    end
+  end
+end
+
+ihash(node.normal['corndog']['settings_logic'])
+
 run_context.include_recipe 'corndog-chef::settingslogic'
 
 node.normal['corndog']['dotenv'] = {
