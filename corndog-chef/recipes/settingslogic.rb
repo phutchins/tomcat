@@ -9,7 +9,7 @@ directory "/opt/corndog" do
 end
 
 # Remove any nil values from the hash so they are not added to the dotenv file
-node.default['corndog'] = node['corndog'].to_hash.delete_if { |k,v| v.nil? }
+#node.default['corndog'] = node['corndog'].to_hash.delete_if { |k,v| v.nil? }
 
 template "/opt/corndog/application.yml" do
   source "settingslogic.erb"
