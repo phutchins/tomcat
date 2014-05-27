@@ -30,24 +30,14 @@ redis_uri.chop!
 redis_uri = node['corndog']['redis']['uri'] || redis_uri
 Chef::Log.info("Redis URI: #{redis_uri}")
 
-node.normal['corndog']['settings_logic'] = {
-  'stack' => node['corndog']['stack'],
-  'mongodb' => node['corndog']['mongodb'],
-  'mongodb_archive' => node['corndog']['mongodb_archive'],
-  'redis' => {'uri' => redis_uri},
-  'solr' => node['corndog']['solr'],
-  'cloudfront' => node['corndog']['cloudfront'],
-  'action_mailer' => node['corndog']['action_mailer'],
-  'email' => {'routing_domain' => node['corndog']['email_routing_domain'] },
-  'deal_shield' => node['corndog']['deal_shield'],
-  'west_herr' => node['corndog']['west_herr'],
-  'aws' => node['corndog']['aws'],
-  'matchpro' => node['corndog']['matchpro'],
-  'mixpanel' => node['corndog']['mixpanel'],
-  'urbanairship' => node['corndog']['urbanairship'],
-  'recurly' => node['corndog']['recurly'],
-  'salesforce' => node['corndog']['salesforce']
-}
+
+%w(
+  action_mailer aws cloudfront deal_shield west_herr email_routing_domain
+  marketing matchpro mixpanel mongodb mongodb_archive recurly redis salesforce
+  solr stack urbanairship
+).each do |key|
+  node.normal['corndog']['settings_logic'][key] = node['corndog'][key]
+end
 
 run_context.include_recipe 'corndog-chef::settingslogic'
 
