@@ -50,11 +50,6 @@ node.normal['corndog']['mongodb_archive']['host_port_2'] = nil
 node.normal['corndog']['mongodb_archive']['username'] = mongodb_username
 node.normal['corndog']['mongodb_archive']['password'] = mongodb_password
 
-node.normal['corndog']['recurly']['subdomain'] = 'cdx-test'
-node.normal['corndog']['recurly']['api_key'] = '60633d0d1f7e4e1b979cecbabe4ca65d'
-node.normal['corndog']['recurly']['js_key'] = '0c017960e0914cea9a85548fc50a06eb'
-node.normal['corndog']['recurly']['default_plan'] = 'monthly_a'
-
 node.normal['corndog']['redis']['uri'] = nil
 node.normal['corndog']['redis']['port'] = '6379'
 

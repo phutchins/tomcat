@@ -33,7 +33,7 @@ Chef::Log.info("Redis URI: #{redis_uri}")
 
 %w(
   action_mailer aws cloudfront deal_shield west_herr email_routing_domain
-  marketing matchpro mixpanel mongodb mongodb_archive recurly redis salesforce
+  marketing matchpro mixpanel mongodb mongodb_archive redis salesforce
   solr stack urbanairship
 ).each do |key|
   node.normal['corndog']['settings_logic'][key] = node['corndog'][key]
@@ -93,14 +93,9 @@ node.normal['corndog']['dotenv'] = {
   'URBANAIRSHIP_APPLICATION_KEY' => node['corndog']['urbanairship']['application_key'],
   'URBANAIRSHIP_APPLICATION_SECRET' => node['corndog']['urbanairship']['application_secret'],
   'URBANAIRSHIP_MASTER_SECRET' => node['corndog']['urbanairship']['master_secret'],
-  'RECURLY_SUBDOMAIN' => node['corndog']['recurly']['subdomain'],
-  'RECURLY_API_KEY' => node['corndog']['recurly']['api_key'],
-  'RECURLY_JS_KEY' => node['corndog']['recurly']['js_key'],
-  'RECURLY_DEFAULT_PLAN' => node['corndog']['recurly']['default_plan'],
   'SALESFORCE_CLIENT_CONFIG_HOST' => node['corndog']['salesforce']['client_config']['host'],
   'SALESFORCE_ROBOT_CREDENTIALS_USERNAME' => node['corndog']['salesforce']['robot_credentials']['username'],
-  'STACK' => node['corndog']['stack'],
-  'NICK_FOO_BAR_TEST' => 'HERE_I_AM_JASON'
+  'STACK' => node['corndog']['stack']
 }
 
 # Load defaults for all Corndog hosts and environments
