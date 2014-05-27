@@ -1,6 +1,9 @@
 # Pull this from somewhere in opsworks attrs
 node.default['corndog']['profile'] = 'production'
 
+node.override['logstash']['user'] = 'deploy'
+node.override['logstash']['supervisor_gid'] = 'www-data'
+
 stack_name = node['corndog']['stack']
 profile_name = node['corndog']['profile']
 host_role = node['corndog']['host_role']
