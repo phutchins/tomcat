@@ -64,7 +64,7 @@ def ihash(h)
   self
 end
 
-ihash(node.normal['corndog']['settings_logic'])
+#ihash(node.normal['corndog']['settings_logic'])
 
 run_context.include_recipe 'corndog-chef::settingslogic'
 

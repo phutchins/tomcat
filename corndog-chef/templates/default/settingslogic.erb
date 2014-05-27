@@ -1,1 +1,1 @@
-<%= { "production" => @corndog_hash }.to_yaml %>
+<%= JSON.parse( { "production" => @corndog_hash }.to_json ).to_yaml  %>
