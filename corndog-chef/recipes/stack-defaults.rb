@@ -50,7 +50,6 @@ node.normal['corndog']['mongodb_archive']['host_port_2'] = nil
 node.normal['corndog']['mongodb_archive']['username'] = mongodb_username
 node.normal['corndog']['mongodb_archive']['password'] = mongodb_password
 
-node.normal['corndog']['redis']['uri'] = nil
 node.normal['corndog']['redis']['port'] = '6379'
 
 node.normal['corndog']['salesforce']['client_config']['host'] = 'test.salesforce.com'

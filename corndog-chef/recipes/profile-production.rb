@@ -6,30 +6,18 @@ node.normal['corndog']['profile'] = profile
 # Monitoring
 #node.override['collectd']['graphite_prefix'] = "#{node['corndog']['stack']}.#{node['corndog']['node_type']}.#{node[:opsworks][:instance][:aws_instance_id]}"
 
-# Retrieve attributes from node object
-# Required attributes (add some logic here to fail if not assigned)
-mongodb_database = node['corndog']['mongodb']['database']
-mongodb_username = node['corndog']['mongodb']['username']
-mongodb_password = node['corndog']['mongodb']['password']
-redis_port = node['corndog']['redis']['port']
-
-# Additional attributes
-mongodb_host_port_2 ||= node['corndog']['mongodb']['host_port_2']
-mongodb_host_port_3 ||= node['corndog']['mongodb']['host_port_3']
-
 # Attributes from the OpsWorks Environment
 if !node['opsworks']['layers']['redis']['instances'].nil?
+  redis_port = node['corndog']['redis']['port']
   redis_uri = 'redis://'
   node['opsworks']['layers']['redis']['instances'].each do |instance|
     Chef::Log.info("Adding instance '#{instance[0]}' to Redis URI with hostname '#{instance[1]['public_dns_name']}'")
     redis_uri << "#{instance[1]['public_dns_name']}:#{redis_port},"
   end
+  redis_uri.chop!
+  node.normal['corndog']['redis']['uri'] = redis_uri
+  Chef::Log.info("Redis URI: #{redis_uri}")
 end
-redis_uri.chop!
-# If override is not nil, use that
-redis_uri = node['corndog']['redis']['uri'] || redis_uri
-Chef::Log.info("Redis URI: #{redis_uri}")
-
 
 %w(
   action_mailer aws cloudfront deal_shield west_herr email_routing_domain
@@ -44,17 +32,17 @@ run_context.include_recipe 'corndog-chef::settingslogic'
 node.normal['corndog']['dotenv'] = {
   'RAILS_ENV' => rails_env,
   'MONGODB_HOST_PORT_1' => node['corndog']['mongodb']['host_port_1'],
-  'MONGODB_HOST_PORT_2' => mongodb_host_port_2,
-  'MONGODB_HOST_PORT_3' => mongodb_host_port_3,
-  'MONGODB_DATABASE' => mongodb_database,
-  'MONGODB_USERNAME' => mongodb_username,
-  'MONGODB_PASSWORD' => mongodb_password,
+  'MONGODB_HOST_PORT_2' => node['corndog']['mongodb']['host_port_2'],
+  'MONGODB_HOST_PORT_3' => node['corndog']['mongodb']['host_port_3'],
+  'MONGODB_DATABASE' => node['corndog']['mongodb']['database'],
+  'MONGODB_USERNAME' => node['corndog']['mongodb']['username'],
+  'MONGODB_PASSWORD' => node['corndog']['mongodb']['password'],
   'MONGODB_ARCHIVE_HOST_PORT_1' => node['corndog']['mongodb_archive']['host_port_1'],
   'MONGODB_ARCHIVE_HOST_PORT_2' => node['corndog']['mongodb_archive']['host_port_2'],
   'MONGODB_ARCHIVE_DATABASE' => node['corndog']['mongodb_archive']['database'],
   'MONGODB_ARCHIVE_USERNAME' => node['corndog']['mongodb_archive']['username'],
   'MONGODB_ARCHIVE_PASSWORD' => node['corndog']['mongodb_archive']['password'],
-  'REDIS_URI' => redis_uri,
+  'REDIS_URI' => node['corndog']['redis']['uri'],
   'SOLR_HOST' => node['corndog']['solr']['host'],
   'SOLR_PORT' => node['corndog']['solr']['port'],
   'SOLR_PATH' => node['corndog']['solr']['path'],
