@@ -1,27 +1,45 @@
-upstream unicorn_corndog {
- server unix:/srv/www/corndog/shared/sockets/unicorn.sock fail_timeout=0;
+upstream unicorn_<%= @application[:domains].first %> {
+ server unix:<%= @application[:deploy_to]%>/shared/sockets/unicorn.sock fail_timeout=0;
 }
 
 server {
   listen 80;
-  server_name corndog <%= @hostname %>;
-  access_log /var/log/nginx/corndog.access.log main;
-  error_log  /var/log/nginx/corndog.error.log error;
+  server_name <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
+
+  <% if @application[:log_format] %>
+    <% @application[:log_format].each do |log_format_name| %>
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.<%= log_format_name %>.log <%= log_format_name %>;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.error.<%= log_format_name %>.log error;
+    <% end %>
+  <% else %>
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.error.log;
+  <%end %>
 
   keepalive_timeout 5;
 
-  root /srv/www/corndog/current/public/;
+  root <%= @application[:absolute_document_root] %>;
 
+  <% if @application[:nginx] && @application[:nginx][:client_max_body_size] %>
+    client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
+  <% end %>
 
   location / {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
 
+  <% if node[:nginx] && node[:nginx][:proxy_read_timeout] -%>
+    proxy_read_timeout <%= node[:nginx][:proxy_read_timeout] %>;
+  <% end -%>
+  <% if node[:nginx] && node[:nginx][:proxy_send_timeout] -%>
+    proxy_send_timeout <%= node[:nginx][:proxy_send_timeout] %>;
+  <% end -%>
+
     # If you don't find the filename in the static files
     # Then request it from the unicorn server
     if (!-f $request_filename) {
-      proxy_pass http://unicorn_corndog;
+      proxy_pass http://unicorn_<%= @application[:domains].first %>;
       break;
     }
   }
@@ -59,7 +77,7 @@ server {
   rewrite "^/(?i)ucn2" http://www2.dealermatch.com/ucn2 redirect;
   rewrite "^/(?i)ucn3" http://www2.dealermatch.com/ucn3 redirect;
   rewrite "^/(?i)ucn4" http://www2.dealermatch.com/ucn4 redirect;
- # trivial pursuit redirects
+  # trivial pursuit redirects
   rewrite "^/(?i)trivia" http://www2.dealermatch.com/l/15952/2013-12-12/262npt redirect;
   rewrite "^/(?i)40K" http://www2.dealermatch.com/l/15952/2013-12-12/262npt redirect;
   # NADA
@@ -76,14 +94,6 @@ server {
   rewrite "^/(?i)connect" http://www2.dealermatch.com/connect redirect;
   rewrite "^/(?i)namad" http://www2.dealermatch.com/namad redirect;
   rewrite "^/(?i)leedombhph2014" http://www2.dealermatch.com/leedombhph2014 redirect;
-  rewrite "^/(?i)rating" http://www2.dealermatch.com/rating redirect;
-  rewrite "^/(?i)boston" http://www2.dealermatch.com/boston redirect;
-  # 05/15/2014
-  rewrite "^/(?i)fexrep" http://www2.dealermatch.com/fexrep redirect;
-  rewrite "^/(?i)fex" http://www2.dealermatch.com/fex redirect;
-  # 05/21/2014
-  rewrite "^/(?i)autotrader" http://www2.dealermatch.com/autotrader redirect;
-  rewrite "^/(?i)atcrep" http://www2.dealermatch.com/atcrep redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
@@ -133,11 +143,59 @@ server {
 
   error_page 500 502 503 504 /500.html;
   location = /500.html {
-    root /srv/www/corndog/current/public/;
+    root <%= @application[:absolute_document_root] %>;
   }
 }
+
+<% if @application[:ssl_support] %>
+server {
+  listen   443;
+  server_name <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>-ssl.access.log;
+
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.crt;
+  ssl_certificate_key /etc/nginx/ssl/<%= @application[:domains].first %>.key;
+  <% if @application[:ssl_certificate_ca] -%>
+  ssl_client_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.ca;
+  <% end -%>
+
+  keepalive_timeout 5;
+
+  root <%= @application[:absolute_document_root] %>;
+
+  <% if @application[:nginx] && @application[:nginx][:client_max_body_size] %>
+    client_max_body_size <%= @application[:nginx][:client_max_body_size] %>;
+  <% end %>
+
+  location / {
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+
+  <% if node[:nginx] && node[:nginx][:proxy_read_timeout] -%>
+    proxy_read_timeout <%= node[:nginx][:proxy_read_timeout] %>;
+  <% end -%>
+  <% if node[:nginx] && node[:nginx][:proxy_send_timeout] -%>
+    proxy_send_timeout <%= node[:nginx][:proxy_send_timeout] %>;
+  <% end -%>
+
+    # If you don't find the filename in the static files
+    # Then request it from the unicorn server
+    if (!-f $request_filename) {
+      proxy_pass http://unicorn_<%= @application[:domains].first %>;
+      break;
+    }
+  }
+
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root <%= @application[:absolute_document_root] %>;
+  }
+}
+<% end %>
 
 proxy_buffer_size 128k;
 proxy_buffers 4 256k;
 proxy_busy_buffers_size 256k;
-
