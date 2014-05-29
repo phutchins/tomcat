@@ -12,8 +12,8 @@ server {
   error_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.error.<%= log_format_name %>.log error;
     <% end %>
   <% else %>
-  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
-  error_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.error.log;
+  access_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log main;
+  error_log <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.error.log main;
   <%end %>
 
   keepalive_timeout 5;
