@@ -94,6 +94,14 @@ server {
   rewrite "^/(?i)connect" http://www2.dealermatch.com/connect redirect;
   rewrite "^/(?i)namad" http://www2.dealermatch.com/namad redirect;
   rewrite "^/(?i)leedombhph2014" http://www2.dealermatch.com/leedombhph2014 redirect;
+  rewrite "^/(?i)rating" http://www2.dealermatch.com/rating redirect;
+  rewrite "^/(?i)boston" http://www2.dealermatch.com/boston redirect;
+  # 05/15/2014
+  rewrite "^/(?i)fexrep" http://www2.dealermatch.com/fexrep redirect;
+  rewrite "^/(?i)fex" http://www2.dealermatch.com/fex redirect;
+  # 05/21/2014
+  rewrite "^/(?i)autotrader" http://www2.dealermatch.com/autotrader redirect;
+  rewrite "^/(?i)atcrep" http://www2.dealermatch.com/atcrep redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
