@@ -1,7 +1,7 @@
 input {
 
   file {
-    'exclude' => ["production*log", "unicorn*log", "salesforce*", "mail_delivery.log", "newrelic*", "cron*", "bluepill*"]
+    'exclude' => ["production*log", "unicorn*log", "salesforce*", "mail_delivery.log", "newrelic*", "cron*", "bluepill*", "resque*log"]
     'path' => ["/srv/www/corndog/shared/log/*.log"]
     'tags' => ["catchall"]
     'type' => "catchall"
