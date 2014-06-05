@@ -102,6 +102,8 @@ server {
   # 05/21/2014
   rewrite "^/(?i)autotrader" http://www2.dealermatch.com/autotrader redirect;
   rewrite "^/(?i)atcrep" http://www2.dealermatch.com/atcrep redirect;
+  # 06/05/2014 - Survey
+  rewrite "^/(?i)surveyjun2014" http://www2.dealermatch.com/surveyjun2014 redirect;
 
   # remove unwanted requests
   location ~* .*Microsoft-Server-ActiveSync.* {
