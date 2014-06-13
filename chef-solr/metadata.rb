@@ -1,12 +1,6 @@
-name             'solr'
-maintainer       'David Radcliffe'
-maintainer_email 'radcliffe.david@gmail.com'
-license          'MIT'
-description      'Installs the solr search engine.'
-long_description 'See README.md'
-version          '0.1.3'
-
-supports 'redhat'
-supports 'centos'
-
-depends 'java'
+name			"chef-solr"
+description		"Install and configure Apache Solr"
+maintainer		"Philip Hutchins"
+maintainer_email 	"flipture@gmail.com"
+long_description 	IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+version          	"0.0.1"
