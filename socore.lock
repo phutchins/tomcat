@@ -1,3 +1,3 @@
 cookbook 'base-opsworks', :git_sha => '8091b77d645e305ad8551da9253e72837814ac02', :dir_hash => 'f00a71f6c2df812cf9b628c833b9515a'
 cookbook 'logstash', :git_sha => '6d1025df1202da833ecf2e83b45a2056697047a7', :dir_hash => '3a2809cd4297c2f9a9de8d235f28bda3'
-cookbook 'chef-solr', :git_sha => '4f4b61055d568535cbb21d21da905018a4c29aec', :dir_hash => 'e253c2bad44f409679326aeb4c46995d'
+cookbook 'chef-solr', :git_sha => '9e7d1f70d5e5f60ea1281afa4b77e058e7d87e24', :dir_hash => 'be853d52d1ca842109dd330e1bf1fcf6'
