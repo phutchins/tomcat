@@ -1,1 +1,1 @@
-node[:solr][:max_time] = 5000
+default[:solr][:max_time] = 5000
