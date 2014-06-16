@@ -14,5 +14,5 @@ template "/etc/solr/conf/solrconfig.xml" do
     :max_time => node[:solr][:max_time]
 #    :time_allowed => node[:solr][:time_allowed]
   })
-  notifies :restart, "service[solr]", :delayed
+  notifies :restart, "service[tomcat6]", :delayed
 end
