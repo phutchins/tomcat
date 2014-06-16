@@ -3,10 +3,10 @@ package "solr-common" do
   action :install
 end
 
-#service "solr" do
-#  supports :restart => true, :status => true
-#  action [:enable, :start]
-#end
+service "tomcat6" do
+  supports :restart => true, :status => true
+  action [:enable, :start]
+end
 
 template "/etc/solr/conf/solrconfig.xml" do
   source "solrconfig.xml.erb"
