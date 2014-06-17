@@ -504,13 +504,13 @@
 <!-- remove  the <lst name="slave"> section if this is just a master -->
 <% if node[:solr][:replication][:enabled] %>
 <requestHandler name="/replication" class="solr.ReplicationHandler" >
-    <% if node[:solr][:replication][:node_type] = "master" %>
+    <% if node[:solr][:replication][:node_type] == "master" %>
     <lst name="master">
       <str name="replicateAfter">commit</str>
       <str name="replicateAfter">startup</str>
       <str name="confFiles">schema.xml,stopwords.txt</str>
     </lst>
-    <% elsif node[:solr][:replication][:node_type] = "slave" %>
+    <% elsif node[:solr][:replication][:node_type] == "slave" %>
     <lst name="slave">
       <str name="masterUrl">http://<%= node[:solr][:replication][:master_url] %>:<%=node[:solr][:port] %>/solr/replication</str>
       <str name="pollInterval"><%= node[:solr][:poll_interval] %></str>

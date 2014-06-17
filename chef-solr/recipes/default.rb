@@ -1,5 +1,5 @@
 package "solr-common" do
-  version "1.4.1+dfsg1-2ubuntu2"
+  version node[:solr][:version]
   action :install
 end
 
