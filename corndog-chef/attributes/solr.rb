@@ -1,3 +1,4 @@
+default[:solr][:version] = "3.6.1+dfsg-0ubuntu2"
 default[:solr][:max_time] = 5000
 
 default[:solr][:replication][:enabled] = true
