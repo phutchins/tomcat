@@ -512,8 +512,8 @@
     </lst>
     <% elsif node[:solr][:replication][:node_type] == "slave" %>
     <lst name="slave">
-      <str name="masterUrl">http://<%= node[:solr][:replication][:master_url] %>:<%=node[:solr][:port] %>/solr/replication</str>
-      <str name="pollInterval"><%= node[:solr][:poll_interval] %></str>
+      <str name="masterUrl"><%= node[:solr][:replication][:master_url] %>/replication</str>
+      <str name="pollInterval"><%= node[:solr][:replication][:poll_interval] %></str>
     </lst>
   <% end %>
 </requestHandler>

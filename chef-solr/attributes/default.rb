@@ -21,4 +21,5 @@ default[:solr][:multicore][:enabled] = false
 
 default[:solr][:replication][:enabled] = false
 default[:solr][:replication][:poll_interval] = "00:00:60"
+default[:solr][:replication][:master_url] = "localhost"
 default[:solr][:port] = 8080
