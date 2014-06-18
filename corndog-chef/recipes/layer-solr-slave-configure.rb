@@ -1,7 +1,10 @@
 include_recipe 'base-opsworks'
-
 node.default[:solr][:replication][:node_type] = "slave"
-(node[:corndog][:stack] == "production") ? domain = "dealermatch.com" : domain = "dealermatch.biz"
-node.default[:solr][:replication][:master_url] = "solr-#{node[:corndog][:stack]}.#{domain}"
+
+if !node['opsworks']['layers']['solr']['instances'].nil?
+  solr_opsworks_instance = node['opsworks']['layers']['solr']['instances'].first
+  solr_master_dns = solr_opsworks_instance['public_dns_name']
+end
+node.default[:solr][:replication][:master_url] = "http://#{solr_master_dns}:#{node[:solr][:port].to_s}/solr"
 
 include_recipe 'corndog-chef::solr-config'
