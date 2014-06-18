@@ -3,6 +3,11 @@ service "tomcat6" do
   action [:enable, :start]
 end
 
+directory node[:solr][:data_dir] do
+  recursive true
+  action :create
+end
+
 template File.join(node[:solr][:config_dir], "solrconfig.xml") do
   source "solrconfig.xml.erb"
   variables({
