@@ -3,7 +3,7 @@ service "tomcat6" do
   action [:enable, :start]
 end
 
-template "/etc/solr/conf/solrconfig.xml" do
+template File.join(node[:solr][:config_dir], "solrconfig.xml") do
   source "solrconfig.xml.erb"
   variables({
     :max_time => node[:solr][:max_time]

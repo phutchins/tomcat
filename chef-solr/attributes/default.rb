@@ -10,6 +10,7 @@ default[:solr][:version] = "4.8.1"
 default[:solr][:download_url] = "https://archive.apache.org/dist/lucene/solr/4.8.1/"
 default[:solr][:archive_name] = "solr-4.8.1.tgz"
 default[:solr][:war_name] = "solr-4.8.1.war"
+default[:solr][:config_dir] = "/var/solr/conf"
 default[:solr][:base_dir] = "/var/solr"
 default[:solr][:max_time] = 5000
 
