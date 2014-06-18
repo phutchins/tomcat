@@ -19,6 +19,12 @@ if !node['opsworks']['layers']['redis']['instances'].nil?
   Chef::Log.info("Redis URI: #{redis_uri}")
 end
 
+if !node['opsworks']['layers']['solr']['instances'].nil?
+    solr_opsworks_instance = node['opsworks']['layers']['solr']['instances'].first
+    node.normal['corndog']['solr']['host'] = solr_opsworks_instance[1]['public_dns_name']
+    node.normal['corndog']['solr']['port'] = 8080
+end
+
 %w(
   action_mailer aws cloudfront deal_shield west_herr email_routing_domain
   marketing matchpro mixpanel mongodb mongodb_archive redis salesforce
