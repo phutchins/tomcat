@@ -16,7 +16,7 @@ remote_file archive_file_path do
 end
 
 execute "extract_package" do
-  command "cd #{Chef::Config[:file_cache_path]} && tar -zxf #{node[:solr][:archive_name]} -C #{File.join(Chef::Config[:file_cache_path], node[:solr][:extract_dir_name])}"
+  command "tar -zxf #{File.join(Chef::Config[:file_cache_path], node[:solr][:archive_name])} -C #{Chef::Config[:file_cache_path]}"
   action :nothing
   notifies :run, "execute[copy_solr]", :immediately
   if node[:solr][:multicore][:enabled] then
