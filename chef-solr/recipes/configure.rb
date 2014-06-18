@@ -4,6 +4,8 @@ service "tomcat6" do
 end
 
 directory node[:solr][:data_dir] do
+  owner "tomcat6"
+  group "tomcat6"
   recursive true
   action :create
 end
