@@ -11,7 +11,7 @@ directory node[:solr][:base_dir] do
 end
 
 remote_file archive_file_path do
-  source node[:solr][:download_url]
+  source File.join(node[:solr][:download_url], node[:solr][:archive_name])
   notifies :run, "execute[extract_package]", :immediately
 end
 
