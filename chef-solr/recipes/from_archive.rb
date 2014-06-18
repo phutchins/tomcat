@@ -15,6 +15,11 @@ directory "/etc/solr/conf" do
   action :create
 end
 
+directory "/var/lib/solr/data" do
+  recursive true
+  action :create
+end
+
 remote_file archive_file_path do
   source File.join(node[:solr][:download_url], node[:solr][:archive_name])
   notifies :run, "execute[extract_package]", :immediately
