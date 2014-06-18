@@ -1,5 +1,7 @@
+include_recipe 'chef-solr::configure'
+
 cookbook_file "schema.xml" do
-  path '/etc/solr/conf/schema.xml'
+  path File.join(node[:solr][:base_dir], '/conf/schema.xml')
   owner 'root'
   group 'root'
   mode 0644
