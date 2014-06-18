@@ -46,7 +46,7 @@ execute "set_permissions" do
 end
 
 template "/etc/tomcat6/Catalina/localhost/solr.xml" do
-  group tomcat6
+  group "tomcat6"
   variables ({
     :solr_war_name => node[:solr][:war_name],
     :solr_base_dir => node[:solr][:base_dir]
