@@ -34,7 +34,12 @@ node.normal['corndog']['mongodb_archive']['database'] = 'cde_production_archive'
 node.normal['corndog']['salesforce']['client_config']['host'] = 'login.salesforce.com'
 node.normal['corndog']['salesforce']['robot_credentials']['username'] = 'cdx-bi@dealermatch.com'
 
-node.normal['corndog']['solr']['path'] = '/solr/ce48a2afebb'
+#node.normal['corndog']['solr']['path'] = '/solr/ce48a2afebb'
+node.normal['corndog']['solr']['path'] = '/solr'
+
+node.normal['corndog']['solr']['host'] = 'ec2-54-226-170-240.compute-1.amazonaws.com'
+node.normal['corndog']['solr']['port'] = 8080
+node.normal['corndog']['solr']['log_level'] = 'WARNING'
 
 node.normal['corndog']['urbanairship']['application_key'] = 'ovzuP3xrRtaITIEbgeNVJw'
 node.normal['corndog']['urbanairship']['application_secret'] = 'v24KJXUYTpabaV2QOi4wOA'
