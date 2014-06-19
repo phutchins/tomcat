@@ -19,7 +19,7 @@ if !node['opsworks']['layers']['redis']['instances'].nil?
   Chef::Log.info("Redis URI: #{redis_uri}")
 end
 
-if !node['opsworks']['layers']['solr']['instances'].nil?
+if !node['opsworks']['layers']['solr']['instances'].nil? && !node['opsworks']['layers']['solr']['instances'][1]['public_dns_name'].nil?
     solr_opsworks_instance = node['opsworks']['layers']['solr']['instances'].first
     node.normal['corndog']['solr']['host'] = solr_opsworks_instance[1]['public_dns_name']
     node.normal['corndog']['solr']['port'] = 8080
