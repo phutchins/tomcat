@@ -5,7 +5,6 @@ default[:solr][:install_method] = 'from_archive'
 default[:solr][:data_dir] = '/var/lib/solr/data'
 
 # For package install
-default[:tomcat][:version] = "6.0.35-1ubuntu3.4"
 default[:solr][:package_version] = "1.4.1+dfsg1-2ubuntu2"
 
 # For archive download and install

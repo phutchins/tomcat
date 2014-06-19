@@ -1,10 +1,5 @@
 archive_file_path = File.join(Chef::Config[:file_cache_path], node[:solr][:archive_name])
 
-package "tomcat6" do
-  version node[:tomcat][:version]
-  action :install
-end
-
 directory node[:solr][:base_dir] do
   user "tomcat6"
   action :create
