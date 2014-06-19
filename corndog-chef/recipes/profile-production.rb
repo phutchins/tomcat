@@ -23,6 +23,7 @@ if !node['opsworks']['layers']['solr']['instances'].nil?
     solr_opsworks_instance = node['opsworks']['layers']['solr']['instances'].first
     node.normal['corndog']['solr']['host'] = solr_opsworks_instance[1]['public_dns_name']
     node.normal['corndog']['solr']['port'] = 8080
+    node.normal['corndog']['solr']['path'] = '/solr'
 end
 
 %w(
